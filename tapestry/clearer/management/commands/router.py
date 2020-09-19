@@ -23,7 +23,6 @@ class Command(BaseCommand):
     def notice(self, message):
         self.stderr.write(self.style.NOTICE(message))
 
-
     def handle(self, *args, **options):
 
         # Load the configuration
@@ -66,13 +65,75 @@ class Command(BaseCommand):
 
         while True:
             for bic, queues in self.QUEUES.items():
+                # Receive a payment packet
                 try:
                     queue = queues['recv']
                     msg = queue.receiveMessage().execute()
-                    self.success("Message from {}: {}".format(bic, msg))
+                    # Process payload from YAML
+                    packet = yaml.safe_load(msg['message'])
+                    self.success("Payment packet received {}".format(
+                        self.format_payment(packet)))
                     queue.deleteMessage(id=msg['id']).execute()
                 except NoMessageInQueue:
                     self.notice("No payment packets for {} [{}]".format(
                         bic, time.asctime()))
+                    continue
+
+                # Authorise a payment packet; if not authorised just drop the packet.
+
+                # FIXME: The payment packet should be an object and we
+                # should have methods for routing et around that.
+
+                if not self.authorise(packet):
+                    # FIXME: Non-authorised packets we should be
+                    # returned to sender. The router would need to
+                    # have more in the payment packet to describe what
+                    # a returned packet is. Therefore we will need to
+                    # have unified packet types.
+
+                    continue  # we just drop the non-authorised packet
+
+                # Route the packet by finding out what the destination
+                # interface is.
+
+                destination_bic = self.route(packet)
+
+                if not destination_bic:
+                    self.error("No destination for payment packet {}".format(
+                               self.format_payment(packet)))
+                    continue
+
+                self.success("Routing payment packet to destination: {}".format(
+                        self.format_payment(packet)))
+
+                # Pass the message along to the destination BIC.
+
+                qname = "{}_{}".format(destination_bic, "send")
+                queue = RedisSMQ(host="127.0.0.1", qname=qname)
+
+                message_id = queue.sendMessage().message(
+                    yaml.safe_dump(packet)).execute()
+
+                self.success("Payment packet sent: {}".format(
+                    self.format_payment(packet)))
 
             time.sleep(1)  # just so we don't use _all_ CPU
+
+    def format_payment(self, payment):
+        """ Helper to show payment packet as something more readable. """
+        # FIXME: Having the packet as an object and with a __repr__
+        # would be helpful.
+        return "{} -> {} {} {}".format(
+            payment['source_bic'], payment['destination_bic'],
+            payment['amount'], payment['currency'],
+        )
+
+    def authorise(self, payment):
+        """ Authorise a single payment packet via the settlement module. """
+        return True  # FIXME: we just authorise everything
+
+    def route(self, payment):
+        """ Route a single packet by finding its destination interface (BIC). """
+        # FIXME: No routing logic happening here except we simply use
+        # the destination BIC.
+        return payment['destination_bic']
