@@ -59,13 +59,26 @@ class Transaction(models.Model):
     # FIXME: We do not have validation on database level that the
     # Transfers of a Transaction sum to zero.
 
-    currency = models.CharField(max_length=3)
-    description = models.CharField(max_length=140)
+    currency = models.CharField(
+        max_length=3,
+        blank=False,
+        validators=[
+            validators.MinLengthValidator(3),
+            validators.MaxLengthValidator(3),
+        ]
+    )
+    description = models.CharField(max_length=140, blank=True)
 
     objects = TransactionManager()
 
     def __str__(self):
         return "{} {}".format(self.pk, self.currency)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(check=models.Q(currency__regex=r'^[A-Z]{3}$'),
+                                   name='transaction_currency_regex_alpha3'),
+        ]
 
 class Transfer(models.Model):
     """A Transfer is a single debit or a credit on an Account. Multiple
@@ -94,7 +107,7 @@ class Account(models.Model):
             validators.MaxLengthValidator(3),
         ]
     )
-    description = models.CharField(max_length=140)
+    description = models.CharField(max_length=140, blank=True)
 
     def get_balance(self):
         from decimal import Decimal
@@ -107,5 +120,5 @@ class Account(models.Model):
     class Meta:
         constraints = [
             models.CheckConstraint(check=models.Q(currency__regex=r'^[A-Z]{3}$'),
-                                   name='currency_regex_alpha3'),
+                                   name='accoount_currency_regex_alpha3'),
         ]
