@@ -9,6 +9,9 @@ from rsmq.cmd.exceptions import QueueAlreadyExists, NoMessageInQueue
 
 pp = pprint.PrettyPrinter()
 
+# FIXME: Make the "payment packet" into a class that resembles an
+# MT103 or a pacs.008.
+
 class Command(BaseCommand):
     help = "Runs the router for clearing payments"
 
@@ -71,7 +74,7 @@ class Command(BaseCommand):
                     msg = queue.receiveMessage().execute()
                     # Process payload from YAML
                     packet = yaml.safe_load(msg['message'])
-                    self.success("Payment packet received {}".format(
+                    self.success("Payment packet received: {}".format(
                         self.format_payment(packet)))
                     queue.deleteMessage(id=msg['id']).execute()
                 except NoMessageInQueue:
@@ -91,7 +94,13 @@ class Command(BaseCommand):
                     # a returned packet is. Therefore we will need to
                     # have unified packet types.
 
+                    self.success("Payment packet authorisation failed: {}".format(
+                        self.format_payment(packet)))
+
                     continue  # we just drop the non-authorised packet
+
+                self.success("Payment packet authorisation succeeded: {}".format(
+                    self.format_payment(packet)))
 
                 # Route the packet by finding out what the destination
                 # interface is.
@@ -130,7 +139,9 @@ class Command(BaseCommand):
 
     def authorise(self, payment):
         """ Authorise a single payment packet via the settlement module. """
-        return True  # FIXME: we just authorise everything
+        from settler.services import AuthorisationService
+        authserv = AuthorisationService()
+        return authserv.authorise(payment)
 
     def route(self, payment):
         """ Route a single packet by finding its destination interface (BIC). """
