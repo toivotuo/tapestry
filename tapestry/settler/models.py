@@ -90,7 +90,7 @@ class Transfer(models.Model):
     account = models.ForeignKey("settler.Account", on_delete=models.PROTECT)
     transaction = models.ForeignKey("settler.Transaction", on_delete=models.PROTECT)
     amount = models.DecimalField(max_digits=11, decimal_places=2)
-    description = models.CharField(max_length=140)
+    description = models.CharField(max_length=140, blank=True)
 
 class Account(models.Model):
     """An Account is an accounting account on which sums can be debited or

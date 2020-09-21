@@ -4,7 +4,7 @@
 from django.core.management.base import BaseCommand, CommandError
 
 class Command(BaseCommand):
-    help = "Dump the balance of all accounts "
+    help = "Dump the balance of all accounts"
 
     def add_arguments(self, parser):
         pass

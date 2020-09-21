@@ -12,7 +12,28 @@ class AuthorisationService(object):
 
     def authorise(self, payment):
         """Takes in a 'payment packet' akin to an MT103 ("Single Customer
-        Credit Transfer")."""
+        Credit Transfer").
+
+        """
+        from decimal import Decimal
+        from settler.models import Transaction
+
+        # FIXME: We're just accounting, but we're not checking
+        # balances at all.
+
+        Transaction.objects.add_transaction(
+            currency=payment['currency'],
+            transfers=[
+                {
+                    'account': payment['source_bic'],
+                    'amount': Decimal(payment['amount']) * -1,
+                },
+                {
+                    'account': payment['destination_bic'],
+                    'amount': Decimal(payment['amount']) * +1,
+                },
+            ],
+        )
 
         # FIXME: We just return an ack for everything.
         return True
