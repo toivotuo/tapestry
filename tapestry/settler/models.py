@@ -33,5 +33,21 @@ class Account(models.Model):
 
     """
     handle = models.CharField(max_length=35, unique=True)
-    currency = models.CharField(max_length=3)
+    currency = models.CharField(
+        max_length=3,
+        blank=False,
+        validators=[
+            validators.MinLengthValidator(3),
+            validators.MaxLengthValidator(3),
+        ]
+    )
     description = models.CharField(max_length=140)
+
+    def __repr__(self):
+        return "{} {}".format(self.handle, self.currency)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(check=models.Q(currency__regex=r'^[A-Z]{3}$'),
+                                   name='currency_regex_alpha3'),
+        ]
