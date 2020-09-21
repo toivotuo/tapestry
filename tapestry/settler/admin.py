@@ -2,7 +2,11 @@ from django.contrib import admin
 from django.utils.html import format_html
 
 from settler.models import Transaction
+from settler.models import Transfer
 from settler.models import Account
+
+class TransferInline(admin.TabularInline):
+    model = Transfer
 
 @admin.register(Transaction)
 class TransactionAdmin(admin.ModelAdmin):
@@ -10,6 +14,10 @@ class TransactionAdmin(admin.ModelAdmin):
         'pk',
         'currency',
         'description',
+    )
+
+    inlines = (
+        TransferInline,
     )
 
 @admin.register(Account)
