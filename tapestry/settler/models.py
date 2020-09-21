@@ -96,8 +96,13 @@ class Account(models.Model):
     )
     description = models.CharField(max_length=140)
 
-    def __repr__(self):
-        return "{} {}".format(self.handle, self.currency)
+    def get_balance(self):
+        from decimal import Decimal
+        # FIXME: There must be a more elegant way to do this!
+        return Account.objects.filter(pk=self.pk).aggregate(balance=models.Sum('transfer__amount'))['balance'] or Decimal()
+
+    def __str__(self):
+        return "{} {} {}".format(self.pk, self.handle, self.currency)
 
     class Meta:
         constraints = [
