@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # proprietary apps for tapestry
-    'clearer',
-    'settler',
+    'clearer',  # Clear all the payments!
+    'settler',  # Settle all the payments!
+    'impsepa',  # An IMP for SEPA
 ]
 
 MIDDLEWARE = [

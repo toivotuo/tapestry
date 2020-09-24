@@ -3,9 +3,9 @@
 import time
 import yaml
 import pprint
-from django.core.management.base import BaseCommand, CommandError
 from rsmq import RedisSMQ
 from rsmq.cmd.exceptions import QueueAlreadyExists, NoMessageInQueue
+from django.core.management.base import BaseCommand, CommandError
 
 pp = pprint.PrettyPrinter()
 
