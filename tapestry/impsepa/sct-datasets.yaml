@@ -1,0 +1,78 @@
+datasets:
+  DS-02:  # The Interbank Payment Dataset (pacs.008.001.02)
+    mandatory:
+      - AT-01  # The IBAN of the account of the Originator
+      - AT-02  # The name of the Originator
+      - AT-04  # The amount of the SEPA Credit Transfer in euro
+      - AT-06  # The BIC code of the Originator Bank
+      - AT-20  # The IBAN of the account of the Beneficiary
+      - AT-21  # The name of the Beneficiary
+      - AT-23  # The BIC code of the Beneficiary Bank
+      - AT-40  # The identification code of the SEPA electronic credit transfer Scheme
+      - AT-41  # The Originator’s reference of the Credit Transfer Transaction
+      - AT-42  # The Settlement Date of the SEPA Credit Transfer
+      - AT-43  # The Originator Bank’s reference number of the SEPA Credit Transfer message
+    optional:
+      - AT-03  # The address of the Originator
+      - AT-05  # The Remittance Information
+      - AT-08  # The name of the Originator Reference Party
+      - AT-09  # The identification code of the Originator Reference Party
+      - AT-10  # The Originator identification code
+      - AT-22  # The address of the Beneficiary
+      - AT-24  # The Beneficiary identification code
+      - AT-28  # The name of the Beneficiary Reference Party
+      - AT-29  # The identification code of the Beneficiary Reference Party
+      - AT-44  # The purpose of the SEPA Credit Transfer
+      - AT-45  # The category purpose of the SEPA Credit Transfer
+
+attributes:
+  AT-01: The IBAN of the account of the Originator
+  AT-02: The name of the Originator
+  AT-03: The address of the Originator
+  AT-04: The amount of the SEPA Credit Transfer in euro
+  AT-05: The Remittance Information sent by the Originator to the Beneficiary in the Credit Transfer Instruction
+  AT-06: The BIC code of the Originator Bank
+  AT-07: The Requested Execution Date of the Credit Transfer Instruction
+  AT-08: The name of the Originator Reference Party
+  AT-09: The identification code of the Originator Reference Party
+  AT-10: The Originator identification code
+  AT-20: The IBAN of the account of the Beneficiary
+  AT-21: The name of the Beneficiary
+  AT-22: The address of the Beneficiary
+  AT-23: The BIC code of the Beneficiary Bank
+  AT-24: The Beneficiary identification code
+  AT-28: The name of the Beneficiary Reference Party
+  AT-29: The identification code of the Beneficiary Reference Party
+  AT-40: The identification code of the Scheme
+  AT-41: The Originator’s reference of the Credit Transfer Transaction
+  AT-42: The Settlement Date of the SEPA Credit Transfer
+  AT-43: The Originator Bank’s reference of the SEPA Credit Transfer Transaction
+  AT-44: The purpose of the SEPA Credit Transfer
+  AT-45: The category purpose of the SEPA Credit Transfer
+  AT-46: The returned amount of the positive answer to the Recall in euro
+  AT-47: The fee for the positive answer to the Recall in euro
+  AT-48: The Recall reason code
+  AT-49: Additional Information to AT-48 The Recall reason code
+  AT-50: Reason code for the Request for Recall by the Originator
+  AT-51: The specific reference of the Originator Bank for the Request for Recall by the Originator
+  AT-52: Additional Information to AT-50 Reason code for the Request for Recall by the Originator
+  AT-53: The returned amount of the positive answer to the Request for Recall by the Originator in euro
+  AT-54: The settlement date for the positive answer to the Request for Recall by the Originator
+  AT-55: Reason code for non-acceptance of the Request for Recall by the Originator
+  AT-56: Fee for the positive response to a Request for Recall by the Originator in euro
+  AT-57: Provision of all information available to file a legal claim to recover the funds in case of reason code "wrong unique identifier of the Beneficiary account"
+  AT-80: The SCT inquiry reason code
+  AT-81: The specific SCT inquiry reference of the Participant initiating the SCT inquiry
+  AT-82: Additional Information to AT-80 SCT inquiry reason code
+  AT-83: Non-receipt of the SEPA Credit Transfer/ non-execution due to regulatory reason
+  AT-84: New value date of the SEPA Credit Transfer based on the new settlement date
+  AT-85: The interest compensation recovered by the Beneficiary Bank from the Originator Bank
+  AT-86: Fee for handling the SCT inquiry
+  AT-R1: The type of “R” message
+  AT-R2: The identification of the type of party initiating the “R” message
+  AT-R3: The reason code for non-acceptance of the SEPA Credit Transfer
+  AT-R4: The Settlement Date for the Return
+  AT-R5: The specific reference of the Bank initiating the Reject/Return
+  AT-R6: The Reason code for non-acceptance of the Recall
+  AT-R7: The specific reference of the Bank initiating the Recall
+  AT-R8: The Settlement Date for the positive Answer to the Recall
