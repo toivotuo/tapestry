@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:pacs.008.001.02">
+  <FIToFICstmrCdtTrf> <!-- FIToFICustomerCreditTransferV02 -->
+    <!-- MESSAGE LEVEL -->
+    <GrpHdr> <!-- GroupHeader33 -->
+      <MsgId>SmXbg2acfop9EJXYbBhnof</MsgId> <!-- Max35Text -->
+      <CreDtTm>2020-09-23T13:02:47Z</CreDtTm> <!-- ISODateTime -->
+      <NbOfTxs>1</NbOfTxs> <!-- Max15NumericText -->
+      <TtlIntrBkSttlmAmt Ccy="EUR">42.00</TtlIntrBkSttlmAmt> <!-- ActiveCurrencyAndAmount -->
+      <!-- AT-42 Settlement Date of the Credit Transfer -->
+      <IntrBkSttlmDt>2020-09-23</IntrBkSttlmDt> <!-- ISODate -->
+      <SttlmInf> <!-- SettlementInformation13 -->
+	<SttlmMtd>CLRG</SttlmMtd> <!-- SettlementMethod1Code -->
+	<SttlmAcct> <!-- CashAccount16 -->
+	  <Id> <!-- AccountIdentification4Choice -->
+	    <IBAN>XX00FIXME</IBAN> <!-- IBAN2007Identifier -->
+	  </Id>
+	</SttlmAcct>
+	<ClrSys> <!-- ClearingSystemIdentification3Choice -->
+	  <Cd>FIX</Cd> <!-- ExternalCashClearingSystem1Code -->
+	</ClrSys>
+      </SttlmInf>
+      <PmtTpInf> <!-- PaymentTypeInformation21 -->
+	<SvcLvl> <!-- ServiceLevel8Choice -->
+	  <!-- AT-40 The identification code of the SEPA electronic credit transfer Scheme. -->
+	  <Cd>SEPA</Cd> <!-- ExternalServiceLevel1Code -->
+	</SvcLvl>
+      </PmtTpInf>
+    </GrpHdr>
+    <!-- TRANSACTION LEVEL -->
+    <CdtTrfTxInf> <!-- CreditTransferTransactionInformation11 -->
+      <PmtId>
+	<!--<InstrId>cq4CZJ7BztcfaRPSJpRuuz</InstrId>-->
+	<!-- AT-41 The Originator’s Reference of the SEPA Credit Transfer Transaction -->
+	<EndToEndId>NOTPROVIDED</EndToEndId> <!-- Max35Text -->
+	<!-- AT-43 The Originator Bank’s reference -->
+	<TxId>cq4CZJ7BztcfaRPSJpRuuz</TxId> <!-- Max35Text -->
+      </PmtId>
+      <PmtTpInf> <!-- PaymentTypeInformation21 -->
+	<SvcLvl> <!-- ServiceLevel8Choice -->
+	  <Cd>SEPA</Cd> <!-- ExternalServiceLevel1Code -->
+	</SvcLvl>
+	<!-- AT-45 Category purpose of the Credit Transfer -->
+	<CtgyPurp>
+	  <Cd>XOXO</Cd>
+	</CtgyPurp>
+      </PmtTpInf>
+      <!-- AT-04 Amount of the Credit Transfer in Euro. -->
+      <IntrBkSttlmAmt Ccy="EUR">42.00</IntrBkSttlmAmt> <!-- ActiveCurrencyAndAmount -->
+      <ChrgBr>SLEV</ChrgBr> <!-- ChargeBearerType1Code -->
+      <!-- InstgAgt BranchAndFinancialInstitutionIdentification4 [BIC]-->
+      <!-- InstdAgt BranchAndFinancialInstitutionIdentification4 [BIC] -->
+      <!-- UltmtDbtr PartyIdentification32 -->
+      <!-- AT-08 Name of the Originator Reference Party -->
+      <!-- UltmtDbtr.Nm Max140Text [Limited to 70] -->
+      <!-- AT-09 Identification code of the Originator Reference Party -->
+      <!-- UltimtDbtr.Id Party6Choice -->
+      <Dbtr> <!-- PartyIdentification32 -->
+	<!-- AT-02 Name of the Originator -->
+	<Nm>Bob</Nm> <!-- Max140Text [Limited to 70] -->
+	<!-- AT-03 Address of the Originator -->
+	<!-- PstlAdr PostalAddress6 -->
+	<!-- AT-10 Originator’s Identification Code -->
+	<Id> <!-- Party6Choice -->
+	  <PrvtId> <!-- PersonIdentification5 -->
+	    <DtAndPlcOfBirth> <!-- DateAndPlaceOfBirth -->
+	      <BirthDt>1992-12-24</BirthDt> <!-- ISODate -->
+	      <CityOfBirth>Vilnius</CityOfBirth> <!-- Max35Text -->
+	      <CtryOfBirth>LT</CtryOfBirth> <!-- CountryCode -->
+	    </DtAndPlcOfBirth>
+	  </PrvtId>
+	</Id>
+      </Dbtr>
+      <!-- AT-01 The IBAN of the account of the Originator -->
+      <DbtrAcct> <!-- CashAccount16 -->
+	<Id> <!-- AccountIdentification4Choice -->
+	  <IBAN>LT411234580808080808</IBAN> <!-- IBAN2007Identifier -->
+	</Id>
+      </DbtrAcct>
+      <!-- AT-06 The BIC of the Originator Bank -->
+      <DbtrAgt> <!-- BranchAndFinancialInstitutionIdentification4 -->
+	<FinInstnId> <!-- FinancialInstitutionIdentification7 -->
+	  <BIC>KERULT2X</BIC> <!-- BICIdentifier -->
+	</FinInstnId>
+      </DbtrAgt>
+      <!-- AT-23 The BIC of the Beneficiary Bank -->
+      <CdtrAgt> <!-- BranchAndFinancialInstitutionIdentification4 -->
+	<FinInstnId> <!-- FinancialInstitutionIdentification7 -->
+	  <!-- FIXME: SNNA shoud be in Geneva, CH -->
+	  <BIC>SNNABEBB</BIC> <!-- BICIdentifier -->
+	</FinInstnId>
+      </CdtrAgt>
+      <Cdtr> <!-- PartyIdentification32 -->
+	<!-- AT-21 Name of the Beneficiary -->
+	<Nm>Alice</Nm> <!-- Max140Text [Limited to 70] -->
+	<!-- AT-22 Address of the Beneficiary -->
+	<PstlAdr> <!-- PostalAddress6 -->
+	  <Ctry>CH</Ctry> <!-- CountryCode -->
+	  <AdrLine>Quai Gustave-Ador</AdrLine> <!-- Max70Text -->
+	  <AdrLine>1207 Geneve</AdrLine> <!-- Max70Text -->
+	</PstlAdr>
+	<!-- AT-24 Beneficiary Identification Code -->
+	<Id> <!-- Party6Choice -->
+	  <PrvtId> <!-- PersonIdentification5 -->
+	    <DtAndPlcOfBirth> <!-- DateAndPlaceOfBirth -->
+	      <BirthDt>2000-01-01</BirthDt> <!-- ISODate -->
+	      <CityOfBirth>Geneve</CityOfBirth> <!-- Max35Text -->
+	      <CtryOfBirth>CH</CtryOfBirth> <!-- CountryCode -->
+	    </DtAndPlcOfBirth>
+	  </PrvtId>
+	</Id>
+      </Cdtr>
+      <CdtrAcct> <!-- AT-20 The IBAN of the account of the Beneficiary -->
+	<Id> <!-- AccountIdentification4Choice -->
+	  <IBAN>CH00FIXME</IBAN> <!-- IBAN2007Identifier -->
+	</Id>
+      </CdtrAcct>
+      <!-- UltmtCdtr PartyIdentification32 -->
+      <!-- AT-28 Name of the Beneficiary Reference Party. -->
+      <!-- UltmtCdtr.Nm Max140Text [Limited to 70] -->
+      <!-- AT-29 Identification code of the Beneficiary Reference Party -->
+      <!-- UltimtCdtr.Id Party6Choice -->
+      <!-- AT-44 Purpose of the Credit Transfer -->
+      <Purp> <!-- Purpose2Choice -->
+	<Cd>XOXO</Cd> <!-- ExternalPurpose1Code -->
+      </Purp>
+      <!-- AT-05 Remittance Information -->
+      <RmtInf> <!-- RemittanceInformation5 -->
+	<Strd> <!-- StructuredRemittanceInformation7 -->
+	  <CdtrRefInf> <!-- CdtrRefInf -->
+	    <Tp> <!-- CreditorReferenceType2 -->
+	      <CdOrPrtry> <!-- CreditorReferenceType1Choice -->
+		<Cd>SCOR</Cd> <!-- DocumentType3Code -->
+	      </CdOrPrtry>
+	      <Issr>ISO</Issr> <!-- Max35Text -->
+	    </Tp>
+	    <Ref>RF00FIXME</Ref> <!-- Max35Text -->
+	  </CdtrRefInf>
+	</Strd>
+      </RmtInf>
+    </CdtTrfTxInf>
+  </FIToFICstmrCdtTrf>
+</Document>
