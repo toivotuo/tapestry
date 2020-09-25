@@ -1,0 +1,27 @@
+datasets:
+  DS-02:  # The Interbank Payment Dataset (pacs.008.001.02)
+    mandatory:
+      - AT-01  # The IBAN of the account of the Originator
+      - AT-02  # The name of the Originator
+      - AT-04  # The amount of the SCT Inst in euro
+      - AT-06  # The BIC code of the Originator Bank
+      - AT-20  # The IBAN of the account of the Beneficiary
+      - AT-21  # The name of the Beneficiary
+      - AT-23  # The BIC code of the Beneficiary Bank
+      - AT-40  # The identification code of the SCT Inst Scheme
+      - AT-41  # The Originator’s reference of the SCT Inst Transaction
+      - AT-42  # The Settlement Date of the SCT Inst Transaction
+      - AT-43  # The Originator Bank’s reference number of the SCT Inst message
+      - AT-50  # Time Stamp of the SCT Inst Transaction
+    optional:
+      - AT-03  # The address of the Originator
+      - AT-05  # The Remittance Information
+      - AT-08  # The name of the Originator Reference Party
+      - AT-09  # The identification code of the Originator Reference Party
+      - AT-10  # The Originator identification code
+      - AT-22  # The address of the Beneficiary
+      - AT-24  # The Beneficiary identification code
+      - AT-28  # The name of the Beneficiary Reference Party
+      - AT-29  # The identification code of the Beneficiary Reference Party
+      - AT-44  # The purpose of the SCT Inst Instruction
+      - AT-45  # The category purpose of the SCT Inst Instruction
