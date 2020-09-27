@@ -1,0 +1,56 @@
+# FIXME: Does this work as a taxonomy in code?
+
+schemes:  # FIXME: have the country in these?
+  - sct
+  - sctinst
+  - sddcore
+  - sddb2b
+  - sic
+  - eurosic  # Kind of this is just SEPA, no?
+  - lsv
+  - fps
+  - bacs  # Direct credit and direct debit need separation!
+  - target2
+  - chaps
+
+currencies:
+  EUR:
+    - sct
+    - sctinst
+    - sddcore
+    - sddbdb
+    - eurosic
+    - target2
+  CHF:
+    - sic
+    - lsv
+  GBP:
+    - bacs
+    - fps
+    - chaps
+
+messages:
+  - camt.029:
+      - name: ResolutionOfInvestigation
+      - schemes:
+          - sctinst:V03
+  - camt.056:
+      - name: FIToFIPaymentCancellationRequest
+      - schemes:
+          - sctinst:V01
+  - pacs.002:
+      - name: FIToFIPaymentStatusReport
+      - schemes:
+          - sctinst:V03
+  - pacs.004:
+      - name: PaymentReturn
+      - schemes:
+          - sctinst:V02
+  - pacs.008:
+      - name: FIToFICustomerCreditTransfer
+      - schemes:
+          - sctinst:V02
+  - pacs.028:
+       - name: FIToFIPaymentStatusRequest
+       - schemes:
+           - sctinst:V01
