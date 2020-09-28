@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+(C) Copyright 2013, SIX Interbank Clearing Ltd
+XML Schema used in the Swiss Interbank space:
+	Suffix part 1: .ch:	Identification as a Swiss (CH) version
+	Suffix part 2: .01:   Version of this scheme
+
+This schema is a customised schema for the specific requirements of SIC4, and is not the official SWIFT schema. 
+The full SWIFT schema may be found on www.swift.com
+
+For comments and suggestions please contact pm@six-group.com
+-->
+<xs:schema xmlns="http://www.six-interbank-clearing.com/de/camt.025.001.03.ch.01"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.six-interbank-clearing.com/de/camt.025.001.03.ch.01"
+    elementFormDefault="qualified">
+  <xs:element name="Document" type="Document_CH_camt025"/>
+  <xs:complexType name="Document">
+    <xs:sequence>
+      <xs:element name="Rct" type="ReceiptV03"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Document_CH_camt025">
+    <xs:complexContent>
+      <xs:restriction base="Document">
+        <xs:sequence>
+          <xs:element name="Rct" type="ReceiptV03_CH_camt025"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericIdentification1">
+    <xs:sequence>
+      <xs:element name="Id" type="Max35Text"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericIdentification1_CH_camt025">
+    <xs:complexContent>
+      <xs:restriction base="GenericIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text_CH_camt025_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">RTGS Code</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikationscode des RTGS</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Fix CSC für SIC, CEC für euroSIC.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Fix CSC for SIC, CEC for euroSIC.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ISODateTime">
+    <xs:restriction base="xs:dateTime"/>
+  </xs:simpleType>
+  <xs:simpleType name="Max140Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="140"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max140Text_CH_camt025">
+    <xs:restriction base="Max140Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="140"/>
+      <xs:pattern value="[A-Za-z0-9+?/:()@\.,&apos;\-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text_CH_camt025">
+    <xs:restriction base="Max35Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+      <xs:pattern value="[A-Za-z0-9+?/:()\.,&apos;\-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text_CH_camt025_2">
+    <xs:restriction base="Max35Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+      <xs:pattern value="[A-Za-z0-9+?/:()\.,&apos;\-][A-Za-z0-9+?/:()\.,&apos; \-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text_CH_camt025_3">
+    <xs:restriction base="Max35Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="8"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max4AlphaNumericText">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+      <xs:pattern value="[a-zA-Z0-9]{1,4}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max70Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="70"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max70Text_CH_camt025">
+    <xs:restriction base="Max70Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="11"/>
+      <xs:pattern value="[A-Za-z0-9+?/:()\.,&apos;\-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="MessageHeader2">
+    <xs:sequence>
+      <xs:element name="MsgId" type="Max35Text"/>
+      <xs:element name="CreDtTm" type="ISODateTime" minOccurs="0"/>
+      <xs:element name="ReqTp" type="RequestType2Choice" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MessageHeader2_CH_camt025">
+    <xs:complexContent>
+      <xs:restriction base="MessageHeader2">
+        <xs:sequence>
+          <xs:element name="MsgId" type="Max35Text_CH_camt025">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Message Identification</xs:documentation>
+              <xs:documentation source="FE_de">Meldungsidentifikation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CreDtTm" type="ISODateTime">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Creation Date Time</xs:documentation>
+              <xs:documentation source="FE_de">Erstellungszeitpunkt der Meldung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReqTp" type="RequestType2Choice_CH_camt025"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OriginalMessageAndIssuer1">
+    <xs:sequence>
+      <xs:element name="MsgId" type="Max35Text"/>
+      <xs:element name="MsgNmId" type="Max35Text" minOccurs="0"/>
+      <xs:element name="OrgtrNm" type="Max70Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OriginalMessageAndIssuer1_CH_camt025">
+    <xs:complexContent>
+      <xs:restriction base="OriginalMessageAndIssuer1">
+        <xs:sequence>
+          <xs:element name="MsgId" type="Max35Text_CH_camt025">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Original Message Identification</xs:documentation>
+              <xs:documentation source="FE_de">Meldungsidentifikation der quittierten Meldung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Wenn die Meldungsidentifikation der quittierten Meldung nicht verfügbar ist, mit Wert UNKNOWN befüllen.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">If the message identification of the message being acknowledged is not available, fill in with the value UNKNOWN.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MsgNmId" type="Max35Text_CH_camt025_3">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Original Message Name Identification</xs:documentation>
+              <xs:documentation source="FE_de">Meldungstyp der quittierten Meldung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Zugelassene Meldungstypen:
+camt.007
+camt.008
+camt.019
+camt.027
+camt.029
+camt.048
+camt.050
+camt.052
+camt.054
+camt.056
+camt.087
+Wird mit Wert UNKNOWN gefüllt, wenn der Typ der Meldung nicht bestimmt werden kann.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Permitted message types:
+camt.007
+camt.008
+camt.019
+camt.027
+camt.029
+camt.048
+camt.050
+camt.052
+camt.054
+camt.056
+camt.087
+The element contains UNKNOWN if the type of the original message could not be identified.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgtrNm" type="Max70Text_CH_camt025" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Member Identification</xs:documentation>
+              <xs:documentation source="FE_de">Identifikation des Teilnehmers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Muss geliefert werden, wenn das Element &lt;MsgNmId&gt; den Wert camt.007, camt.008, camt.027, camt.029, camt.048, camt.050, camt.056 oder camt.087 enthält. Für alle anderen Meldungstypen ist die Lieferung des Elementes nicht erforderlich. Falls geliefert, wird der Inhalt dieses Elements ignoriert.
+Für camt.050 ist dies das Element Dbtr/FinInstnId/ClrSysMmbId/MmbId,
+für camt.007 das entsprechende Subelement von ModfyTx/Mod/PmtId/LngBizId/InstgAgt/FinInstnId, 
+für camt.008 das entsprechende Subelement von CclTx/PmtId/LngBizId/InstgAgt/FinInstnId,
+für camt.048 das entsprechende Subelement von ModfyRsvatn/RsvatnId/Cur/AcctOwnr/FinInstnId,
+für camt.027, camt.029, camt.056 und camt.087 das entsprechende Subelement von Assgnr/Agt/FinInstnId.
+Wird mit Wert UNKNOWN gefüllt, wenn der Typ der Meldung nicht bestimmt werden kann.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+If the element &lt;MsgNmId&gt; contains the value camt.007, camt.008, camt.027, camt.029, camt.048, camt.050, camt.056 or camt.087 this element must be provided. For all other message types, the element may be omitted. If provided, the content of this element will be ignored.
+For camt.050 the information can be obtained from Dbtr/FinInstnId/ClrSysMmbId/MmbId, 
+for camt.007 the information can be obtained from the provided sub-element of ModfyTx/Mod/PmtId/LngBizId/InstgAgt/FinInstnId, 
+for camt.008 the information can be obtained from the provided sub-element of CclTx/PmtId/LngBizId/InstgAgt/FinInstnId, 
+for camt.048 the information can be obtained from the provided sub-element of ModfyRsvatn/RsvatnId/Cur/AcctOwnr/FinInstnId,
+for camt.027, camt.029, camt.056 and camt.087 the information can be obtained from the provided sub-element of Assgnr/Agt/FinInstnId.
+The element contains UNKNOWN if the type of the original message could not be identified.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Receipt1">
+    <xs:sequence>
+      <xs:element name="OrgnlMsgId" type="OriginalMessageAndIssuer1"/>
+      <xs:element name="ReqHdlg" type="RequestHandling" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Receipt1_CH_camt025">
+    <xs:complexContent>
+      <xs:restriction base="Receipt1">
+        <xs:sequence>
+          <xs:element name="OrgnlMsgId" type="OriginalMessageAndIssuer1_CH_camt025"/>
+          <xs:element name="ReqHdlg" type="RequestHandling_CH_camt025" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Status Reason Information</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Informationen zum Transaktionsstatus und Rückweisungsgrund</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Es wird immer mindestens ein &lt;ReqHdlg&gt;-Block erstellt, in dem der Transaktionsstatus der eingelieferten Meldung geliefert wird.
+
+Meldung vom Teilnehmer an das RTGS-System: Es darf nur ein &lt;ReqHdlg&gt;-Block geliefert werden.
+NOK-Meldung vom RTGS-System an den Teilnehmer: Für jeden festgestellten Fehler wird jeweils ein zusätzlicher &lt;ReqHdlg&gt;-Block mit Informationen zum Rückweisungsgrund erstellt.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+At least one &lt;ReqHdlg&gt; block must be created to show the transaction status of the received message. 
+
+Message from participant to RTGS system: Exactly one &lt;ReqHdlg&gt; block must be present.
+NOK message from RTGS system to participant: One additional &lt;ReqHdlg&gt; block containing information about the reason for rejection will be created for each identified error.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ReceiptV03">
+    <xs:sequence>
+      <xs:element name="MsgHdr" type="MessageHeader2"/>
+      <xs:element name="RctDtls" type="Receipt1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReceiptV03_CH_camt025">
+    <xs:complexContent>
+      <xs:restriction base="ReceiptV03">
+        <xs:sequence>
+          <xs:element name="MsgHdr" type="MessageHeader2_CH_camt025"/>
+          <xs:element name="RctDtls" type="Receipt1_CH_camt025"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RequestHandling">
+    <xs:sequence>
+      <xs:element name="StsCd" type="Max4AlphaNumericText"/>
+      <xs:element name="Desc" type="Max140Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RequestHandling_CH_camt025">
+    <xs:complexContent>
+      <xs:restriction base="RequestHandling">
+        <xs:sequence>
+          <xs:element name="StsCd" type="Max4AlphaNumericText">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Transaction Status or Status Report Reason</xs:documentation>
+              <xs:documentation source="FE_de">Transaktionsstatus bzw.  Rückweisungsgrund (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Für die Angabe des Transaktionsstatus der eingegangenen Meldung werden die folgenden ISO-Codes verwendet:
+ACCP = Empfangene Meldung ist korrekt.
+RJCT = Die Meldung weist Fehler auf und kann nicht verarbeitet werden.
+
+NOK-Meldung vom RTGS-System an den Teilnehmer:
+In zusätzlichen &lt;ReqHdlg&gt;-Blöcken wird in diesem Element jeweils ein Rückweisungsgrund in Form eines proprietären, 3-stelligen SIC-Fehlercodes geliefert.
+Fehlercodes gemäss Schweizer RTGS-Handbuch.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+The following ISO codes are used to indicate the transaction status of the received message:
+ACCP = Received message is correct.
+RJCT = The message contains errors and could not be processed.
+
+NOK message from the RTGS system to the participant:
+Proprietary 3-digit SIC error codes will be provided in this element within an additional &lt;ReqHdlg&gt; block for each identified error. 
+Error codes in accordance with the Swiss RTGS Handbook.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Desc" type="Max140Text_CH_camt025" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Erroneous Element</xs:documentation>
+              <xs:documentation source="FE_de">Fehlerhaftes Element</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Angabe des fehlerhaften Elements als XPath. 
+Verwendung nur in NOK-Meldungen vom RTGS-System an Teilnehmer zulässig.
+Darf nicht in der &lt;ReqHdlg&gt;-Instanz mit dem Transaktionsstatus (ACCP/RJCT) geliefert werden.
+Wird mit Wert «n/a» gefüllt, wenn der Fehler nicht eindeutig einem Element zugeteilt werden kann.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Location of the incorrect element as an XPath. 
+Use only permitted in NOK messages from the RTGS system to participants.
+Must not be used in the &lt;ReqHdlg&gt; instance containing the transaction status (ACCP/RJCT).
+"n/a" will be provided if the error cannot be unambiguously assigned to one element.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RequestType2Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Prtry" type="GenericIdentification1"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RequestType2Choice_CH_camt025">
+    <xs:complexContent>
+      <xs:restriction base="RequestType2Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Prtry" type="GenericIdentification1_CH_camt025"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

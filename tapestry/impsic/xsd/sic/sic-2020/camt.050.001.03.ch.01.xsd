@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+(C) Copyright 2013, SIX Interbank Clearing Ltd
+XML Schema used in the Swiss Interbank space:
+	Suffix part 1: .ch:	Identification as a Swiss (CH) version
+	Suffix part 2: .01:   Version of this scheme
+
+This schema is a customised schema for the specific requirements of SIC4, and is not the official SWIFT schema. 
+The full SWIFT schema may be found on www.swift.com
+
+For comments and suggestions please contact pm@six-group.com
+-->
+<xs:schema xmlns="http://www.six-interbank-clearing.com/de/camt.050.001.03.ch.01"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.six-interbank-clearing.com/de/camt.050.001.03.ch.01"
+    elementFormDefault="qualified">
+  <xs:element name="Document" type="Document_CH_camt050"/>
+  <xs:complexType name="ActiveCurrencyAndAmount">
+    <xs:simpleContent>
+      <xs:extension base="ActiveCurrencyAndAmount_SimpleType">
+        <xs:attribute name="Ccy" type="ActiveCurrencyCode" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ActiveCurrencyAndAmount_CH_camt050">
+    <xs:simpleContent>
+      <xs:restriction base="ActiveCurrencyAndAmount">
+        <xs:attribute name="Ccy" type="ActiveCurrencyCode" use="required">
+          <xs:annotation>
+            <xs:documentation source="FE_en">Currency Code</xs:documentation>
+            <xs:documentation source="FE_de">Währungscode</xs:documentation>
+            <xs:documentation xml:lang="DE" source="CH-Definition">
+Der Währungscode muss CHF oder EUR sein.
+Die Währung muss der Währung des jeweiligen RTGS-Systems entsprechen.
+            </xs:documentation>
+            <xs:documentation xml:lang="EN" source="CH-Definition">
+The currency code must be CHF or EUR.
+The currency must correspond to the currency of the respective RTGS system.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="ActiveCurrencyAndAmount_SimpleType">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0"/>
+      <xs:totalDigits value="18"/>
+      <xs:fractionDigits value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ActiveCurrencyCode">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{3,3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Amount2Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="AmtWthCcy" type="ActiveCurrencyAndAmount"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Amount2Choice_CH_camt050">
+    <xs:complexContent>
+      <xs:restriction base="Amount2Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="AmtWthCcy" type="ActiveCurrencyAndAmount_CH_camt050">
+              <xs:annotation>
+                <xs:documentation source="FE_en">Settlement Amount</xs:documentation>
+                <xs:documentation source="FE_de">Verrechnungsbetrag</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification5">
+    <xs:sequence>
+      <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification5_CH_camt050">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification5">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8_CH_camt050"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification5_CH_camt050_2">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification5">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8_CH_camt050_2"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemMemberIdentification2">
+    <xs:sequence>
+      <xs:element name="MmbId" type="Max35Text"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemMemberIdentification2_CH_camt050">
+    <xs:complexContent>
+      <xs:restriction base="ClearingSystemMemberIdentification2">
+        <xs:sequence>
+          <xs:element name="MmbId" type="Max35Text_CH_camt050_2">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Member Identification</xs:documentation>
+              <xs:documentation source="FE_de">Identifikation des Teilnehmers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Zahlungsempfänger
+Falls das Element &lt;Dbtr&gt; die Identifikation des Systemmanagers enthält, muss hier die SIC-IID des Teilnehmers angegeben werden.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Creditor
+If the &lt;Dbtr&gt; element contains the BC number of the system manager, the SIC IID of the participant must be entered here.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemMemberIdentification2_CH_camt050_2">
+    <xs:complexContent>
+      <xs:restriction base="ClearingSystemMemberIdentification2">
+        <xs:sequence>
+          <xs:element name="MmbId" type="Max35Text_CH_camt050_2">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Member Identification</xs:documentation>
+              <xs:documentation source="FE_de">Identifikation des Teilnehmers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Zahler
+Falls das Element &lt;Cdtr&gt; die Identifikation des Systemmanagers enthält, muss hier die SIC-IID des Teilnehmers angegeben werden.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Debtor
+If the &lt;Cdtr&gt; element contains the BC number of the system manager, the SIC IID of the participant must be entered here.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Document">
+    <xs:sequence>
+      <xs:element name="LqdtyCdtTrf" type="LiquidityCreditTransferV03"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Document_CH_camt050">
+    <xs:complexContent>
+      <xs:restriction base="Document">
+        <xs:sequence>
+          <xs:element name="LqdtyCdtTrf" type="LiquidityCreditTransferV03_CH_camt050"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification8">
+    <xs:sequence>
+      <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification8_CH_camt050">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification8">
+        <xs:sequence>
+          <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2_CH_camt050"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification8_CH_camt050_2">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification8">
+        <xs:sequence>
+          <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2_CH_camt050_2"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ISODate">
+    <xs:restriction base="xs:date"/>
+  </xs:simpleType>
+  <xs:simpleType name="ISODateTime">
+    <xs:restriction base="xs:dateTime"/>
+  </xs:simpleType>
+  <xs:complexType name="LiquidityCreditTransfer1">
+    <xs:sequence>
+      <xs:element name="LqdtyTrfId" type="PaymentIdentification1" minOccurs="0"/>
+      <xs:element name="Cdtr" type="BranchAndFinancialInstitutionIdentification5" minOccurs="0"/>
+      <xs:element name="TrfdAmt" type="Amount2Choice"/>
+      <xs:element name="Dbtr" type="BranchAndFinancialInstitutionIdentification5" minOccurs="0"/>
+      <xs:element name="SttlmDt" type="ISODate" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LiquidityCreditTransfer1_CH_camt050">
+    <xs:complexContent>
+      <xs:restriction base="LiquidityCreditTransfer1">
+        <xs:sequence>
+          <xs:element name="LqdtyTrfId" type="PaymentIdentification1_CH_camt050"/>
+          <xs:element name="Cdtr" type="BranchAndFinancialInstitutionIdentification5_CH_camt050">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Creditor</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahlungsempfänger</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TrfdAmt" type="Amount2Choice_CH_camt050"/>
+          <xs:element name="Dbtr" type="BranchAndFinancialInstitutionIdentification5_CH_camt050_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Debtor</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahler</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Muss verwendet werden. Wird in Kombination mit &lt;MsgId&gt; / &lt;InstrId&gt; für die Duplikatsprüfung verwendet.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Use is mandatory, is used in combination with &lt;MsgId&gt; / &lt;InstrId&gt; for duplicate checking.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SttlmDt" type="ISODate">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Settlement Date</xs:documentation>
+              <xs:documentation source="FE_de">Verrechnungsdatum</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Mit diesem Datum wird das Verrechnungsdatum auf dem Girokonto des Systemmanagers bestimmt.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">This date determines the settlement date on the system manager’s sight deposit account.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LiquidityCreditTransferV03">
+    <xs:sequence>
+      <xs:element name="MsgHdr" type="MessageHeader1"/>
+      <xs:element name="LqdtyCdtTrf" type="LiquidityCreditTransfer1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LiquidityCreditTransferV03_CH_camt050">
+    <xs:complexContent>
+      <xs:restriction base="LiquidityCreditTransferV03">
+        <xs:sequence>
+          <xs:element name="MsgHdr" type="MessageHeader1_CH_camt050"/>
+          <xs:element name="LqdtyCdtTrf" type="LiquidityCreditTransfer1_CH_camt050">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Liquidity Credit Transfer</xs:documentation>
+              <xs:documentation source="FE_de">Liquiditätsübertrag</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Entweder das Element &lt;Dbtr&gt; oder das Element &lt;Cdtr&gt; muss die SIC-IID des Systemmanagers enthalten.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Either the &lt;Dbtr&gt; element or the Cdtr&gt; element must contain the SIC IID of the system manager.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="Max35Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text_CH_camt050">
+    <xs:restriction base="Max35Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+      <xs:pattern value="[A-Za-z0-9+?/:()\.,&apos;\-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text_CH_camt050_2">
+    <xs:restriction base="Max35Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+      <xs:pattern value="[A-Za-z0-9+?/:()\.,&apos;\-][A-Za-z0-9+?/:()\.,&apos; \-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="MessageHeader1">
+    <xs:sequence>
+      <xs:element name="MsgId" type="Max35Text"/>
+      <xs:element name="CreDtTm" type="ISODateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MessageHeader1_CH_camt050">
+    <xs:complexContent>
+      <xs:restriction base="MessageHeader1">
+        <xs:sequence>
+          <xs:element name="MsgId" type="Max35Text_CH_camt050">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Message Identification</xs:documentation>
+              <xs:documentation source="FE_de">Meldungsidentifikation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Für dieses Element ist nur der SWIFT-Zeichensatz ohne Leerzeichen zugelassen.
+Wird in Kombination mit &lt;Dbtr&gt; für die Duplikatsprüfung auf Ebene Meldung verwendet und darf innerhalb der zugelassenen Valutatage nur einmal vorkommen. Zugelassene Valutatage sind Valuta heute und 2 Tage Vergangenheit.
+Hinweis: Für erfolgreiche Verarbeitung einer Zahlung darf weder auf Ebene Meldung noch auf Ebene Transaktion ein Duplikat erkannt werden.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Only the SWIFT character set excluding spaces is permitted for this element.
+It is used together with &lt;Dbtr&gt; for duplicate checking at message level and may only occur once within the permitted value dates. Permitted value dates are value date today and 2 days in the past. 
+Note: For a payment to be processed successfully, no duplicates must be detected at either message level or transaction level.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CreDtTm" type="ISODateTime">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Creation Date Time</xs:documentation>
+              <xs:documentation source="FE_de">Erstellungszeitpunkt der Meldung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaymentIdentification1">
+    <xs:sequence>
+      <xs:element name="InstrId" type="Max35Text" minOccurs="0"/>
+      <xs:element name="EndToEndId" type="Max35Text"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentIdentification1_CH_camt050">
+    <xs:complexContent>
+      <xs:restriction base="PaymentIdentification1">
+        <xs:sequence>
+          <xs:element name="InstrId" type="Max35Text_CH_camt050">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Transaction Identification</xs:documentation>
+              <xs:documentation source="FE_de">Transaktionsreferenz</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Für dieses Element ist nur der SWIFT-Zeichensatz ohne Leerzeichen zugelassen.
+Muss auf der ersten Position das Sonderzeichen «+» enthalten.
+Wird in Kombination mit &lt;Dbtr&gt; für die Duplikatsprüfung auf Ebene Transaktion verwendet und darf innerhalb der zugelassenen Valutatage nur einmal vorkommen. Zugelassene Valutatage sind Valuta heute und 2 Tage Vergangenheit.
+Hinweis: Für erfolgreiche Verarbeitung einer Zahlung darf weder auf Ebene Meldung noch auf Ebene Transaktion ein Duplikat erkannt werden.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Only the SWIFT character set excluding spaces is permitted for this element.
+Must contain the special character "+" in the first position.
+It is used together with &lt;Dbtr&gt; for duplicate checking at transaction level and may only occur once within the permitted value dates. Permitted value dates are value date today and 2 days in the past. 
+Note: For a payment to be processed successfully, no duplicates must be detected at either message level or transaction level.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EndToEndId" type="Max35Text_CH_camt050_2">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Debtor Reference</xs:documentation>
+              <xs:documentation source="FE_de">Zahlungsreferenz des Zahlers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Das Element beinhaltet die Angabe NOTPROVIDED, wenn keine Identifikation bekannt ist.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">The element contains NOTPROVIDED if there is no known identification.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

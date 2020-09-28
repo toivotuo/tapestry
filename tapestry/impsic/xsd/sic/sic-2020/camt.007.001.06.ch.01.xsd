@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+(C) Copyright 2016, SIX Interbank Clearing Ltd
+XML Schema used in the Swiss Interbank space:
+	Suffix part 1: .ch:	Identification as a Swiss (CH) version
+	Suffix part 2: .01:   Version of this scheme
+
+This schema is a customised schema for the specific requirements of SIC4, and is not the official SWIFT schema. 
+The full SWIFT schema may be found on www.swift.com
+
+For comments and suggestions please contact pm@six-group.com
+-->
+<xs:schema xmlns="http://www.six-interbank-clearing.com/de/camt.007.001.06.ch.01"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.six-interbank-clearing.com/de/camt.007.001.06.ch.01"
+    elementFormDefault="qualified">
+  <xs:element name="Document" type="Document_CH_camt007"/>
+  <xs:simpleType name="BICFIIdentifier">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification5">
+    <xs:sequence>
+      <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification5_CH_camt007">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification5">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8_CH_camt007"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification5_CH_camt007_2">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification5">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8_CH_camt007_2"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemIdentification2Choice">
+    <xs:choice>
+      <xs:element name="Cd" type="ExternalClearingSystemIdentification1Code"/>
+      <xs:element name="Prtry" type="Max35Text"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemIdentification2Choice_CH_camt007">
+    <xs:complexContent>
+      <xs:restriction base="ClearingSystemIdentification2Choice">
+        <xs:choice>
+          <xs:element name="Cd" type="ExternalClearingSystemIdentification1Code">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Clearing System Identification (code)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Clearingsystems (Code)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Zulässiger ISO-Codewert: CHSIC (SIC-IID (=6n)).</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Permitted ISO code value: CHSIC (SIC IID (=6n)).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Prtry" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Clearing System Identification (proprietary)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Clearingsystems (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Wird aktuell nicht unterstützt.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Is currently not supported.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemMemberIdentification2">
+    <xs:sequence>
+      <xs:element name="ClrSysId" type="ClearingSystemIdentification2Choice" minOccurs="0"/>
+      <xs:element name="MmbId" type="Max35Text"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemMemberIdentification2_CH_camt007">
+    <xs:complexContent>
+      <xs:restriction base="ClearingSystemMemberIdentification2">
+        <xs:sequence>
+          <xs:element name="ClrSysId" type="ClearingSystemIdentification2Choice_CH_camt007" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Clearing System Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Clearingsystems</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Verwendung zwingend zwecks eindeutiger Identifizierung der verwendeten Adressierungsart.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Must be used to unambiguously identify the address type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MmbId" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Member Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Teilnehmers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">SIC-IID (=6n)</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">SIC IID (=6n)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Document">
+    <xs:sequence>
+      <xs:element name="ModfyTx" type="ModifyTransactionV06"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Document_CH_camt007">
+    <xs:complexContent>
+      <xs:restriction base="Document">
+        <xs:sequence>
+          <xs:element name="ModfyTx" type="ModifyTransactionV06_CH_camt007"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ExternalClearingSystemIdentification1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="FinancialInstitutionIdentification8">
+    <xs:sequence>
+      <xs:element name="BICFI" type="BICFIIdentifier" minOccurs="0"/>
+      <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2" minOccurs="0"/>
+      <xs:element name="Othr" type="GenericFinancialIdentification1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification8_CH_camt007">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification8">
+        <xs:sequence>
+          <xs:element name="BICFI" type="BICFIIdentifier" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of Instructing Participant (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des zahlenden Teilnehmers (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+SWIFT-Adresse mit 8 oder 11 alphanumerischen Zeichen.
+Element darf nicht gleichzeitig mit &lt;ClrSysMmbId&gt; verwendet werden.
+Muss einen gültigen Wert gemäss ISO 9362 enthalten.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+SWIFT address with 8 or 11 alphanumeric characters.
+This element must not be used at the same time as &lt;ClrSysMmbId&gt;.
+Must contain a valid value according to ISO 9362.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2_CH_camt007" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of Instructing Participant (proprietary)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des zahlenden Teilnehmers (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Element darf nicht gleichzeitig mit &lt;BICFI&gt; verwendet werden.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">This element must not be used at the same time as &lt;BICFI&gt;.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Othr" type="GenericFinancialIdentification1_CH_camt007" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification8_CH_camt007_2">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification8">
+        <xs:sequence>
+          <xs:element name="BICFI" type="BICFIIdentifier" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of Instructed Participant (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des gutzuschreibenden Teilnehmers (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+SWIFT-Adresse mit 8 oder 11 alphanumerischen Zeichen.
+Element darf nicht gleichzeitig mit &lt;ClrSysMmbId&gt; verwendet werden.
+Muss einen gültigen Wert gemäss ISO 9362 enthalten.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+SWIFT address with 8 or 11 alphanumeric characters.
+This element must not be used at the same time as &lt;ClrSysMmbId&gt;.
+Must contain a valid value according to ISO 9362.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2_CH_camt007" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of Instructed Participant (proprietary)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des gutzuschreibenden Teilnehmers (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Element darf nicht gleichzeitig mit &lt;BICFI&gt; verwendet werden.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">This element must not be used at the same time as &lt;BICFI&gt;.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericFinancialIdentification1">
+    <xs:sequence>
+      <xs:element name="Id" type="Max35Text"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericFinancialIdentification1_CH_camt007">
+    <xs:complexContent>
+      <xs:restriction base="GenericFinancialIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of the Instructing Participant (on behalf)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des zahlenden Teilnehmers (im Auftrag)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Mutation wird für einen Teilnehmer (im Auftrag) durchgeführt. Muss die SIC-IID des dafür beauftragten Teilnehmers enthalten.
+Mutation durch den zahlenden Teilnehmer der Ursprungsmeldung: Darf nicht verwendet werden.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Modification is carried out on behalf of another participant. Must contain the SIC IID of the participant instructed to do so.
+Modification by the paying participant of the original message: Must not be used.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ImpliedCurrencyAndAmount">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0"/>
+      <xs:totalDigits value="18"/>
+      <xs:fractionDigits value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ISODate">
+    <xs:restriction base="xs:date"/>
+  </xs:simpleType>
+  <xs:simpleType name="ISODateTime">
+    <xs:restriction base="xs:dateTime"/>
+  </xs:simpleType>
+  <xs:complexType name="LongPaymentIdentification1">
+    <xs:sequence>
+      <xs:element name="TxId" type="Max35Text"/>
+      <xs:element name="IntrBkSttlmAmt" type="ImpliedCurrencyAndAmount"/>
+      <xs:element name="IntrBkSttlmDt" type="ISODate"/>
+      <xs:element name="InstgAgt" type="BranchAndFinancialInstitutionIdentification5"/>
+      <xs:element name="InstdAgt" type="BranchAndFinancialInstitutionIdentification5"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LongPaymentIdentification1_CH_camt007">
+    <xs:complexContent>
+      <xs:restriction base="LongPaymentIdentification1">
+        <xs:sequence>
+          <xs:element name="TxId" type="Max35Text_CH_camt007">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Transaction Identification</xs:documentation>
+              <xs:documentation source="FE_de">Transaktionsreferenz</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Transaktionsreferenz der zu mutierenden Meldung.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Transaction identification of the message to be modified.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IntrBkSttlmAmt" type="ImpliedCurrencyAndAmount">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Settlement Amount</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Verrechnungsbetrag</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Muss mit dem Verrechnungsbetrag der zu mutierenden Zahlung übereinstimmen.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Must be the same as the settlement amount of the payment to be modified.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IntrBkSttlmDt" type="ISODate">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Requested Settlement Date</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Valuta-Soll</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Muss mit dem Valuta-Soll der zu mutierenden Zahlung übereinstimmen.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Must be the same as the requested settlement date of the payment to be modified.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InstgAgt" type="BranchAndFinancialInstitutionIdentification5_CH_camt007">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Instructing Participant</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahlender Teilnehmer</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Die eingelieferte Identifikationsart (BIC/SIC-IID) muss mit der verwendeten Identifikationsart in der zu mutierenden Meldung übereinstimmen.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">The type of identification that is sent (BIC/SIC IID) must be the same as the type of identification used in the message to be modified.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InstdAgt" type="BranchAndFinancialInstitutionIdentification5_CH_camt007_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Instructed Participant</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Gutzuschreibender Teilnehmer</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Die eingelieferte Identifikationsart (BIC/SIC-IID) muss mit der verwendeten Identifikationsart in der zu mutierenden Meldung übereinstimmen.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">The type of identification that is submitted (BIC/SIC IID) must be the same as the type of identification used in the message to be modified.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="Max35Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text_CH_camt007">
+    <xs:restriction base="Max35Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+      <xs:pattern value="[A-Za-z0-9+?/:()\.,&apos;\-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="MessageHeader1">
+    <xs:sequence>
+      <xs:element name="MsgId" type="Max35Text"/>
+      <xs:element name="CreDtTm" type="ISODateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MessageHeader1_CH_camt007">
+    <xs:complexContent>
+      <xs:restriction base="MessageHeader1">
+        <xs:sequence>
+          <xs:element name="MsgId" type="Max35Text_CH_camt007">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Message Identification</xs:documentation>
+              <xs:documentation source="FE_de">Meldungsidentifikation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CreDtTm" type="ISODateTime" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Creation Date Time</xs:documentation>
+              <xs:documentation source="FE_de">Erstellungszeitpunkt der Meldung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ModifyTransactionV06">
+    <xs:sequence>
+      <xs:element name="MsgHdr" type="MessageHeader1"/>
+      <xs:element name="Mod" type="TransactionModification3" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ModifyTransactionV06_CH_camt007">
+    <xs:complexContent>
+      <xs:restriction base="ModifyTransactionV06">
+        <xs:sequence>
+          <xs:element name="MsgHdr" type="MessageHeader1_CH_camt007"/>
+          <xs:element name="Mod" type="TransactionModification3_CH_camt007">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaymentIdentification4Choice">
+    <xs:choice>
+      <xs:element name="LngBizId" type="LongPaymentIdentification1"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="PaymentIdentification4Choice_CH_camt007">
+    <xs:complexContent>
+      <xs:restriction base="PaymentIdentification4Choice">
+        <xs:choice>
+          <xs:element name="LngBizId" type="LongPaymentIdentification1_CH_camt007"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaymentInstruction12">
+    <xs:sequence>
+      <xs:element name="Tp" type="PaymentType4Choice" minOccurs="0"/>
+      <xs:element name="Prty" type="PriorityCode3Choice" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentInstruction12_CH_camt007">
+    <xs:complexContent>
+      <xs:restriction base="PaymentInstruction12">
+        <xs:sequence>
+          <xs:element name="Tp" type="PaymentType4Choice_CH_camt007"/>
+          <xs:element name="Prty" type="PriorityCode3Choice_CH_camt007" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Priority</xs:documentation>
+              <xs:documentation source="FE_de">Priorität</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Wird das Element nicht verwendet, dann wird die Zahlung an das Ende der Wartedatei derselben Priorität gestellt. 
+Wird das Element geliefert, wird es an das Ende der angegebenen Wartedatei gestellt.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+If the element is not used, then the payment will be put at the end of the wait file with the same priority. 
+If the element is delivered, it will be put at the end of the indicated wait file.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaymentType4Choice">
+    <xs:choice>
+      <xs:element name="Prtry" type="Max35Text"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="PaymentType4Choice_CH_camt007">
+    <xs:complexContent>
+      <xs:restriction base="PaymentType4Choice">
+        <xs:choice>
+          <xs:element name="Prtry" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Modification Type (proprietary)</xs:documentation>
+              <xs:documentation source="FE_de">Mutationstyp (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Folgender Code ist zu verwenden: SEQMOD - Mutation Wartedatei-Position / Mutation der Priorität</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">The following code has to be used: SEQMOD - Modification of position in wait file / Modification of priority</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PriorityCode3Choice">
+    <xs:choice>
+      <xs:element name="Prtry" type="Max35Text"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="PriorityCode3Choice_CH_camt007">
+    <xs:complexContent>
+      <xs:restriction base="PriorityCode3Choice">
+        <xs:choice>
+          <xs:element name="Prtry" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Settlement priority</xs:documentation>
+              <xs:documentation source="FE_de">Verrechnungspriorität</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Folgende 3 Prioritätsstufen stehen zur Verfügung:
+NORM = Normale Priorität, tiefste Stufe
+HIGH = Hohe Priorität, mittlere Stufe
+URGT = Dringende Priorität, höchste Stufe
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+The following 3 levels of priority may be used:
+NORM = Normal priority, lowest level 
+HIGH = High priority, medium level 
+URGT = Urgent priority, highest level
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TransactionModification3">
+    <xs:sequence>
+      <xs:element name="PmtId" type="PaymentIdentification4Choice"/>
+      <xs:element name="NewPmtValSet" type="PaymentInstruction12"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransactionModification3_CH_camt007">
+    <xs:complexContent>
+      <xs:restriction base="TransactionModification3">
+        <xs:sequence>
+          <xs:element name="PmtId" type="PaymentIdentification4Choice_CH_camt007">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="NewPmtValSet" type="PaymentInstruction12_CH_camt007"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

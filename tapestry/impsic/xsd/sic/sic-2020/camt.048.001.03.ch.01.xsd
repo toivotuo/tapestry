@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+(C) Copyright 2016, SIX Interbank Clearing Ltd
+XML Schema used in the Swiss Interbank space:
+	Suffix part 1: .ch:	Identification as a Swiss (CH) version
+	Suffix part 2: .01:   Version of this scheme
+
+This schema is a customised schema for the specific requirements of SIC4, and is not the official SWIFT schema. 
+The full SWIFT schema may be found on www.swift.com
+
+For comments and suggestions please contact pm@six-group.com
+-->
+<xs:schema xmlns="http://www.six-interbank-clearing.com/de/camt.048.001.03.ch.01"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.six-interbank-clearing.com/de/camt.048.001.03.ch.01"
+    elementFormDefault="qualified">
+  <xs:element name="Document" type="Document_CH_camt048"/>
+  <xs:complexType name="AccountIdentification4Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Othr" type="GenericAccountIdentification1"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AccountIdentification4Choice_CH_camt048">
+    <xs:complexContent>
+      <xs:restriction base="AccountIdentification4Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Othr" type="GenericAccountIdentification1_CH_camt048">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Identification of Settlement Account (proprietary)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Verrechnungskontos (proprietär)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Amount2Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="AmtWthtCcy" type="ImpliedCurrencyAndAmount"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Amount2Choice_CH_camt048">
+    <xs:complexContent>
+      <xs:restriction base="Amount2Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="AmtWthtCcy" type="ImpliedCurrencyAndAmount">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Liquidity Reservation Amount</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Betrag Liquiditätsreservation</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">Absoluter Wert. Der angegebene Wert ersetzt den aktuell gesetzten Betrag.</xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">Absolut Value. The amount specified replaces any currently set value.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="BICFIIdentifier">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification5">
+    <xs:sequence>
+      <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification5_CH_camt048">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification5">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8_CH_camt048">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemMemberIdentification2">
+    <xs:sequence>
+      <xs:element name="MmbId" type="Max35Text"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemMemberIdentification2_CH_camt048">
+    <xs:complexContent>
+      <xs:restriction base="ClearingSystemMemberIdentification2">
+        <xs:sequence>
+          <xs:element name="MmbId" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Member Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Teilnehmers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">SIC-IID (=6n), muss im Bankenstamm vorhanden und aktiv sein.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">SIC IID (=6n), must be contained in the bank master data and active.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CurrentOrDefaultReservation1Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Cur" type="ReservationIdentification1"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CurrentOrDefaultReservation1Choice_CH_camt048">
+    <xs:complexContent>
+      <xs:restriction base="CurrentOrDefaultReservation1Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Cur" type="ReservationIdentification1_CH_camt048"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Document">
+    <xs:sequence>
+      <xs:element name="ModfyRsvatn" type="ModifyReservationV03"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Document_CH_camt048">
+    <xs:complexContent>
+      <xs:restriction base="Document">
+        <xs:sequence>
+          <xs:element name="ModfyRsvatn" type="ModifyReservationV03_CH_camt048"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification8">
+    <xs:sequence>
+      <xs:element name="BICFI" type="BICFIIdentifier" minOccurs="0"/>
+      <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification8_CH_camt048">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification8">
+        <xs:sequence>
+          <xs:element name="BICFI" type="BICFIIdentifier" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of Account Owner (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des kontoberechtigten Teilnehmers (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+SWIFT-Adresse mit 8 oder 11 alphanumerischen Zeichen.
+Element darf nicht gleichzeitig mit &lt;ClrSysMmbId&gt; verwendet werden.
+Muss einen gültigen Wert gemäss ISO 9362 enthalten.
+Muss gültigen BIC eines aktiven Teilnehmers enthalten.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+SWIFT address with 8 or 11 alphanumeric characters.
+This element must not be used at the same time as &lt;ClrSysMmbId&gt;.
+Must contain a valid value according to ISO 9362.
+Must contain a valid BIC of an active participant.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2_CH_camt048" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of Account Owner (proprietary)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des kontoberechtigten Teilnehmers (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Element darf nicht gleichzeitig mit &lt;BICFI&gt; verwendet werden.
+Muss gültige Identifikation eines aktiven Teilnehmers enthalten.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+This element must not be used at the same time as &lt;BICFI&gt;.
+Must contain a valid identification of an active participant.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericAccountIdentification1">
+    <xs:sequence>
+      <xs:element name="Id" type="Max34Text"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericAccountIdentification1_CH_camt048">
+    <xs:complexContent>
+      <xs:restriction base="GenericAccountIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max34Text">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Settlement Account</xs:documentation>
+              <xs:documentation source="FE_de">Verrechnungskonto</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ImpliedCurrencyAndAmount">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0"/>
+      <xs:totalDigits value="18"/>
+      <xs:fractionDigits value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ISODateTime">
+    <xs:restriction base="xs:dateTime"/>
+  </xs:simpleType>
+  <xs:complexType name="MarketInfrastructureIdentification1Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Prtry" type="Max35Text"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MarketInfrastructureIdentification1Choice_CH_camt048">
+    <xs:complexContent>
+      <xs:restriction base="MarketInfrastructureIdentification1Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Prtry" type="Max35Text">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">RTGS Code</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Identifikationscode des RTGS</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">Fix CSC für SIC, CEC für euroSIC.</xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">Fix CSC for SIC, CEC for euroSIC.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="Max34Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="34"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="MessageHeader1">
+    <xs:sequence>
+      <xs:element name="MsgId" type="Max35Text"/>
+      <xs:element name="CreDtTm" type="ISODateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MessageHeader1_CH_camt048">
+    <xs:complexContent>
+      <xs:restriction base="MessageHeader1">
+        <xs:sequence>
+          <xs:element name="MsgId" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Message Identification</xs:documentation>
+              <xs:documentation source="FE_de">Meldungsidentifikation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CreDtTm" type="ISODateTime">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Creation Date Time</xs:documentation>
+              <xs:documentation source="FE_de">Erstellungszeitpunkt der Meldung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ModifyReservationV03">
+    <xs:sequence>
+      <xs:element name="MsgHdr" type="MessageHeader1"/>
+      <xs:element name="RsvatnId" type="CurrentOrDefaultReservation1Choice"/>
+      <xs:element name="NewRsvatnValSet" type="Reservation2"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ModifyReservationV03_CH_camt048">
+    <xs:complexContent>
+      <xs:restriction base="ModifyReservationV03">
+        <xs:sequence>
+          <xs:element name="MsgHdr" type="MessageHeader1_CH_camt048"/>
+          <xs:element name="RsvatnId" type="CurrentOrDefaultReservation1Choice_CH_camt048"/>
+          <xs:element name="NewRsvatnValSet" type="Reservation2_CH_camt048"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Reservation2">
+    <xs:sequence>
+      <xs:element name="Amt" type="Amount2Choice"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Reservation2_CH_camt048">
+    <xs:complexContent>
+      <xs:restriction base="Reservation2">
+        <xs:sequence>
+          <xs:element name="Amt" type="Amount2Choice_CH_camt048"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ReservationIdentification1">
+    <xs:sequence>
+      <xs:element name="SysId" type="SystemIdentification2Choice" minOccurs="0"/>
+      <xs:element name="Tp" type="ReservationType1Choice"/>
+      <xs:element name="AcctOwnr" type="BranchAndFinancialInstitutionIdentification5" minOccurs="0"/>
+      <xs:element name="AcctId" type="AccountIdentification4Choice" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReservationIdentification1_CH_camt048">
+    <xs:complexContent>
+      <xs:restriction base="ReservationIdentification1">
+        <xs:sequence>
+          <xs:element name="SysId" type="SystemIdentification2Choice_CH_camt048"/>
+          <xs:element name="Tp" type="ReservationType1Choice_CH_camt048"/>
+          <xs:element name="AcctOwnr" type="BranchAndFinancialInstitutionIdentification5_CH_camt048">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Account Owner</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Kontoberechtigter Teilnehmer</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Entspricht dem modifizierenden Teilnehmer und wird für die Berechtigungsprüfung verwendet.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Identifies the party submitting the modification. Required for authorization checking.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AcctId" type="AccountIdentification4Choice_CH_camt048">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Settlement Account Information</xs:documentation>
+              <xs:documentation source="FE_de">Verrechnungskontoinformation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ReservationType1Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Prtry" type="Max35Text"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReservationType1Choice_CH_camt048">
+    <xs:complexContent>
+      <xs:restriction base="ReservationType1Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Prtry" type="Max35Text">
+              <xs:annotation>
+                <xs:documentation source="FE_en">Reservation Type Code (proprietary)</xs:documentation>
+                <xs:documentation source="FE_de">Code Reservationstyp (proprietär)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">Folgender Code ist zu verwenden: PTRES - Liquiditätsreservation Teilnehmer</xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">The following code has to be used: PTRES - Participant's liquidity reservation amount</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SystemIdentification2Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="MktInfrstrctrId" type="MarketInfrastructureIdentification1Choice"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SystemIdentification2Choice_CH_camt048">
+    <xs:complexContent>
+      <xs:restriction base="SystemIdentification2Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="MktInfrstrctrId" type="MarketInfrastructureIdentification1Choice_CH_camt048"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

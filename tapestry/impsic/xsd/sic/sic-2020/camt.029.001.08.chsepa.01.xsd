@@ -1,0 +1,1661 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+(C) Copyright 2019, SIX Interbank Clearing Ltd
+XML Schema used in the Swiss Interbank space:
+	Suffix part 1: .chsepa: Identification as a Swiss (CH) version
+	Suffix part 2: .01:   Version of this scheme
+
+Based on ISO camt.029.001.08 (urn:iso:std:iso:20022:tech:xsd:camt.029.001.08)
+For comments and suggestions please contact pm@six-group.com
+-->
+<xs:schema xmlns="http://www.six-interbank-clearing.com/de/camt.029.001.08.chsepa.01"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.six-interbank-clearing.com/de/camt.029.001.08.chsepa.01"
+    elementFormDefault="qualified">
+  <xs:element name="Document" type="Document_CHSEPA_camt029"/>
+  <xs:complexType name="AccountIdentification4Choice">
+    <xs:choice>
+      <xs:element name="IBAN" type="IBAN2007Identifier"/>
+      <xs:element name="Othr" type="GenericAccountIdentification1"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="AccountIdentification4Choice_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="AccountIdentification4Choice">
+        <xs:choice>
+          <xs:element name="IBAN" type="IBAN2007Identifier"/>
+          <xs:element name="Othr" type="GenericAccountIdentification1_CHSEPA_camt029"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AccountIdentification4Choice_CHSEPA_camt029_2">
+    <xs:complexContent>
+      <xs:restriction base="AccountIdentification4Choice">
+        <xs:choice>
+          <xs:element name="IBAN" type="IBAN2007Identifier"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AccountSchemeName1Choice">
+    <xs:choice>
+      <xs:element name="Cd" type="ExternalAccountIdentification1Code"/>
+      <xs:element name="Prtry" type="Max35Text"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="AccountSchemeName1Choice_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="AccountSchemeName1Choice">
+        <xs:choice>
+          <xs:element name="Cd" type="ExternalAccountIdentification1Code"/>
+          <xs:element name="Prtry" type="Max35Text_CHSEPA_camt029_2"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ActiveCurrencyAndAmount">
+    <xs:simpleContent>
+      <xs:extension base="ActiveCurrencyAndAmount_SimpleType">
+        <xs:attribute name="Ccy" type="ActiveCurrencyCode" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ActiveCurrencyAndAmount_CHSEPA_camt029">
+    <xs:simpleContent>
+      <xs:restriction base="ActiveCurrencyAndAmount">
+        <xs:fractionDigits value="2"/>
+        <xs:attribute name="Ccy" type="ActiveCurrencyCode" use="required"/>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="ActiveCurrencyAndAmount_SimpleType">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0"/>
+      <xs:totalDigits value="18"/>
+      <xs:fractionDigits value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ActiveCurrencyCode">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{3,3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ActiveOrHistoricCurrencyAndAmount">
+    <xs:simpleContent>
+      <xs:extension base="ActiveOrHistoricCurrencyAndAmount_SimpleType">
+        <xs:attribute name="Ccy" type="ActiveOrHistoricCurrencyCode" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ActiveOrHistoricCurrencyAndAmount_CHSEPA_camt029">
+    <xs:simpleContent>
+      <xs:restriction base="ActiveOrHistoricCurrencyAndAmount">
+        <xs:fractionDigits value="2"/>
+        <xs:attribute name="Ccy" type="ActiveOrHistoricCurrencyCode" use="required">
+          <xs:annotation>
+            <xs:documentation xml:lang="DE" source="FE_en">Currency Code</xs:documentation>
+            <xs:documentation xml:lang="DE" source="FE_de">Währungscode</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ActiveOrHistoricCurrencyAndAmount_CHSEPA_camt029_2">
+    <xs:simpleContent>
+      <xs:restriction base="ActiveOrHistoricCurrencyAndAmount">
+        <xs:fractionDigits value="2"/>
+        <xs:attribute name="Ccy" type="ActiveOrHistoricCurrencyCode" use="required"/>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="ActiveOrHistoricCurrencyAndAmount_SimpleType">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0"/>
+      <xs:totalDigits value="18"/>
+      <xs:fractionDigits value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ActiveOrHistoricCurrencyCode">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{3,3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AnyBICIdentifier">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="BICFIIdentifier">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification5">
+    <xs:sequence>
+      <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification5_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification5">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8_CHSEPA_camt029">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Financial Institution Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Finanzinstituts</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification5_CHSEPA_camt029_2">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification5">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8_CHSEPA_camt029_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Financial Institution Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Finanzinstituts</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification5_CHSEPA_camt029_3">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification5">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8_CHSEPA_camt029_3">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Financial Institution Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Finanzinstituts</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification5_CHSEPA_camt029_4">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification5">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8_CHSEPA_camt029_4"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification5_CHSEPA_camt029_5">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification5">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8_CHSEPA_camt029_5">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Financial Institution Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Finanzinstituts</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Case4">
+    <xs:sequence>
+      <xs:element name="Id" type="Max35Text"/>
+      <xs:element name="Cretr" type="Party35Choice"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Case4_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="Case4">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text_CHSEPA_camt029_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Case Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation der SEPA-Nachforschung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Identifikation aus Element «Case Identification» der «SEPA-Anfrage fehlender Zahlungseingang (camt.027)» bzw. des «SEPA-Umvalutierungsbegehren (camt.087)», welches mit dieser Nachforschungsauflösung beantwortet wird.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Identification originating from element «Case Identification» of the «SEPA Missing Incoming Payment Query (camt.027)» resp. «SEPA-Claim For Value Date Correction (camt.087)», which are resolved by this resolution of investigation.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Cretr" type="Party35Choice_CHSEPA_camt029_3">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Creator</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Ersteller des Nachforschungsauftrags</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Angabe aus Element «Creator» der «SEPA-Anfrage fehlender Zahlungseingang (camt.027)» bzw. des «SEPA-Umvalutierungsbegehren (camt.087)», welches mit dieser Nachforschungsauflösung beantwortet wird.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Identification originating from element «Creator» of the «SEPA Missing Incoming Payment Query (camt.027)» resp. «SEPA-Claim For Value Date Correction (camt.087)», which are resolved by this resolution of investigation.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CaseAssignment4">
+    <xs:sequence>
+      <xs:element name="Id" type="Max35Text"/>
+      <xs:element name="Assgnr" type="Party35Choice"/>
+      <xs:element name="Assgne" type="Party35Choice"/>
+      <xs:element name="CreDtTm" type="ISODateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CaseAssignment4_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="CaseAssignment4">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text_CHSEPA_camt029">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Message Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Meldungsidentifikation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Für dieses Element ist nur der SWIFT-Zeichensatz ohne Leerzeichen zugelassen.
+Wird in Kombination mit &lt;Assgnr&gt; für die Duplikatsprüfung auf Ebene Meldung verwendet und darf innerhalb der zugelassenen Valutatage nur einmal vorkommen. Zugelassene Valutatage sind Valuta heute und 2 Tage Vergangenheit.
+Hinweis: Für die erfolgreiche Verarbeitung darf weder auf Ebene Meldung noch auf Ebene Transaktion ein Duplikat erkannt werden.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Only the SWIFT character set excluding spaces is permitted for this element.
+It is used together with &lt;Assgnr&gt; for duplicate checking at message level and may only occur once within the permitted value dates. 
+Permitted value dates are value date today and 2 days in the past. 
+Note: To be processed successfully, no duplicates must be detected at either message level or transaction level.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Assgnr" type="Party35Choice_CHSEPA_camt029">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Instructing Participant</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Anweisender Teilnehmer</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Eigene Identifikation des anweisenden Teilnehmers.
+Wird in Kombination mit &lt;Id&gt; für die Duplikatsprüfung verwendet.
+Zur Adressierung des Teilnehmers muss das Element &lt;BIC&gt; verwendet werden.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Own identification of the instructing participant.
+Is used together with &lt;Id&gt; for duplicate checking.
+For addressing the participant &lt;BIC&gt; must be used.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Assgne" type="Party35Choice_CHSEPA_camt029_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Instructed Participant</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Angewiesener Teilnehmer</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Eigene Identifikation des angewiesenen Teilnehmers.
+Zur Adressierung des Teilnehmers muss das Element &lt;BIC&gt; verwendet werden.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Own identification of the instructed participant.
+For addressing the participant &lt;BIC&gt; must be used.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CreDtTm" type="ISODateTime">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Creation Date Time</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Erstellungszeitpunkt der Meldung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CashAccount24">
+    <xs:sequence>
+      <xs:element name="Id" type="AccountIdentification4Choice"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CashAccount24_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="CashAccount24">
+        <xs:sequence>
+          <xs:element name="Id" type="AccountIdentification4Choice_CHSEPA_camt029"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CashAccount24_CHSEPA_camt029_2">
+    <xs:complexContent>
+      <xs:restriction base="CashAccount24">
+        <xs:sequence>
+          <xs:element name="Id" type="AccountIdentification4Choice_CHSEPA_camt029_2"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CategoryPurpose1Choice">
+    <xs:choice>
+      <xs:element name="Cd" type="ExternalCategoryPurpose1Code"/>
+      <xs:element name="Prtry" type="Max35Text"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="CategoryPurpose1Choice_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="CategoryPurpose1Choice">
+        <xs:choice>
+          <xs:element name="Cd" type="ExternalCategoryPurpose1Code"/>
+          <xs:element name="Prtry" type="Max35Text_CHSEPA_camt029_2"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Charges2">
+    <xs:sequence>
+      <xs:element name="Amt" type="ActiveOrHistoricCurrencyAndAmount"/>
+      <xs:element name="Agt" type="BranchAndFinancialInstitutionIdentification5"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Charges2_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="Charges2">
+        <xs:sequence>
+          <xs:element name="Amt" type="ActiveOrHistoricCurrencyAndAmount_CHSEPA_camt029_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Amount</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Betrag</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Agt" type="BranchAndFinancialInstitutionIdentification5_CHSEPA_camt029_5">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Agent</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Finanzinstitut</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClaimNonReceipt1">
+    <xs:sequence>
+      <xs:element name="DtPrcd" type="ISODate"/>
+      <xs:element name="OrgnlNxtAgt" type="BranchAndFinancialInstitutionIdentification5"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClaimNonReceipt1Choice">
+    <xs:choice>
+      <xs:element name="Accptd" type="ClaimNonReceipt1"/>
+      <xs:element name="Rjctd" type="ClaimNonReceiptRejectReason1Choice"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ClaimNonReceipt1Choice_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="ClaimNonReceipt1Choice">
+        <xs:choice>
+          <xs:element name="Accptd" type="ClaimNonReceipt1_CHSEPA_camt029">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Accepted</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Akzeptierte Anfrage</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Rjctd" type="ClaimNonReceiptRejectReason1Choice">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Rejected</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Abgelehnte Anfrage</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClaimNonReceipt1_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="ClaimNonReceipt1">
+        <xs:sequence>
+          <xs:element name="DtPrcd" type="ISODate">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Date Processed</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Verarbeitungsdatum der Zahlung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgnlNxtAgt" type="BranchAndFinancialInstitutionIdentification5_CHSEPA_camt029_4">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Original Next Agent</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Nächstes adressiertes Finanzinstitut der Ursprungszahlung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClaimNonReceiptRejectReason1Choice">
+    <xs:choice>
+      <xs:element name="Cd" type="ExternalClaimNonReceiptRejection1Code"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemIdentification3Choice">
+    <xs:choice>
+      <xs:element name="Cd" type="ExternalCashClearingSystem1Code"/>
+      <xs:element name="Prtry" type="Max35Text"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemIdentification3Choice_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="ClearingSystemIdentification3Choice">
+        <xs:choice>
+          <xs:element name="Cd" type="ExternalCashClearingSystem1Code"/>
+          <xs:element name="Prtry" type="Max35Text_CHSEPA_camt029_2"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Compensation1">
+    <xs:sequence>
+      <xs:element name="Amt" type="ActiveCurrencyAndAmount"/>
+      <xs:element name="DbtrAgt" type="BranchAndFinancialInstitutionIdentification5"/>
+      <xs:element name="CdtrAgt" type="BranchAndFinancialInstitutionIdentification5"/>
+      <xs:element name="Rsn" type="CompensationReason1Choice"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Compensation1_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="Compensation1">
+        <xs:sequence>
+          <xs:element name="Amt" type="ActiveCurrencyAndAmount_CHSEPA_camt029">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Compensation Amount</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Entschädigungsbetrag</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DbtrAgt" type="BranchAndFinancialInstitutionIdentification5_CHSEPA_camt029_4">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Debtor Agent paying the compensation amount</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahlungspflichtiges Finanzinstitut der Entschädigung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CdtrAgt" type="BranchAndFinancialInstitutionIdentification5_CHSEPA_camt029_5">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Creditor Agent receiving the compensation amount</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Begünstigtes Finanzinstitut der Entschädigung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Rsn" type="CompensationReason1Choice">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Reason for the payment compensation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Grund der Entschädigungszahlung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CompensationReason1Choice">
+    <xs:choice>
+      <xs:element name="Cd" type="ExternalPaymentCompensationReason1Code"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:simpleType name="CountryCode">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{2,2}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="CreditorReferenceInformation2">
+    <xs:sequence>
+      <xs:element name="Tp" type="CreditorReferenceType2" minOccurs="0"/>
+      <xs:element name="Ref" type="Max35Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CreditorReferenceInformation2_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="CreditorReferenceInformation2">
+        <xs:sequence>
+          <xs:element name="Tp" type="CreditorReferenceType2_CHSEPA_camt029"/>
+          <xs:element name="Ref" type="Max35Text_CHSEPA_camt029_3"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CreditorReferenceType1Choice">
+    <xs:choice>
+      <xs:element name="Cd" type="DocumentType3Code"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="CreditorReferenceType2">
+    <xs:sequence>
+      <xs:element name="CdOrPrtry" type="CreditorReferenceType1Choice"/>
+      <xs:element name="Issr" type="Max35Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CreditorReferenceType2_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="CreditorReferenceType2">
+        <xs:sequence>
+          <xs:element name="CdOrPrtry" type="CreditorReferenceType1Choice"/>
+          <xs:element name="Issr" type="Max35Text_CHSEPA_camt029_2" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DateAndPlaceOfBirth1">
+    <xs:sequence>
+      <xs:element name="BirthDt" type="ISODate"/>
+      <xs:element name="PrvcOfBirth" type="Max35Text" minOccurs="0"/>
+      <xs:element name="CityOfBirth" type="Max35Text"/>
+      <xs:element name="CtryOfBirth" type="CountryCode"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DateAndPlaceOfBirth1_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="DateAndPlaceOfBirth1">
+        <xs:sequence>
+          <xs:element name="BirthDt" type="ISODate"/>
+          <xs:element name="PrvcOfBirth" type="Max35Text_CHSEPA_camt029_3" minOccurs="0"/>
+          <xs:element name="CityOfBirth" type="Max35Text_CHSEPA_camt029_3"/>
+          <xs:element name="CtryOfBirth" type="CountryCode"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Document">
+    <xs:sequence>
+      <xs:element name="RsltnOfInvstgtn" type="ResolutionOfInvestigationV08"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="DocumentType3Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DISP"/>
+      <xs:enumeration value="FXDR"/>
+      <xs:enumeration value="PUOR"/>
+      <xs:enumeration value="RADM"/>
+      <xs:enumeration value="RPIN"/>
+      <xs:enumeration value="SCOR"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Document_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="Document">
+        <xs:sequence>
+          <xs:element name="RsltnOfInvstgtn" type="ResolutionOfInvestigationV08_CHSEPA_camt029">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Resolution of Investigation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Nachforschungsauflösung</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ExternalAccountIdentification1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalCashClearingSystem1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalCategoryPurpose1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalClaimNonReceiptRejection1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalInvestigationExecutionConfirmation1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalLocalInstrument1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalOrganisationIdentification1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalPaymentCompensationReason1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalPersonIdentification1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalPurpose1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalServiceLevel1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="FinancialInstitutionIdentification8">
+    <xs:sequence>
+      <xs:element name="BICFI" type="BICFIIdentifier" minOccurs="0"/>
+      <xs:element name="Othr" type="GenericFinancialIdentification1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification8_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification8">
+        <xs:sequence>
+          <xs:element name="BICFI" type="BICFIIdentifier">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of Instructing Participant (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des anweisenden Teilnehmers (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+SWIFT-Adresse mit 8 oder 11 alphanumerischen Zeichen.
+Muss einen gültigen Wert gemäss ISO 9362 enthalten.
+Muss gültigen BIC eines aktiven Teilnehmers enthalten. 
+Darf nicht verkettet sein.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+SWIFT address with 8 or 11 alphanumeric characters.
+Must contain a valid value according to ISO 9362.
+Must contain a valid BIC of an active participant. 
+Must not be concatenated.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification8_CHSEPA_camt029_2">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification8">
+        <xs:sequence>
+          <xs:element name="BICFI" type="BICFIIdentifier">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of Instructed Participant (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des angewiesenen Teilnehmers (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+SWIFT-Adresse mit 8 oder 11 alphanumerischen Zeichen.
+Muss einen gültigen Wert gemäss ISO 9362 enthalten.
+Muss gültigen BIC eines aktiven Teilnehmers enthalten.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+SWIFT address with 8 or 11 alphanumeric characters.
+Must contain a valid value according to ISO 9362.
+Must contain a valid BIC of an active participant. 
+Must not be concatenated.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Othr" type="GenericFinancialIdentification1_CHSEPA_camt029" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation source="FE_de">Andere Identifikation der Organisation</xs:documentation>
+              <xs:documentation source="FE_en">Other Organisation Identification</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification8_CHSEPA_camt029_3">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification8">
+        <xs:sequence>
+          <xs:element name="BICFI" type="BICFIIdentifier">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">BIC of the Agent</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">BIC des Finanzinstituts</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification8_CHSEPA_camt029_4">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification8">
+        <xs:sequence>
+          <xs:element name="BICFI" type="BICFIIdentifier"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification8_CHSEPA_camt029_5">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification8">
+        <xs:sequence>
+          <xs:element name="BICFI" type="BICFIIdentifier">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Financial Institution Identification (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Finanzinstituts (BIC)</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Othr" type="GenericFinancialIdentification1_CHSEPA_camt029_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation source="FE_de">Andere Identifikation der Organisation</xs:documentation>
+              <xs:documentation source="FE_en">Other Organisation Identification</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericAccountIdentification1">
+    <xs:sequence>
+      <xs:element name="Id" type="Max34Text"/>
+      <xs:element name="SchmeNm" type="AccountSchemeName1Choice" minOccurs="0"/>
+      <xs:element name="Issr" type="Max35Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericAccountIdentification1_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="GenericAccountIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max34Text_CHSEPA_camt029"/>
+          <xs:element name="SchmeNm" type="AccountSchemeName1Choice_CHSEPA_camt029" minOccurs="0"/>
+          <xs:element name="Issr" type="Max35Text_CHSEPA_camt029_2" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericFinancialIdentification1">
+    <xs:sequence>
+      <xs:element name="Id" type="Max35Text"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericFinancialIdentification1_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="GenericFinancialIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text_CHSEPA_camt029">
+            <xs:annotation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Message from RTGS system to participant: In case of a concatenation or direct routing, the identification of the instructed participant assigned by the RTGS system will be complemented by the system. 
+Message from participant to RTGS system: Must not be used.
+              </xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Meldung vom RTGS-System an den Teilnehmer: Bei einer Verkettung oder Direktleitung wird die vom RTGS-System zugewiesene Identifikation des angewiesenen Teilnehmers durch das System ergänzt.
+Meldung vom Teilnehmer an das RTGS-System: Darf nicht verwendet werden.
+              </xs:documentation>
+              <xs:documentation source="FE_de">Zugewiesene Identifikation des angewiesenen Teilnehmers</xs:documentation>
+              <xs:documentation source="FE_en">Assigned Identification of the Instructed Participant</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericFinancialIdentification1_CHSEPA_camt029_2">
+    <xs:complexContent>
+      <xs:restriction base="GenericFinancialIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text_CHSEPA_camt029">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Financial Institution Identification (IBAN)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Finanzinstituts (IBAN)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericOrganisationIdentification1">
+    <xs:sequence>
+      <xs:element name="Id" type="Max35Text"/>
+      <xs:element name="SchmeNm" type="OrganisationIdentificationSchemeName1Choice" minOccurs="0"/>
+      <xs:element name="Issr" type="Max35Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericOrganisationIdentification1_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="GenericOrganisationIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text_CHSEPA_camt029_2"/>
+          <xs:element name="SchmeNm" type="OrganisationIdentificationSchemeName1Choice_CHSEPA_camt029" minOccurs="0"/>
+          <xs:element name="Issr" type="Max35Text_CHSEPA_camt029_2" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonIdentification1">
+    <xs:sequence>
+      <xs:element name="Id" type="Max35Text"/>
+      <xs:element name="SchmeNm" type="PersonIdentificationSchemeName1Choice" minOccurs="0"/>
+      <xs:element name="Issr" type="Max35Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonIdentification1_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="GenericPersonIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text_CHSEPA_camt029_2"/>
+          <xs:element name="SchmeNm" type="PersonIdentificationSchemeName1Choice_CHSEPA_camt029" minOccurs="0"/>
+          <xs:element name="Issr" type="Max35Text_CHSEPA_camt029_2" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="IBAN2007Identifier">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="InvestigationStatus4Choice">
+    <xs:choice>
+      <xs:element name="Conf" type="ExternalInvestigationExecutionConfirmation1Code"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="InvestigationStatus4Choice_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="InvestigationStatus4Choice">
+        <xs:choice>
+          <xs:element name="Conf" type="ExternalInvestigationExecutionConfirmation1Code">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+              <xs:documentation source="FE_en">Confirmation</xs:documentation>
+              <xs:documentation source="FE_de">Bestätigung</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ISODate">
+    <xs:restriction base="xs:date"/>
+  </xs:simpleType>
+  <xs:simpleType name="ISODateTime">
+    <xs:restriction base="xs:dateTime"/>
+  </xs:simpleType>
+  <xs:complexType name="LocalInstrument2Choice">
+    <xs:choice>
+      <xs:element name="Cd" type="ExternalLocalInstrument1Code"/>
+      <xs:element name="Prtry" type="Max35Text"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="LocalInstrument2Choice_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="LocalInstrument2Choice">
+        <xs:choice>
+          <xs:element name="Cd" type="ExternalLocalInstrument1Code"/>
+          <xs:element name="Prtry" type="Max35Text_CHSEPA_camt029_2"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="Max140Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="140"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max140Text_CHSEPA_camt029">
+    <xs:restriction base="Max140Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="140"/>
+      <xs:pattern value="[ ]*[A-Za-z0-9+?/:()\.,&apos;\-][A-Za-z0-9+?/:()\.,&apos; \-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max140Text_CHSEPA_camt029_2">
+    <xs:restriction base="Max140Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="70"/>
+      <xs:pattern value="[ ]*[A-Za-z0-9+?/:()\.,&apos;\-][A-Za-z0-9+?/:()\.,&apos; \-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max34Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="34"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max34Text_CHSEPA_camt029">
+    <xs:restriction base="Max34Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="34"/>
+      <xs:pattern value="[A-Za-z0-9+?/:()\.,&apos;\-][A-Za-z0-9+?/:()\.,&apos; \-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text_CHSEPA_camt029">
+    <xs:restriction base="Max35Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+      <xs:pattern value="[A-Za-z0-9+?/:()\.,&apos;\-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text_CHSEPA_camt029_2">
+    <xs:restriction base="Max35Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+      <xs:pattern value="[A-Za-z0-9+?/:()\.,&apos;\-][A-Za-z0-9+?/:()\.,&apos; \-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text_CHSEPA_camt029_3">
+    <xs:restriction base="Max35Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+      <xs:pattern value="[ ]*[A-Za-z0-9+?/:()\.,&apos;\-][A-Za-z0-9+?/:()\.,&apos; \-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max70Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="70"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max70Text_CHSEPA_camt029">
+    <xs:restriction base="Max70Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="70"/>
+      <xs:pattern value="[ ]*[A-Za-z0-9+?/:()\.,&apos;\-][A-Za-z0-9+?/:()\.,&apos; \-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="OrganisationIdentification8">
+    <xs:sequence>
+      <xs:element name="AnyBIC" type="AnyBICIdentifier" minOccurs="0"/>
+      <xs:element name="Othr" type="GenericOrganisationIdentification1" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OrganisationIdentification8_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="OrganisationIdentification8">
+        <xs:sequence>
+          <xs:element name="AnyBIC" type="AnyBICIdentifier" minOccurs="0"/>
+          <xs:element name="Othr" type="GenericOrganisationIdentification1_CHSEPA_camt029" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OrganisationIdentificationSchemeName1Choice">
+    <xs:choice>
+      <xs:element name="Cd" type="ExternalOrganisationIdentification1Code"/>
+      <xs:element name="Prtry" type="Max35Text"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="OrganisationIdentificationSchemeName1Choice_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="OrganisationIdentificationSchemeName1Choice">
+        <xs:choice>
+          <xs:element name="Cd" type="ExternalOrganisationIdentification1Code"/>
+          <xs:element name="Prtry" type="Max35Text_CHSEPA_camt029_2"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OriginalGroupInformation29">
+    <xs:sequence>
+      <xs:element name="OrgnlMsgId" type="Max35Text"/>
+      <xs:element name="OrgnlMsgNmId" type="Max35Text"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OriginalGroupInformation29_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="OriginalGroupInformation29">
+        <xs:sequence>
+          <xs:element name="OrgnlMsgId" type="Max35Text_CHSEPA_camt029_2">
+            <xs:annotation>
+              <xs:documentation source="FE_de">Meldungsidentifikation der Ursprungszahlung</xs:documentation>
+              <xs:documentation source="FE_en">Original Message Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgnlMsgNmId" type="Max35Text_CHSEPA_camt029_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Original Message Name Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Meldungstyp der Ursprungszahlung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Die ersten 8 Stellen des Meldungstyps müssen zwingend geliefert werden. Folgende Werte sind zulässig (wird durch das RTGS-System validiert):
+• pacs.008
+• PACS.008
+
+Zusätzliche Stellen zwecks Angabe der vollständigen Meldungsversion (z.B. «pacs.008.001.02») sind zulässig, werden jedoch durch das RTGS-System nicht validiert.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+The first 8 digits of the message type must mandatory be sent. The following values are permitted (will be validated by the RTGS system):
+• pacs.008
+• PACS.008
+
+Additional digits to indicate the complete message version (e.g. "pacs.008.001.02") are permitted but will not be validated by the RTGS system.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OriginalTransactionReference27">
+    <xs:sequence>
+      <xs:element name="IntrBkSttlmAmt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0"/>
+      <xs:element name="IntrBkSttlmDt" type="ISODate" minOccurs="0"/>
+      <xs:element name="SttlmInf" type="SettlementInstruction4" minOccurs="0"/>
+      <xs:element name="PmtTpInf" type="PaymentTypeInformation25" minOccurs="0"/>
+      <xs:element name="RmtInf" type="RemittanceInformation15" minOccurs="0"/>
+      <xs:element name="UltmtDbtr" type="Party35Choice" minOccurs="0"/>
+      <xs:element name="Dbtr" type="Party35Choice" minOccurs="0"/>
+      <xs:element name="DbtrAcct" type="CashAccount24" minOccurs="0"/>
+      <xs:element name="DbtrAgt" type="BranchAndFinancialInstitutionIdentification5" minOccurs="0"/>
+      <xs:element name="CdtrAgt" type="BranchAndFinancialInstitutionIdentification5" minOccurs="0"/>
+      <xs:element name="Cdtr" type="Party35Choice" minOccurs="0"/>
+      <xs:element name="CdtrAcct" type="CashAccount24" minOccurs="0"/>
+      <xs:element name="UltmtCdtr" type="Party35Choice" minOccurs="0"/>
+      <xs:element name="Purp" type="Purpose2Choice" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OriginalTransactionReference27_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="OriginalTransactionReference27">
+        <xs:sequence>
+          <xs:element name="IntrBkSttlmAmt" type="ActiveOrHistoricCurrencyAndAmount_CHSEPA_camt029" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Settlement Amount</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Verrechnungsbetrag</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IntrBkSttlmDt" type="ISODate" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Requested Settlement Date</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Valuta-Soll</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SttlmInf" type="SettlementInstruction4_CHSEPA_camt029" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Settlement Information</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Verrechnungsinformationen</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PmtTpInf" type="PaymentTypeInformation25_CHSEPA_camt029" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Payment Type Information</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Informationen zur Zahlungsart</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RmtInf" type="RemittanceInformation15_CHSEPA_camt029" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Remittance Information</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Mitteilung an den Zahlungsempfänger</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="UltmtDbtr" type="Party35Choice_CHSEPA_camt029_4" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Ultimate Debtor</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Ursprünglicher Zahler</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Dbtr" type="Party35Choice_CHSEPA_camt029_5" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Debtor</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahler</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DbtrAcct" type="CashAccount24_CHSEPA_camt029_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Debtor Account</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Konto des Zahlers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DbtrAgt" type="BranchAndFinancialInstitutionIdentification5_CHSEPA_camt029_4" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Debtor Agent</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Institut des Zahlers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CdtrAgt" type="BranchAndFinancialInstitutionIdentification5_CHSEPA_camt029_4" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Creditor Agent</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Institut des Zahlungsempfängers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Cdtr" type="Party35Choice_CHSEPA_camt029_5" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahlungsempfänger</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_en">Creditor</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CdtrAcct" type="CashAccount24_CHSEPA_camt029_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Creditor Account</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Konto des Zahlungsempfängers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="UltmtCdtr" type="Party35Choice_CHSEPA_camt029_4" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Ultimate Creditor</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Endgültiger Zahlungsempfänger</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Purp" type="Purpose2Choice" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zweck der Transaktion</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_en">Transaction Purpose</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Party34Choice">
+    <xs:choice>
+      <xs:element name="OrgId" type="OrganisationIdentification8"/>
+      <xs:element name="PrvtId" type="PersonIdentification13"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="Party34Choice_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="Party34Choice">
+        <xs:choice>
+          <xs:element name="OrgId" type="OrganisationIdentification8_CHSEPA_camt029"/>
+          <xs:element name="PrvtId" type="PersonIdentification13_CHSEPA_camt029"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Party35Choice">
+    <xs:choice>
+      <xs:element name="Pty" type="PartyIdentification125"/>
+      <xs:element name="Agt" type="BranchAndFinancialInstitutionIdentification5"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="Party35Choice_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="Party35Choice">
+        <xs:choice>
+          <xs:element name="Agt" type="BranchAndFinancialInstitutionIdentification5_CHSEPA_camt029">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Agent</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Finanzinstitut</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Party35Choice_CHSEPA_camt029_2">
+    <xs:complexContent>
+      <xs:restriction base="Party35Choice">
+        <xs:choice>
+          <xs:element name="Agt" type="BranchAndFinancialInstitutionIdentification5_CHSEPA_camt029_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Agent</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Finanzinstitut</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Party35Choice_CHSEPA_camt029_3">
+    <xs:complexContent>
+      <xs:restriction base="Party35Choice">
+        <xs:choice>
+          <xs:element name="Agt" type="BranchAndFinancialInstitutionIdentification5_CHSEPA_camt029_3">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Agent</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Finanzinstitut</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Party35Choice_CHSEPA_camt029_4">
+    <xs:complexContent>
+      <xs:restriction base="Party35Choice">
+        <xs:choice>
+          <xs:element name="Pty" type="PartyIdentification125_CHSEPA_camt029"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Party35Choice_CHSEPA_camt029_5">
+    <xs:complexContent>
+      <xs:restriction base="Party35Choice">
+        <xs:choice>
+          <xs:element name="Pty" type="PartyIdentification125_CHSEPA_camt029_2"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PartyIdentification125">
+    <xs:sequence>
+      <xs:element name="Nm" type="Max140Text" minOccurs="0"/>
+      <xs:element name="PstlAdr" type="PostalAddress6" minOccurs="0"/>
+      <xs:element name="Id" type="Party34Choice" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PartyIdentification125_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="PartyIdentification125">
+        <xs:sequence>
+          <xs:element name="Nm" type="Max140Text_CHSEPA_camt029_2" minOccurs="0"/>
+          <xs:element name="Id" type="Party34Choice_CHSEPA_camt029" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PartyIdentification125_CHSEPA_camt029_2">
+    <xs:complexContent>
+      <xs:restriction base="PartyIdentification125">
+        <xs:sequence>
+          <xs:element name="Nm" type="Max140Text_CHSEPA_camt029_2" minOccurs="0"/>
+          <xs:element name="PstlAdr" type="PostalAddress6_CHSEPA_camt029" minOccurs="0"/>
+          <xs:element name="Id" type="Party34Choice_CHSEPA_camt029" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaymentTransaction90">
+    <xs:sequence>
+      <xs:element name="ModStsId" type="Max35Text" minOccurs="0"/>
+      <xs:element name="OrgnlGrpInf" type="OriginalGroupInformation29"/>
+      <xs:element name="OrgnlInstrId" type="Max35Text" minOccurs="0"/>
+      <xs:element name="OrgnlEndToEndId" type="Max35Text" minOccurs="0"/>
+      <xs:element name="OrgnlTxId" type="Max35Text" minOccurs="0"/>
+      <xs:element name="OrgnlTxRef" type="OriginalTransactionReference27" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentTransaction90_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="PaymentTransaction90">
+        <xs:sequence>
+          <xs:element name="ModStsId" type="Max35Text_CHSEPA_camt029_2">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Modification Status Identification</xs:documentation>
+              <xs:documentation source="FE_de">Identifikation der SEPA-Nachforschungsauflösung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Eindeutige Identifikation der Nachforschungsauflösung.
+Für dieses Element ist nur der SWIFT-Zeichensatz ohne Leerzeichen zugelassen.
+Muss auf der ersten Position eine Ziffer 0 - 9 oder einen Buchstaben a - z oder A - Z enthalten.
+Wird in Kombination mit &lt;Assgnr&gt; für die Duplikatsprüfung auf Ebene Transaktion verwendet
+und darf innerhalb der zugelassenen Valutatage nur einmal vorkommen. Zugelassene
+Valutatage sind Valuta heute und 2 Tage Vergangenheit.
+Hinweis: Für erfolgreiche Verarbeitung darf weder auf Ebene Meldung noch auf Ebene
+Transaktion ein Duplikat erkannt werden.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Unique identification of the resolution of investigation .
+Only the SWIFT character set excluding spaces is permitted for this element.
+Must contain a digit 0 - 9 or a letter a - z or A - Z in the first position.
+It is used together with &lt;InstgAgt&gt; for duplicate checking at transaction level and may only occur once within the permitted value dates. Permitted value dates are value date today and 2 days in the past. 
+Note: To be processed successfully, no duplicates must be identifiable at either message level or transaction level.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgnlGrpInf" type="OriginalGroupInformation29_CHSEPA_camt029">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Original Group Identification</xs:documentation>
+              <xs:documentation source="FE_de">Informationen zur Ursprungszahlung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgnlInstrId" type="Max35Text_CHSEPA_camt029_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Original Instruction Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Instruction Identification aus der Ursprungsmeldung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgnlEndToEndId" type="Max35Text_CHSEPA_camt029_3" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Original Debtor Reference</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahlungsreferenz des Zahlers der Ursprungszahlung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgnlTxId" type="Max35Text_CHSEPA_camt029_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_de">Transaktionsreferenz der Ursprungszahlung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_en">Original Transaction Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgnlTxRef" type="OriginalTransactionReference27_CHSEPA_camt029">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Original Transaction Reference</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Informationsinhalte der Ursprungszahlung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Die gelieferten Elemente müssen - mit Ausnahme von [NRC027] - eine exakte Kopie der Inhalte aus den Elementen der Ursprungszahlung enthalten. Sämtliche Subelemente aus &lt;OrgnlTxRef&gt; werden durch die RTGS-Plattform lediglich einer Schema-Prüfung unterzogen.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">The provided elements - with the exception of [NRC027] - must be an exact copy of the elements of the original payment. The subelements of &lt;OrgnlTxRef&gt; will only be validated against the schema by the RTGS-platform.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaymentTypeInformation25">
+    <xs:sequence>
+      <xs:element name="SvcLvl" type="ServiceLevel8Choice" minOccurs="0"/>
+      <xs:element name="LclInstrm" type="LocalInstrument2Choice" minOccurs="0"/>
+      <xs:element name="CtgyPurp" type="CategoryPurpose1Choice" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentTypeInformation25_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="PaymentTypeInformation25">
+        <xs:sequence>
+          <xs:element name="SvcLvl" type="ServiceLevel8Choice_CHSEPA_camt029">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Service Level</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Service-Vereinbarung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Muss verwendet werden.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Must be used.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LclInstrm" type="LocalInstrument2Choice_CHSEPA_camt029" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Payment Type</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahlungsart</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CtgyPurp" type="CategoryPurpose1Choice_CHSEPA_camt029" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Category Purpose</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Transaktionszweckkategorie</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PersonIdentification13">
+    <xs:sequence>
+      <xs:element name="DtAndPlcOfBirth" type="DateAndPlaceOfBirth1" minOccurs="0"/>
+      <xs:element name="Othr" type="GenericPersonIdentification1" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonIdentification13_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="PersonIdentification13">
+        <xs:sequence>
+          <xs:element name="DtAndPlcOfBirth" type="DateAndPlaceOfBirth1_CHSEPA_camt029" minOccurs="0"/>
+          <xs:element name="Othr" type="GenericPersonIdentification1_CHSEPA_camt029" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PersonIdentificationSchemeName1Choice">
+    <xs:choice>
+      <xs:element name="Cd" type="ExternalPersonIdentification1Code"/>
+      <xs:element name="Prtry" type="Max35Text"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="PersonIdentificationSchemeName1Choice_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="PersonIdentificationSchemeName1Choice">
+        <xs:choice>
+          <xs:element name="Cd" type="ExternalPersonIdentification1Code"/>
+          <xs:element name="Prtry" type="Max35Text_CHSEPA_camt029_2"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PostalAddress6">
+    <xs:sequence>
+      <xs:element name="Ctry" type="CountryCode" minOccurs="0"/>
+      <xs:element name="AdrLine" type="Max70Text" minOccurs="0" maxOccurs="7"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PostalAddress6_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="PostalAddress6">
+        <xs:sequence>
+          <xs:element name="Ctry" type="CountryCode" minOccurs="0"/>
+          <xs:element name="AdrLine" type="Max70Text_CHSEPA_camt029" minOccurs="0" maxOccurs="2"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Purpose2Choice">
+    <xs:choice>
+      <xs:element name="Cd" type="ExternalPurpose1Code"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="RemittanceInformation15">
+    <xs:sequence>
+      <xs:element name="Ustrd" type="Max140Text" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="Strd" type="StructuredRemittanceInformation15" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RemittanceInformation15_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="RemittanceInformation15">
+        <xs:sequence>
+          <xs:element name="Ustrd" type="Max140Text_CHSEPA_camt029" minOccurs="0"/>
+          <xs:element name="Strd" type="StructuredRemittanceInformation15_CHSEPA_camt029" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ResolutionInformation2">
+    <xs:sequence>
+      <xs:element name="IntrBkSttlmDt" type="ISODate" minOccurs="0"/>
+      <xs:element name="Compstn" type="Compensation1" minOccurs="0"/>
+      <xs:element name="Chrgs" type="Charges2" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResolutionInformation2_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="ResolutionInformation2">
+        <xs:sequence>
+          <xs:element name="IntrBkSttlmDt" type="ISODate" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Expected Settlement Date</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Voraussichtliche Valuta</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Compstn" type="Compensation1_CHSEPA_camt029" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Compensation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Entschädigung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Chrgs" type="Charges2_CHSEPA_camt029" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Charges</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Spesen</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ResolutionOfInvestigationV08">
+    <xs:sequence>
+      <xs:element name="Assgnmt" type="CaseAssignment4"/>
+      <xs:element name="RslvdCase" type="Case4" minOccurs="0"/>
+      <xs:element name="Sts" type="InvestigationStatus4Choice"/>
+      <xs:element name="ModDtls" type="PaymentTransaction90" minOccurs="0"/>
+      <xs:element name="ClmNonRctDtls" type="ClaimNonReceipt1Choice" minOccurs="0"/>
+      <xs:element name="RsltnRltdInf" type="ResolutionInformation2" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResolutionOfInvestigationV08_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="ResolutionOfInvestigationV08">
+        <xs:sequence>
+          <xs:element name="Assgnmt" type="CaseAssignment4_CHSEPA_camt029">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Assignment</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zuweisung der Nachforschungsauflösung</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RslvdCase" type="Case4_CHSEPA_camt029">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Sts" type="InvestigationStatus4Choice_CHSEPA_camt029">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Status</xs:documentation>
+              <xs:documentation source="FE_de">Status</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Nur Subelement &lt;Conf&gt; zugelassen.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Only sub-element &lt;Conf&gt; is allowed.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ModDtls" type="PaymentTransaction90_CHSEPA_camt029">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Modification Details</xs:documentation>
+              <xs:documentation source="FE_de">Details der Anpassung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ClmNonRctDtls" type="ClaimNonReceipt1Choice_CHSEPA_camt029" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Claim Non Receipt Details</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Details der Anfrage zum fehlenden Zahlungseingang</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RsltnRltdInf" type="ResolutionInformation2_CHSEPA_camt029" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Resolution Related Information</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Informationen zur Verarbeitung der Anfrage</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ServiceLevel8Choice">
+    <xs:choice>
+      <xs:element name="Cd" type="ExternalServiceLevel1Code"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ServiceLevel8Choice_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="ServiceLevel8Choice">
+        <xs:choice>
+          <xs:element name="Cd" type="ExternalServiceLevel1Code">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Service Level (code)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Service-Vereinbarung (Code)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SettlementInstruction4">
+    <xs:sequence>
+      <xs:element name="SttlmMtd" type="SettlementMethod1Code"/>
+      <xs:element name="SttlmAcct" type="CashAccount24" minOccurs="0"/>
+      <xs:element name="ClrSys" type="ClearingSystemIdentification3Choice" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SettlementInstruction4_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="SettlementInstruction4">
+        <xs:sequence>
+          <xs:element name="SttlmMtd" type="SettlementMethod1Code">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Settlement Method</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Verrechnungsmethode</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SttlmAcct" type="CashAccount24_CHSEPA_camt029" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Settlement Account</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Verrechnungskonto</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ClrSys" type="ClearingSystemIdentification3Choice_CHSEPA_camt029" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Clearing System</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Clearingsystem</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="SettlementMethod1Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CLRG"/>
+      <xs:enumeration value="COVE"/>
+      <xs:enumeration value="INDA"/>
+      <xs:enumeration value="INGA"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="StructuredRemittanceInformation15">
+    <xs:sequence>
+      <xs:element name="CdtrRefInf" type="CreditorReferenceInformation2" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StructuredRemittanceInformation15_CHSEPA_camt029">
+    <xs:complexContent>
+      <xs:restriction base="StructuredRemittanceInformation15">
+        <xs:sequence>
+          <xs:element name="CdtrRefInf" type="CreditorReferenceInformation2_CHSEPA_camt029" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

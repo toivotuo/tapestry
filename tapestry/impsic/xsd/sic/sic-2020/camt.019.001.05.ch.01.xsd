@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+(C) Copyright 2013, SIX Interbank Clearing Ltd
+XML Schema used in the Swiss Interbank space:
+	Suffix part 1: .ch:	Identification as a Swiss (CH) version
+	Suffix part 2: .01:   Version of this scheme
+
+This schema is a customised schema for the specific requirements of SIC4, and is not the official SWIFT schema. 
+The full SWIFT schema may be found on www.swift.com
+
+For comments and suggestions please contact pm@six-group.com
+-->
+<xs:schema xmlns="http://www.six-interbank-clearing.com/de/camt.019.001.05.ch.01"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.six-interbank-clearing.com/de/camt.019.001.05.ch.01"
+    elementFormDefault="qualified">
+  <xs:element name="Document" type="Document_CH_camt019"/>
+  <xs:simpleType name="ActiveCurrencyCode">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{3,3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="BusinessDay5">
+    <xs:sequence>
+      <xs:element name="SysId" type="SystemIdentification2Choice" maxOccurs="unbounded"/>
+      <xs:element name="BizDayOrErr" type="BusinessDayReportOrError6Choice"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BusinessDay5_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="BusinessDay5">
+        <xs:sequence>
+          <xs:element name="SysId" type="SystemIdentification2Choice_CH_camt019"/>
+          <xs:element name="BizDayOrErr" type="BusinessDayReportOrError6Choice_CH_camt019">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Business Day Information</xs:documentation>
+              <xs:documentation source="FE_de">Informationen zum Clearingtag</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BusinessDay6">
+    <xs:sequence>
+      <xs:element name="SysSts" type="SystemStatus2" minOccurs="0"/>
+      <xs:element name="SysInfPerCcy" type="SystemAvailabilityAndEvents1" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BusinessDay6_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="BusinessDay6">
+        <xs:sequence>
+          <xs:element name="SysSts" type="SystemStatus2_CH_camt019" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Message Delivery Status</xs:documentation>
+              <xs:documentation source="FE_de">Auslieferungsstatus für Meldungen</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Information über nicht quittierte oder nicht ausgelieferte Meldungen zum Zeitpunkt des Starts der Tagesendverarbeitung.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Information about unacknowledged or undelivered messages at the time of the start of day-end processing.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SysInfPerCcy" type="SystemAvailabilityAndEvents1_CH_camt019"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BusinessDayReportOrError5Choice">
+    <xs:choice>
+      <xs:element name="BizRpt" type="BusinessDay5" maxOccurs="unbounded"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="BusinessDayReportOrError5Choice_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="BusinessDayReportOrError5Choice">
+        <xs:choice>
+          <xs:element name="BizRpt" type="BusinessDay5_CH_camt019"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BusinessDayReportOrError6Choice">
+    <xs:choice>
+      <xs:element name="BizDayInf" type="BusinessDay6"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="BusinessDayReportOrError6Choice_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="BusinessDayReportOrError6Choice">
+        <xs:choice>
+          <xs:element name="BizDayInf" type="BusinessDay6_CH_camt019"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClosureReason2Choice">
+    <xs:choice>
+      <xs:element name="Prtry" type="Max35Text"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ClosureReason2Choice_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="ClosureReason2Choice">
+        <xs:choice>
+          <xs:element name="Prtry" type="Max35Text_CH_camt019_2">
+            <xs:annotation>
+              <xs:documentation source="FE_en">RTGS Event Code</xs:documentation>
+              <xs:documentation source="FE_de">RTGS-Ereigniscode</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Code zur Bezeichnung des RTGS-Ereignisses.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Code to identify the RTGS event.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="CountryCode">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{2,2}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="DateTimePeriodChoice">
+    <xs:choice>
+      <xs:element name="FrDtTm" type="ISODateTime"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="DateTimePeriodChoice_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="DateTimePeriodChoice">
+        <xs:choice>
+          <xs:element name="FrDtTm" type="ISODateTime">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Input Timestamp</xs:documentation>
+              <xs:documentation source="FE_de">Inputzeitpunkt</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Dokumentiert den Eingang der Systemmanager-Meldung zum generellen Verrechnungsstopp/Verrechnungsneustart bzw. Systemstopp/Systemneustart im RTGS-System.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Documents the reception time of the system manager message regarding general settlement stop/settlement restart or system stop/system restart in the RTGS system.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Document">
+    <xs:sequence>
+      <xs:element name="RtrBizDayInf" type="ReturnBusinessDayInformationV05"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Document_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="Document">
+        <xs:sequence>
+          <xs:element name="RtrBizDayInf" type="ReturnBusinessDayInformationV05_CH_camt019"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericIdentification1">
+    <xs:sequence>
+      <xs:element name="Id" type="Max35Text"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericIdentification1_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="GenericIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text_CH_camt019_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">RTGS Code</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikationscode des RTGS</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Fix CSC für SIC, CEC für euroSIC.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Fix CSC for SIC, CEC for euroSIC.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericIdentification1_CH_camt019_2">
+    <xs:complexContent>
+      <xs:restriction base="GenericIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text_CH_camt019_2">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Backup Delivery Code</xs:documentation>
+              <xs:documentation source="FE_de">Backup-Auslieferungs-Code</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Der gelieferte Codewert gibt Auskunft darüber, ob Meldungen auf dem Backup-Medium zugestellt werden.
+Die folgenden Codewerte sind definiert:
+NOBDM = Es werden keine Meldungen auf dem Backup-Medium zugestellt
+BDMSG = Nicht quittierte oder ausgelieferte Meldungen werden auf dem Backup-Medium zugestellt
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+The provided code value indicates whether messages will be delivered on the backup medium.
+The following code values are defined:
+NOBDM = No messages will be delivered on the backup medium
+BDMSG = Unacknowledged or undelivered messages will be delivered on the backup medium
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericIdentification1_CH_camt019_3">
+    <xs:complexContent>
+      <xs:restriction base="GenericIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text_CH_camt019_3">
+            <xs:annotation>
+              <xs:documentation source="FE_en">System Event Code (proprietary)</xs:documentation>
+              <xs:documentation source="FE_de">System-Ereigniscode (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Folgende Codes sind definiert:
+CS1 = Clearingstopp-1
+CS2 = Clearingstopp-2
+CS3 = Clearingstopp-3
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+The following codes are defined:
+CS1 = Clearing stop 1
+CS2 = Clearing stop 2
+CS3 = Clearing stop 3
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ISODateTime">
+    <xs:restriction base="xs:dateTime"/>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text_CH_camt019">
+    <xs:restriction base="Max35Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+      <xs:pattern value="[A-Za-z0-9+?/:()\.,&apos;\-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text_CH_camt019_2">
+    <xs:restriction base="Max35Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+      <xs:pattern value="[A-Za-z0-9+?/:()\.,&apos;\-][A-Za-z0-9+?/:()\.,&apos; \-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text_CH_camt019_3">
+    <xs:restriction base="Max35Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+      <xs:pattern value="CS[1-3]"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="MessageHeader3">
+    <xs:sequence>
+      <xs:element name="MsgId" type="Max35Text"/>
+      <xs:element name="CreDtTm" type="ISODateTime" minOccurs="0"/>
+      <xs:element name="ReqTp" type="RequestType2Choice" minOccurs="0"/>
+      <xs:element name="QryNm" type="Max35Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MessageHeader3_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="MessageHeader3">
+        <xs:sequence>
+          <xs:element name="MsgId" type="Max35Text_CH_camt019">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Message Identification</xs:documentation>
+              <xs:documentation source="FE_de">Meldungsidentifikation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CreDtTm" type="ISODateTime">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Creation Date Time</xs:documentation>
+              <xs:documentation source="FE_de">Erstellungszeitpunkt der Meldung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReqTp" type="RequestType2Choice_CH_camt019"/>
+          <xs:element name="QryNm" type="Max35Text_CH_camt019_2">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Event Type</xs:documentation>
+              <xs:documentation source="FE_de">Ereignistyp</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Eindeutige Identifikation des Ereignistyps, folgende Codewerte stehen zur Verfügung:
+CSPINF = Meldung Clearingschlusszeiten
+TEVINF = Meldung Start TEV
+HLTINF = Genereller Verrechnungsstopp/Genereller Verrechnungsneustart
+SSTINF = Genereller Systemstopp/Genereller Systemneustart
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Unique identification of the event type; the following code values are available:
+CSPINF = Clearing stop times
+TEVINF = Start of day-end processing
+HLTINF = General settlement stop/general settlement restart
+SSTINF = General system stop/general system restart
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RequestType2Choice">
+    <xs:choice>
+      <xs:element name="Prtry" type="GenericIdentification1"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="RequestType2Choice_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="RequestType2Choice">
+        <xs:choice>
+          <xs:element name="Prtry" type="GenericIdentification1_CH_camt019"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ReturnBusinessDayInformationV05">
+    <xs:sequence>
+      <xs:element name="MsgHdr" type="MessageHeader3"/>
+      <xs:element name="RptOrErr" type="BusinessDayReportOrError5Choice"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReturnBusinessDayInformationV05_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="ReturnBusinessDayInformationV05">
+        <xs:sequence>
+          <xs:element name="MsgHdr" type="MessageHeader3_CH_camt019"/>
+          <xs:element name="RptOrErr" type="BusinessDayReportOrError5Choice_CH_camt019"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SystemAvailabilityAndEvents1">
+    <xs:sequence>
+      <xs:element name="SysCcy" type="ActiveCurrencyCode" minOccurs="0"/>
+      <xs:element name="Evt" type="SystemEvent2" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="ClsrInf" type="SystemClosure1" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SystemAvailabilityAndEvents1_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="SystemAvailabilityAndEvents1">
+        <xs:sequence>
+          <xs:element name="SysCcy" type="ActiveCurrencyCode">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Currency</xs:documentation>
+              <xs:documentation source="FE_de">Währung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Fix CHF für SIC, EUR für euroSIC.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Fix CHF for SIC, EUR for euroSIC.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Evt" type="SystemEvent2_CH_camt019" minOccurs="0" maxOccurs="3">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Business Day Event Information</xs:documentation>
+              <xs:documentation source="FE_de">Clearingtag-Ereignis</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Für jedes Clearingtag-Ereignis (Clearingstopp) wird eine Ausprägung des Elements geliefert.
+Maximal 3 Ausprägungen sind zugelassen.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+One occurrence of the element will be provided for each clearing day event (clearing stop).
+Max. 3 occurrences are permitted.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ClsrInf" type="SystemClosure1_CH_camt019" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation source="FE_en">RTGS Stop Information</xs:documentation>
+              <xs:documentation source="FE_de">RTGS Stopp Information</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Information über einen generellen Verrechnungsstopp/Verrechnungsneustart bzw. Systemstopp/Systemneustart.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Information about a general settlement stop/settlement restart or system stop/system restart.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SystemClosure1">
+    <xs:sequence>
+      <xs:element name="Prd" type="DateTimePeriodChoice" minOccurs="0"/>
+      <xs:element name="Rsn" type="ClosureReason2Choice"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SystemClosure1_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="SystemClosure1">
+        <xs:sequence>
+          <xs:element name="Prd" type="DateTimePeriodChoice_CH_camt019"/>
+          <xs:element name="Rsn" type="ClosureReason2Choice_CH_camt019"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SystemEvent2">
+    <xs:sequence>
+      <xs:element name="Tp" type="SystemEventType2Choice"/>
+      <xs:element name="SchdldTm" type="ISODateTime"/>
+      <xs:element name="FctvTm" type="ISODateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SystemEvent2_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="SystemEvent2">
+        <xs:sequence>
+          <xs:element name="Tp" type="SystemEventType2Choice_CH_camt019">
+            <xs:annotation>
+              <xs:documentation source="FE_en">System Event</xs:documentation>
+              <xs:documentation source="FE_de">System Ereignistyp</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Das Element &lt;Prtry&gt; wird geliefert.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">The &lt;Prtry&gt; element will be provided.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SchdldTm" type="ISODateTime">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Scheduled Time</xs:documentation>
+              <xs:documentation source="FE_de">Angekündigter Zeitpunkt</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Geplanter Zeitpunkt des bezeichneten Clearingstopps.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Scheduled time for the indicated clearing stop.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="FctvTm" type="ISODateTime" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Effective Time</xs:documentation>
+              <xs:documentation source="FE_de">Effektiver Startzeitpunkt TEV</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SystemEventType2Choice">
+    <xs:choice>
+      <xs:element name="Prtry" type="GenericIdentification1"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="SystemEventType2Choice_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="SystemEventType2Choice">
+        <xs:choice>
+          <xs:element name="Prtry" type="GenericIdentification1_CH_camt019_3"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SystemIdentification2Choice">
+    <xs:choice>
+      <xs:element name="Ctry" type="CountryCode"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="SystemIdentification2Choice_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="SystemIdentification2Choice">
+        <xs:choice>
+          <xs:element name="Ctry" type="CountryCode">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Country</xs:documentation>
+              <xs:documentation source="FE_de">Land</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Fix CH.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Fix CH.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SystemStatus2">
+    <xs:sequence>
+      <xs:element name="Sts" type="SystemStatus2Choice"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SystemStatus2Choice">
+    <xs:choice>
+      <xs:element name="Prtry" type="GenericIdentification1"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="SystemStatus2Choice_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="SystemStatus2Choice">
+        <xs:choice>
+          <xs:element name="Prtry" type="GenericIdentification1_CH_camt019_2"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SystemStatus2_CH_camt019">
+    <xs:complexContent>
+      <xs:restriction base="SystemStatus2">
+        <xs:sequence>
+          <xs:element name="Sts" type="SystemStatus2Choice_CH_camt019"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

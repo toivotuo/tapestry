@@ -1,0 +1,1078 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+(C) Copyright 2016, SIX Interbank Clearing Ltd
+XML Schema used in the Swiss Interbank space:
+	Suffix part 1: .ch:	Identification as a Swiss (CH) version
+	Suffix part 2: .02:   Version of this scheme
+
+This schema is a customised schema for the specific requirements of SIC4, and is not the official SWIFT schema. 
+The full SWIFT schema may be found on www.swift.com
+
+For comments and suggestions please contact pm@six-group.com
+-->
+<xs:schema xmlns="http://www.six-interbank-clearing.com/de/camt.006.001.06.ch.02"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.six-interbank-clearing.com/de/camt.006.001.06.ch.02"
+    elementFormDefault="qualified">
+  <xs:element name="Document" type="Document_CH_camt006"/>
+  <xs:complexType name="AccountIdentification4Choice">
+    <xs:choice>
+      <xs:element name="Othr" type="GenericAccountIdentification1"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="AccountIdentification4Choice_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="AccountIdentification4Choice">
+        <xs:choice>
+          <xs:element name="Othr" type="GenericAccountIdentification1_CH_camt006">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Other Identification</xs:documentation>
+              <xs:documentation source="FE_de">Sonstige Identifikation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ActiveCurrencyAndAmount">
+    <xs:simpleContent>
+      <xs:extension base="ActiveCurrencyAndAmount_SimpleType">
+        <xs:attribute name="Ccy" type="ActiveCurrencyCode" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ActiveCurrencyAndAmount_CH_camt006">
+    <xs:simpleContent>
+      <xs:restriction base="ActiveCurrencyAndAmount">
+        <xs:attribute name="Ccy" type="ActiveCurrencyCode" use="required">
+          <xs:annotation>
+            <xs:documentation xml:lang="DE" source="FE_en">Currency Code</xs:documentation>
+            <xs:documentation xml:lang="DE" source="FE_de">Währungscode</xs:documentation>
+            <xs:documentation xml:lang="DE" source="CH-Definition"/>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="ActiveCurrencyAndAmount_SimpleType">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0"/>
+      <xs:totalDigits value="18"/>
+      <xs:fractionDigits value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ActiveCurrencyCode">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{3,3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Amount2Choice">
+    <xs:choice>
+      <xs:element name="AmtWthCcy" type="ActiveCurrencyAndAmount"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="Amount2Choice_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="Amount2Choice">
+        <xs:choice>
+          <xs:element name="AmtWthCcy" type="ActiveCurrencyAndAmount_CH_camt006">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Settlement Amount</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Verrechnungsbetrag</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="BICFIIdentifier">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification5">
+    <xs:sequence>
+      <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification5_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification5">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8_CH_camt006"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification5_CH_camt006_2">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification5">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification8_CH_camt006_2"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CashAccount25">
+    <xs:sequence>
+      <xs:element name="Id" type="AccountIdentification4Choice"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CashAccount25_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="CashAccount25">
+        <xs:sequence>
+          <xs:element name="Id" type="AccountIdentification4Choice_CH_camt006">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Settlement Account Identification</xs:documentation>
+              <xs:documentation source="FE_de">Verrechnungskontoidentifikation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CashAccountAndEntry1">
+    <xs:sequence>
+      <xs:element name="Acct" type="CashAccount25"/>
+      <xs:element name="Ntry" type="CashEntry1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CashAccountAndEntry1_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="CashAccountAndEntry1">
+        <xs:sequence>
+          <xs:element name="Acct" type="CashAccount25_CH_camt006">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Settlement Account Information</xs:documentation>
+              <xs:documentation source="FE_de">Verrechnungskontoinformationen</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Ntry" type="CashEntry1_CH_camt006" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Entry Information</xs:documentation>
+              <xs:documentation source="FE_de">Einlieferungsdaten</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CashEntry1">
+    <xs:sequence>
+      <xs:element name="Dt" type="DateAndDateTimeChoice" minOccurs="0"/>
+      <xs:element name="AddtlNtryInf" type="Max140Text" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CashEntry1_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="CashEntry1">
+        <xs:sequence>
+          <xs:element name="Dt" type="DateAndDateTimeChoice_CH_camt006_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Entry Date</xs:documentation>
+              <xs:documentation source="FE_de">Einlieferungsdatum</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AddtlNtryInf" type="Max140Text" minOccurs="0" maxOccurs="3">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Additional Entry Information</xs:documentation>
+              <xs:documentation source="FE_de">Zusatzinformationen</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Für jede Zusatzinformation wird eine Ausprägung des Elements geliefert.
+Jede Ausprägung beginnt mit einem 3-stelligen Code gefolgt von einem «/» und ergänzenden Informationen. 
+Es werden maximal 3 Ausprägungen geliefert:
+OIM/ + Original Input Message Type (pacs.00x, camt.050, SIC MT xxx, FIN MTxxx)
+CS1/ + 1 (für die zwischen CS-1 und CS-2 eingelieferten Ausgleichszahlungen)
+RSN/ + Annullierungstext («Cancelled by SIC» für Zahlungen, die von SIC annulliert wurden)
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Each additional information is provided in a separate instance of the element.
+Each occurrence starts with a 3-character code followed by a "/" and the appended information.
+A maximum of 3 instances may be provided:
+OIM/ + Original Input Message Type (pacs.00x, camt.050, SIC MT xxx, FIN MTxxx)
+CS1/ + 1 (for cover payments received between CS 1 and CS 2)
+RSN/ + Cancellation text ("Cancelled by SIC" for SIC cancelled transactions)
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemMemberIdentification2">
+    <xs:sequence>
+      <xs:element name="MmbId" type="Max35Text"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemMemberIdentification2_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="ClearingSystemMemberIdentification2">
+        <xs:sequence>
+          <xs:element name="MmbId" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Member Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Teilnehmers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DateAndDateTimeChoice">
+    <xs:choice>
+      <xs:element name="DtTm" type="ISODateTime"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="DateAndDateTimeChoice_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="DateAndDateTimeChoice">
+        <xs:choice>
+          <xs:element name="DtTm" type="ISODateTime">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Transaction Status Timestamp</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zeitpunkt desTransaktionsstatus</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Zeitpunkt, zu dem der Zahlung vom RTGS-System der aktuelle Statuscode zugewiesen wurde (Verrechnungs-, Annullierungs- bzw. Inputzeitpunkt).</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Timestamp indicating the time when the current status of the transaction was assigned by the RTGS system (settlement, cancellation or input timestamp).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DateAndDateTimeChoice_CH_camt006_2">
+    <xs:complexContent>
+      <xs:restriction base="DateAndDateTimeChoice">
+        <xs:choice>
+          <xs:element name="DtTm" type="ISODateTime">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Entry Date Information</xs:documentation>
+              <xs:documentation source="FE_de">Einlieferungszeitpunkt</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Document">
+    <xs:sequence>
+      <xs:element name="RtrTx" type="ReturnTransactionV06"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Document_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="Document">
+        <xs:sequence>
+          <xs:element name="RtrTx" type="ReturnTransactionV06_CH_camt006"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ErrorHandling2Choice">
+    <xs:choice>
+      <xs:element name="Prtry" type="Max35Text"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ErrorHandling2Choice_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="ErrorHandling2Choice">
+        <xs:choice>
+          <xs:element name="Prtry" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Error Code (proprietary)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Fehlercode (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+In diesem Element wird ein Fehlercode in Form eines proprietären Codes geliefert.
+Folgende Fehlercodes sind definiert:
+NRSLT: Es wurden keine den Abfragekriterien entsprechenden Zahlungen gefunden
+NAUTH: Abfrage ist nicht zugelassen
+QYINV: Abfragekriterien ungültig
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+The reason for the error is specified by a proprietary error code.
+The following error codes are defined:
+NRSLT: No payments matching the query criteria were found
+NAUTH: Query is not permitted
+QYINV: Invalid query criteria
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ErrorHandling4">
+    <xs:sequence>
+      <xs:element name="Err" type="ErrorHandling2Choice"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ErrorHandling4_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="ErrorHandling4">
+        <xs:sequence>
+          <xs:element name="Err" type="ErrorHandling2Choice_CH_camt006">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Error</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Fehler</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification8">
+    <xs:sequence>
+      <xs:element name="BICFI" type="BICFIIdentifier" minOccurs="0"/>
+      <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2" minOccurs="0"/>
+      <xs:element name="Othr" type="GenericFinancialIdentification1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification8_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification8">
+        <xs:sequence>
+          <xs:element name="BICFI" type="BICFIIdentifier" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of Instructed Participant (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des gutzuschreibenden Teilnehmers (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2_CH_camt006" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of Instructed Participant (proprietary)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des gutzuschreibenden Teilnehmers (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Othr" type="GenericFinancialIdentification1_CH_camt006" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Other Identification</xs:documentation>
+              <xs:documentation source="FE_de">Sonstige Identifikation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification8_CH_camt006_2">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification8">
+        <xs:sequence>
+          <xs:element name="BICFI" type="BICFIIdentifier" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of Instructing Participant (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des zahlenden Teilnehmers (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2_CH_camt006" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of Instructing Participant (proprietary)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des zahlenden Teilnehmers (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericAccountIdentification1">
+    <xs:sequence>
+      <xs:element name="Id" type="Max34Text"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericAccountIdentification1_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="GenericAccountIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max34Text">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Settlement Account</xs:documentation>
+              <xs:documentation source="FE_de">Verrechnungskonto</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericFinancialIdentification1">
+    <xs:sequence>
+      <xs:element name="Id" type="Max35Text"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericFinancialIdentification1_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="GenericFinancialIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Assigned Identification of the Instructed Participant</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zugewiesene Identifikation des gutzuschreibenden Teilnehmers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Bei einer Verkettung oder Direktleitung vom RTGS-System zugewiesene Identifikation des gutzuschreibenden Teilnehmers.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Identification of the participant assigned by the RTGS system, when a concatenated identification or direct routing was used/applied.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericIdentification1">
+    <xs:sequence>
+      <xs:element name="Id" type="Max35Text"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericIdentification1_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="GenericIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">RTGS Code</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikationscode des RTGS</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Fix CSC für SIC, CEC für euroSIC.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Fix CSC for SIC, CEC for euroSIC.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ISODate">
+    <xs:restriction base="xs:date"/>
+  </xs:simpleType>
+  <xs:simpleType name="ISODateTime">
+    <xs:restriction base="xs:dateTime"/>
+  </xs:simpleType>
+  <xs:simpleType name="Max10Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max140Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="140"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max20000Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="20000"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max34Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="34"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text_CH_camt006">
+    <xs:restriction base="Max35Text">
+      <xs:enumeration value="CAND"/>
+      <xs:enumeration value="STLD"/>
+      <xs:enumeration value="VALD"/>
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max5NumericText">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{1,5}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max70Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="70"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="MessageHeader5">
+    <xs:sequence>
+      <xs:element name="MsgId" type="Max35Text"/>
+      <xs:element name="CreDtTm" type="ISODateTime" minOccurs="0"/>
+      <xs:element name="MsgPgntn" type="Pagination" minOccurs="0"/>
+      <xs:element name="OrgnlBizQry" type="OriginalBusinessQuery1" minOccurs="0"/>
+      <xs:element name="ReqTp" type="RequestType2Choice" minOccurs="0"/>
+      <xs:element name="QryNm" type="Max35Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MessageHeader5_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="MessageHeader5">
+        <xs:sequence>
+          <xs:element name="MsgId" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Message Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Meldungsidentifikation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Für dieses Element ist nur der SWIFT-Zeichensatz ohne Leerzeichen zugelassen.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Only the SWIFT character set excluding spaces is permitted for this element.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CreDtTm" type="ISODateTime">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Creation Date Time</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Erstellungszeitpunkt der Meldung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MsgPgntn" type="Pagination_CH_camt006">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Result Pagination Information</xs:documentation>
+              <xs:documentation source="FE_de">Resultatseiten-Informationen</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgnlBizQry" type="OriginalBusinessQuery1_CH_camt006"/>
+          <xs:element name="ReqTp" type="RequestType2Choice_CH_camt006"/>
+          <xs:element name="QryNm" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Query Type</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Abfragetyp</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Must be used to unambiguously identify the query type.
+The following codes are defined:
+STXQRY - Single transaction query
+GENQRY - Generic transaction query
+QUEQRY - Wait file query
+              </xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Muss zwingend verwendet werden zur eindeutigen Identifizierung des Abfragetyps.
+Folgende Codes sind definiert:
+STXQRY - Einzeltransaktionsabfrage
+GENQRY - Allgemeine Transaktionsabfrage
+QUEQRY - Abfrage Wartedatei
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OriginalBusinessQuery1">
+    <xs:sequence>
+      <xs:element name="MsgId" type="Max35Text"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OriginalBusinessQuery1_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="OriginalBusinessQuery1">
+        <xs:sequence>
+          <xs:element name="MsgId" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Original Message Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Meldungsidentifikation der Abfragemeldung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Pagination">
+    <xs:sequence>
+      <xs:element name="PgNb" type="Max5NumericText"/>
+      <xs:element name="LastPgInd" type="YesNoIndicator"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Pagination_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="Pagination">
+        <xs:sequence>
+          <xs:element name="PgNb" type="Max5NumericText">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Result Page Number</xs:documentation>
+              <xs:documentation source="FE_de">Resultatseite</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Angeforderte Resultatseite aus der Abfragemeldung «camt.005».</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Requested page of the result-set specified in the "camt.005" query message.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LastPgInd" type="YesNoIndicator">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Last Page Indicator</xs:documentation>
+              <xs:documentation source="FE_de">Kennzeichen für letzte Seite</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Wenn alle den Suchkriterien entsprechenden Transaktionen in der aktuellen Meldung geliefert werden, wird der Wert «true» geliefert, sonst «false».</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">If all matching transactions are provided within the current message the value «true» will be provided, otherwise «false».</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaymentIdentification4Choice">
+    <xs:choice>
+      <xs:element name="PrtryId" type="Max70Text"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="PaymentIdentification4Choice_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="PaymentIdentification4Choice">
+        <xs:choice>
+          <xs:element name="PrtryId" type="Max70Text">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Page of Result Set</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Seite im Abfrageergebnis</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Der Wert NOTPROVIDED wird immer geliefert</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Only the value NOTPROVIDED will be provided</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaymentInstruction14">
+    <xs:sequence>
+      <xs:element name="Sts" type="PaymentStatus2" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="IntrBkSttlmAmt" type="Amount2Choice" minOccurs="0"/>
+      <xs:element name="Purp" type="Max10Text" minOccurs="0"/>
+      <xs:element name="PmtMtd" type="PaymentOrigin1Choice" minOccurs="0"/>
+      <xs:element name="Prty" type="PriorityCode3Choice" minOccurs="0"/>
+      <xs:element name="InstrCpy" type="Max20000Text" minOccurs="0"/>
+      <xs:element name="TxId" type="Max35Text" minOccurs="0"/>
+      <xs:element name="IntrBkSttlmDt" type="ISODate" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentInstruction14_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="PaymentInstruction14">
+        <xs:sequence>
+          <xs:element name="Sts" type="PaymentStatus2_CH_camt006" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Status</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Status</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IntrBkSttlmAmt" type="Amount2Choice_CH_camt006"/>
+          <xs:element name="Purp" type="Max10Text" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation source="FE_de">Zahlungscode</xs:documentation>
+              <xs:documentation source="FE_en">Payment Code</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Definiert das Ursprungsgeschäft beim Anwendungsfall «Ausgleichszahlung» in Form eines 3-stelligen Codewertes. 
+Gültige Codewerte gemäss «Schweizer RTGS-Handbuch».
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Defines the original business transaction for use case "compensation payment". 
+For valid code values, see "Swiss RTGS Handbook".
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PmtMtd" type="PaymentOrigin1Choice_CH_camt006" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Payment Type/Use Case</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahlungsart/Anwendungsfall</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Prty" type="PriorityCode3Choice_CH_camt006" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Priority</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Priorität</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Die Abfrage liefert immer die aktuell zugewiesene Priorität der Zahlung.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">The query will always return the actually assigned priority.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InstrCpy" type="Max20000Text" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Instruction Copy</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Eingelieferte Meldung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Die Zahlungsmeldung (im Meldungsstandard der Einlieferung in das RTGS-System) in einen CDATA-Abschnitt gepackt.
+Wird nur in der Antwort auf eine Einzeltransaktions-Abfrage geliefert.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+The original input payment message (in the message standard delivered to the RTGS system) will be returned within a CDATA section.
+This element is only provided in the response to a single transaction query.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TxId" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Transaction Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Transaktionsreferenz</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IntrBkSttlmDt" type="ISODate" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Settlement Date</xs:documentation>
+              <xs:documentation source="FE_de">Verrechnungsdatum</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Gewünschtes Verrechnungsdatum</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Requested settlement date</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaymentOrigin1Choice">
+    <xs:choice>
+      <xs:element name="Prtry" type="Max35Text"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="PaymentOrigin1Choice_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="PaymentOrigin1Choice">
+        <xs:choice>
+          <xs:element name="Prtry" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Payment Type/Use Case (propietary)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahlungsart/Anwendungsfall (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaymentStatus2">
+    <xs:sequence>
+      <xs:element name="Cd" type="PaymentStatusCode6Choice" minOccurs="0"/>
+      <xs:element name="DtTm" type="DateAndDateTimeChoice" minOccurs="0"/>
+      <xs:element name="Rsn" type="PaymentStatusReasonCode6Choice" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentStatus2_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="PaymentStatus2">
+        <xs:sequence>
+          <xs:element name="Cd" type="PaymentStatusCode6Choice_CH_camt006">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Status Code</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Statuscode</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DtTm" type="DateAndDateTimeChoice_CH_camt006"/>
+          <xs:element name="Rsn" type="PaymentStatusReasonCode6Choice_CH_camt006" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Cancellation Reason Information</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Annullierungsinformation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Wird nur beim Statuscode CAND geliefert.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Only provided for status code CAND.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaymentStatusCode6Choice">
+    <xs:choice>
+      <xs:element name="Prtry" type="Max35Text"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="PaymentStatusCode6Choice_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="PaymentStatusCode6Choice">
+        <xs:choice>
+          <xs:element name="Prtry" type="Max35Text_CH_camt006">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Status Code (proprietary)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Statuscode (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Status der Zahlung
+Folgende Codes sind definiert:
+VALD = Validiert
+STLD = Verrechnet
+CAND = Annulliert
+Für den Statuscode CAND wird zusätzlich im Element &lt;Rsn&gt; die Annullierung weiter spezifiziert.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Status of the payment.
+The following codes are defined:
+VALD = validated
+STLD = settled
+CAND = cancelled
+If the status code is CAND, additional information about the reason will be provided within the &lt;Rsn&gt; element.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaymentStatusReasonCode6Choice">
+    <xs:choice>
+      <xs:element name="Prtry" type="Max35Text"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="PaymentStatusReasonCode6Choice_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="PaymentStatusReasonCode6Choice">
+        <xs:choice>
+          <xs:element name="Prtry" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Cancellation Details</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Annullierungsdetails</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Code für die Art der Annullierung. 
+Folgende Codewerte sind definiert:
+PTTDY = Manuell annulliert in Wartedatei
+SYLTE = Annulliert infolge Cut-off (nur in euroSIC) 
+DPACS = Annulliert in der Wartedatei wegen individuellem Verrechnungs- oder Belastungsstopp 
+DPLOF = Annulliert in der Wartedatei wegen unzureichendem Saldo
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Code to qualify the cancellation. 
+The following values are defined:
+PTTDY = Cancelled manually in wait file
+SYLTE = Cancelled due to cut-off (in euroSIC only)
+DPACS = Cancelled in wait file due to individual settlement or debit stop
+DPLOF = Cancelled in wait file due to insufficient balance
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PriorityCode3Choice">
+    <xs:choice>
+      <xs:element name="Prtry" type="Max35Text"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="PriorityCode3Choice_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="PriorityCode3Choice">
+        <xs:choice>
+          <xs:element name="Prtry" type="Max35Text">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Settlement Priority</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Verrechnungspriorität</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Folgende 3 Prioritätsstufen sind definiert:
+NORM = Normale Priorität, tiefste Stufe
+HIGH = Hohe Priorität, mittlere Stufe
+URGT = Dringende Priorität, höchste Stufe.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+The following 3 levels of priority are defined:
+NORM = Normal priority, lowest level 
+HIGH = High priority, medium level 
+URGT = Urgent priority, highest level.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RequestType2Choice">
+    <xs:choice>
+      <xs:element name="Prtry" type="GenericIdentification1"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="RequestType2Choice_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="RequestType2Choice">
+        <xs:choice>
+          <xs:element name="Prtry" type="GenericIdentification1_CH_camt006"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ReturnTransactionV06">
+    <xs:sequence>
+      <xs:element name="MsgHdr" type="MessageHeader5"/>
+      <xs:element name="RptOrErr" type="TransactionReportOrError2Choice"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReturnTransactionV06_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="ReturnTransactionV06">
+        <xs:sequence>
+          <xs:element name="MsgHdr" type="MessageHeader5_CH_camt006"/>
+          <xs:element name="RptOrErr" type="TransactionReportOrError2Choice_CH_camt006">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Report or Error</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Abfrageantwort</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Es wird entweder ein Element &lt;BizRpt&gt; mit Transaktionen geliefert, die den Abfragekriterien entsprechen, oder ein Element &lt;OprlErr&gt; mit Fehlerinformationen.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Either a &lt;BizRpt&gt; element returning transactions that matched the query criteria or an &lt;OprlErr&gt;element containing error information will be delivered.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="System1">
+    <xs:sequence>
+      <xs:element name="MmbId" type="BranchAndFinancialInstitutionIdentification5" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="System1_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="System1">
+        <xs:sequence>
+          <xs:element name="MmbId" type="BranchAndFinancialInstitutionIdentification5_CH_camt006"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="System1_CH_camt006_2">
+    <xs:complexContent>
+      <xs:restriction base="System1">
+        <xs:sequence>
+          <xs:element name="MmbId" type="BranchAndFinancialInstitutionIdentification5_CH_camt006_2"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Transaction33">
+    <xs:sequence>
+      <xs:element name="PmtTo" type="System1" minOccurs="0"/>
+      <xs:element name="PmtFr" type="System1" minOccurs="0"/>
+      <xs:element name="Pmt" type="PaymentInstruction14" minOccurs="0"/>
+      <xs:element name="AcctNtry" type="CashAccountAndEntry1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Transaction33_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="Transaction33">
+        <xs:sequence>
+          <xs:element name="PmtTo" type="System1_CH_camt006">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Instructed Participant</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Gutzuschreibender Teilnehmer</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Die Adressierung des Teilnehmers wird so geliefert, wie sie bei der Einlieferung der Zahlung an das RTGS-System erfolgte.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">The returned participant identification will be identical to the type of identification used when the payment was submitted to the RTGS system.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PmtFr" type="System1_CH_camt006_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Instructing Participant</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahlender Teilnehmer</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Die Adressierung des Teilnehmers wird so geliefert, wie sie bei der Einlieferung der Zahlung an das RTGS-System erfolgte.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">The returned participant identification will be identical to the type of identification used when the payment was submitted tothe RTGS system.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Pmt" type="PaymentInstruction14_CH_camt006">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Payment</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahlung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AcctNtry" type="CashAccountAndEntry1_CH_camt006">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Account Entry</xs:documentation>
+              <xs:documentation source="FE_de">Kontoinformationen</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TransactionOrError2Choice">
+    <xs:choice>
+      <xs:element name="Tx" type="Transaction33"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="TransactionOrError2Choice_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="TransactionOrError2Choice">
+        <xs:choice>
+          <xs:element name="Tx" type="Transaction33_CH_camt006"/>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TransactionReport2">
+    <xs:sequence>
+      <xs:element name="PmtId" type="PaymentIdentification4Choice"/>
+      <xs:element name="TxOrErr" type="TransactionOrError2Choice"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TransactionReport2_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="TransactionReport2">
+        <xs:sequence>
+          <xs:element name="PmtId" type="PaymentIdentification4Choice_CH_camt006">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Payment Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahlungsreferenz</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TxOrErr" type="TransactionOrError2Choice_CH_camt006"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TransactionReportOrError2Choice">
+    <xs:choice>
+      <xs:element name="BizRpt" type="Transactions6"/>
+      <xs:element name="OprlErr" type="ErrorHandling4" maxOccurs="unbounded"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="TransactionReportOrError2Choice_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="TransactionReportOrError2Choice">
+        <xs:choice>
+          <xs:element name="BizRpt" type="Transactions6_CH_camt006">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Business Report</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Positive Abfrageantwort</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Die Abfrageantwort liefert Zahlungen, die den Abfragekriterien entsprechen.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">The response message returns transactions matching the query criteria.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OprlErr" type="ErrorHandling4_CH_camt006">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Operational Error</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Negative Abfrageantwort</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Wenn die Abfrage nicht ausgeführt werden kann oder keine Zahlungen den Abfragekriterien entsprechen, wird ein Fehler zurückgemeldet.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">If the query can not be performed for any reason or no transaction matches the search criteria, an error will be returned.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:choice>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Transactions6">
+    <xs:sequence>
+      <xs:element name="TxRpt" type="TransactionReport2" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Transactions6_CH_camt006">
+    <xs:complexContent>
+      <xs:restriction base="Transactions6">
+        <xs:sequence>
+          <xs:element name="TxRpt" type="TransactionReport2_CH_camt006" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Transaction Report</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahlungsinformationen</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Detailinformationen zur gelieferten Zahlung.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Transaction details for the returned payment.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="YesNoIndicator">
+    <xs:restriction base="xs:boolean"/>
+  </xs:simpleType>
+</xs:schema>

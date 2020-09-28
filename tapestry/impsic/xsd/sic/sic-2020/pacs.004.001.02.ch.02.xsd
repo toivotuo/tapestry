@@ -1,0 +1,3252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+(C) Copyright 2016, SIX Interbank Clearing Ltd
+XML Schema used in the Swiss Interbank space:
+	Suffix part 1: .ch:	Identification as a Swiss (CH) version
+	Suffix part 2: .02:   Version of this scheme
+
+Based on ISO pacs.004.001.02 (urn:iso:std:iso:20022:tech:xsd:pacs.004.001.02)
+For comments and suggestions please contact pm@six-group.com
+-->
+<xs:schema xmlns="http://www.six-interbank-clearing.com/de/pacs.004.001.02.ch.02"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.six-interbank-clearing.com/de/pacs.004.001.02.ch.02"
+    elementFormDefault="qualified">
+  <xs:element name="Document" type="Document_CH_pacs004"/>
+  <xs:complexType name="AccountIdentification4Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="IBAN" type="IBAN2007Identifier"/>
+        <xs:element name="Othr" type="GenericAccountIdentification1"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AccountIdentification4Choice_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="AccountIdentification4Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="IBAN" type="IBAN2007Identifier">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">IBAN</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">IBAN</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition"/>
+                <xs:documentation xml:lang="EN" source="CH-Definition"/>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Othr" type="GenericAccountIdentification1_CH_pacs004">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Proprietary Account Format</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Proprietäres Kontoformat</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AccountIdentification4Choice_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="AccountIdentification4Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="IBAN" type="IBAN2007Identifier">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">IBAN</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">IBAN</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Othr" type="GenericAccountIdentification1_CH_pacs004">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Proprietary Account Format</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Proprietäres Kontoformat</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AccountIdentification4Choice_CH_pacs004_3">
+    <xs:complexContent>
+      <xs:restriction base="AccountIdentification4Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="IBAN" type="IBAN2007Identifier">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">IBAN</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">IBAN</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Othr" type="GenericAccountIdentification1_CH_pacs004_2">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Proprietary Account Format</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Proprietäres Kontoformat</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AccountIdentification4Choice_CH_pacs004_4">
+    <xs:complexContent>
+      <xs:restriction base="AccountIdentification4Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="IBAN" type="IBAN2007Identifier">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">IBAN</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">IBAN</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition"/>
+                <xs:documentation xml:lang="EN" source="CH-Definition"/>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Othr" type="GenericAccountIdentification1_CH_pacs004_3">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Proprietary Account Format</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Proprietäres Kontoformat</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AccountSchemeName1Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Cd" type="ExternalAccountIdentification1Code"/>
+        <xs:element name="Prtry" type="Max35Text"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AccountSchemeName1Choice_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="AccountSchemeName1Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Cd" type="ExternalAccountIdentification1Code"/>
+            <xs:element name="Prtry" type="Max35Text_CH_pacs004_2">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Account Type</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Art der Kontonummer</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ActiveCurrencyAndAmount">
+    <xs:simpleContent>
+      <xs:extension base="ActiveCurrencyAndAmount_SimpleType">
+        <xs:attribute name="Ccy" type="ActiveCurrencyCode" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ActiveCurrencyAndAmount_CH_pacs004">
+    <xs:simpleContent>
+      <xs:restriction base="ActiveCurrencyAndAmount">
+        <xs:attribute name="Ccy" type="ActiveCurrencyCode" use="required">
+          <xs:annotation>
+            <xs:documentation xml:lang="DE" source="FE_en">Currency Code</xs:documentation>
+            <xs:documentation xml:lang="DE" source="FE_de">Währungscode</xs:documentation>
+            <xs:documentation xml:lang="DE" source="CH-Definition">
+Der Währungscode muss CHF oder EUR sein.
+Die Währung muss der Währung des jeweiligen RTGS-Systems entsprechen.
+            </xs:documentation>
+            <xs:documentation xml:lang="EN" source="CH-Definition">
+The currency code must be CHF or EUR.
+The currency must correspond to the currency in the relevant RTGS system.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="ActiveCurrencyAndAmount_SimpleType">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0"/>
+      <xs:totalDigits value="18"/>
+      <xs:fractionDigits value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ActiveCurrencyCode">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{3,3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ActiveOrHistoricCurrencyAndAmount">
+    <xs:simpleContent>
+      <xs:extension base="ActiveOrHistoricCurrencyAndAmount_SimpleType">
+        <xs:attribute name="Ccy" type="ActiveOrHistoricCurrencyCode" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ActiveOrHistoricCurrencyAndAmount_CH_pacs004">
+    <xs:simpleContent>
+      <xs:restriction base="ActiveOrHistoricCurrencyAndAmount">
+        <xs:attribute name="Ccy" type="ActiveOrHistoricCurrencyCode" use="required">
+          <xs:annotation>
+            <xs:documentation xml:lang="DE" source="FE_en">Currency Code</xs:documentation>
+            <xs:documentation xml:lang="DE" source="FE_de">Währungscode</xs:documentation>
+            <xs:documentation xml:lang="DE" source="CH-Definition">
+Der Währungscode muss CHF oder EUR sein.
+Die Währung muss der Währung des jeweiligen RTGS-Systems entsprechen.
+            </xs:documentation>
+            <xs:documentation xml:lang="EN" source="CH-Definition">
+The currency code must be CHF or EUR.
+The currency must correspond to the currency in the relevant RTGS system.
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ActiveOrHistoricCurrencyAndAmount_CH_pacs004_2">
+    <xs:simpleContent>
+      <xs:restriction base="ActiveOrHistoricCurrencyAndAmount">
+        <xs:attribute name="Ccy" type="ActiveOrHistoricCurrencyCode" use="required">
+          <xs:annotation>
+            <xs:documentation xml:lang="DE" source="FE_en">Currency Code</xs:documentation>
+            <xs:documentation xml:lang="DE" source="FE_de">Währungscode</xs:documentation>
+            <xs:documentation xml:lang="DE" source="CH-Definition"/>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ActiveOrHistoricCurrencyAndAmount_CH_pacs004_3">
+    <xs:simpleContent>
+      <xs:restriction base="ActiveOrHistoricCurrencyAndAmount">
+        <xs:attribute name="Ccy" type="ActiveOrHistoricCurrencyCode" use="required">
+          <xs:annotation>
+            <xs:documentation xml:lang="DE" source="FE_en">Currency Code</xs:documentation>
+            <xs:documentation xml:lang="DE" source="FE_de">Währungscode</xs:documentation>
+            <xs:documentation xml:lang="DE" source="CH-Definition">Die Währung muss der Währung des jeweiligen RTGS-Systems entsprechen.</xs:documentation>
+            <xs:documentation xml:lang="EN" source="CH-Definition">The currency must correspond to the currency in the relevant RTGS system.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:simpleType name="ActiveOrHistoricCurrencyAndAmount_SimpleType">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0"/>
+      <xs:totalDigits value="18"/>
+      <xs:fractionDigits value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ActiveOrHistoricCurrencyCode">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{3,3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AddressType2Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ADDR"/>
+      <xs:enumeration value="BIZZ"/>
+      <xs:enumeration value="DLVY"/>
+      <xs:enumeration value="HOME"/>
+      <xs:enumeration value="MLTO"/>
+      <xs:enumeration value="PBOX"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AmendmentInformationDetails6">
+    <xs:sequence>
+      <xs:element name="OrgnlMndtId" type="Max35Text" minOccurs="0"/>
+      <xs:element name="OrgnlCdtrSchmeId" type="PartyIdentification32" minOccurs="0"/>
+      <xs:element name="OrgnlCdtrAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0"/>
+      <xs:element name="OrgnlCdtrAgtAcct" type="CashAccount16" minOccurs="0"/>
+      <xs:element name="OrgnlDbtr" type="PartyIdentification32" minOccurs="0"/>
+      <xs:element name="OrgnlDbtrAcct" type="CashAccount16" minOccurs="0"/>
+      <xs:element name="OrgnlDbtrAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0"/>
+      <xs:element name="OrgnlDbtrAgtAcct" type="CashAccount16" minOccurs="0"/>
+      <xs:element name="OrgnlFnlColltnDt" type="ISODate" minOccurs="0"/>
+      <xs:element name="OrgnlFrqcy" type="Frequency1Code" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AmountType3Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="InstdAmt" type="ActiveOrHistoricCurrencyAndAmount"/>
+        <xs:element name="EqvtAmt" type="EquivalentAmount2"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="AnyBICIdentifier">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Authorisation1Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Cd" type="Authorisation1Code"/>
+        <xs:element name="Prtry" type="Max128Text"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="Authorisation1Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AUTH"/>
+      <xs:enumeration value="FDET"/>
+      <xs:enumeration value="FSUM"/>
+      <xs:enumeration value="ILEV"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="BaseOneRate">
+    <xs:restriction base="xs:decimal">
+      <xs:totalDigits value="11"/>
+      <xs:fractionDigits value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="BatchBookingIndicator">
+    <xs:restriction base="xs:boolean"/>
+  </xs:simpleType>
+  <xs:simpleType name="BICIdentifier">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification4">
+    <xs:sequence>
+      <xs:element name="FinInstnId" type="FinancialInstitutionIdentification7"/>
+      <xs:element name="BrnchId" type="BranchData2" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification4_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification4">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification7_CH_pacs004"/>
+          <xs:element name="BrnchId" type="BranchData2" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification4_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification4">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification7_CH_pacs004_2"/>
+          <xs:element name="BrnchId" type="BranchData2" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification4_CH_pacs004_3">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification4">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification7_CH_pacs004_3"/>
+          <xs:element name="BrnchId" type="BranchData2" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification4_CH_pacs004_4">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification4">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification7_CH_pacs004_4">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BrnchId" type="BranchData2" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification4_CH_pacs004_5">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification4">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification7_CH_pacs004_5">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BrnchId" type="BranchData2" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BranchAndFinancialInstitutionIdentification4_CH_pacs004_6">
+    <xs:complexContent>
+      <xs:restriction base="BranchAndFinancialInstitutionIdentification4">
+        <xs:sequence>
+          <xs:element name="FinInstnId" type="FinancialInstitutionIdentification7_CH_pacs004_6"/>
+          <xs:element name="BrnchId" type="BranchData2" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BranchData2">
+    <xs:sequence>
+      <xs:element name="Id" type="Max35Text" minOccurs="0"/>
+      <xs:element name="Nm" type="Max140Text" minOccurs="0"/>
+      <xs:element name="PstlAdr" type="PostalAddress6" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CashAccount16">
+    <xs:sequence>
+      <xs:element name="Id" type="AccountIdentification4Choice"/>
+      <xs:element name="Tp" type="CashAccountType2" minOccurs="0"/>
+      <xs:element name="Ccy" type="ActiveOrHistoricCurrencyCode" minOccurs="0"/>
+      <xs:element name="Nm" type="Max70Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CashAccount16_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="CashAccount16">
+        <xs:sequence>
+          <xs:element name="Id" type="AccountIdentification4Choice_CH_pacs004">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Tp" type="CashAccountType2" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Ccy" type="ActiveOrHistoricCurrencyCode" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Nm" type="Max70Text" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CashAccount16_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="CashAccount16">
+        <xs:sequence>
+          <xs:element name="Id" type="AccountIdentification4Choice_CH_pacs004_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Tp" type="CashAccountType2" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Ccy" type="ActiveOrHistoricCurrencyCode" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Nm" type="Max70Text" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CashAccount16_CH_pacs004_3">
+    <xs:complexContent>
+      <xs:restriction base="CashAccount16">
+        <xs:sequence>
+          <xs:element name="Id" type="AccountIdentification4Choice_CH_pacs004_3"/>
+          <xs:element name="Tp" type="CashAccountType2" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Ccy" type="ActiveOrHistoricCurrencyCode" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Nm" type="Max70Text" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CashAccount16_CH_pacs004_4">
+    <xs:complexContent>
+      <xs:restriction base="CashAccount16">
+        <xs:sequence>
+          <xs:element name="Id" type="AccountIdentification4Choice_CH_pacs004_4">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Tp" type="CashAccountType2" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Ccy" type="ActiveOrHistoricCurrencyCode" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Nm" type="Max70Text" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CashAccountType2">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Cd" type="CashAccountType4Code"/>
+        <xs:element name="Prtry" type="Max35Text"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CashAccountType4Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CACC"/>
+      <xs:enumeration value="CASH"/>
+      <xs:enumeration value="CHAR"/>
+      <xs:enumeration value="CISH"/>
+      <xs:enumeration value="COMM"/>
+      <xs:enumeration value="LOAN"/>
+      <xs:enumeration value="MGLD"/>
+      <xs:enumeration value="MOMA"/>
+      <xs:enumeration value="NREX"/>
+      <xs:enumeration value="ODFT"/>
+      <xs:enumeration value="ONDP"/>
+      <xs:enumeration value="SACC"/>
+      <xs:enumeration value="SLRY"/>
+      <xs:enumeration value="SVGS"/>
+      <xs:enumeration value="TAXE"/>
+      <xs:enumeration value="TRAS"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="CategoryPurpose1Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Cd" type="ExternalCategoryPurpose1Code"/>
+        <xs:element name="Prtry" type="Max35Text"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CategoryPurpose1Choice_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="CategoryPurpose1Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Cd" type="ExternalCategoryPurpose1Code">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Category Purpose (code)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Transaktionszweckkategorie (Code)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Prtry" type="Max35Text_CH_pacs004_2"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ChargeBearerType1Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CRED"/>
+      <xs:enumeration value="DEBT"/>
+      <xs:enumeration value="SHAR"/>
+      <xs:enumeration value="SLEV"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ChargesInformation5">
+    <xs:sequence>
+      <xs:element name="Amt" type="ActiveOrHistoricCurrencyAndAmount"/>
+      <xs:element name="Pty" type="BranchAndFinancialInstitutionIdentification4"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ChargesInformation5_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="ChargesInformation5">
+        <xs:sequence>
+          <xs:element name="Amt" type="ActiveOrHistoricCurrencyAndAmount_CH_pacs004_3">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Charges Amount and Currency</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Spesenbetrag und Währung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Darf maximal 14 Stellen enthalten (exkl. Dezimaltrennzeichen), davon maximal 5 Dezimalstellen. 
+Wenn verwendet, muss Betrag &gt;0 sein.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Must contain no more than 14 digits (excl. decimal separators), including a maximum of 5 fractional digits. 
+If used, amount must be &gt;0.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Pty" type="BranchAndFinancialInstitutionIdentification4_CH_pacs004_4">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Charges Receiver</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Spesenempfänger</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ClearingChannel2Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BOOK"/>
+      <xs:enumeration value="MPNS"/>
+      <xs:enumeration value="RTGS"/>
+      <xs:enumeration value="RTNS"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ClearingSystemIdentification2Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Cd" type="ExternalClearingSystemIdentification1Code"/>
+        <xs:element name="Prtry" type="Max35Text"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemIdentification2Choice_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="ClearingSystemIdentification2Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Cd" type="ExternalClearingSystemIdentification1Code"/>
+            <xs:element name="Prtry" type="Max35Text_CH_pacs004_2"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemIdentification2Choice_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="ClearingSystemIdentification2Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Cd" type="ExternalClearingSystemIdentification1Code">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Clearing System Identification (code)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Clearingsystems (Code)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">Zulässiger ISO-Codewert: CHSIC (SIC-IID (=6n)).</xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">Permitted ISO code value: CHSIC (SIC IID (=6n)).</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Prtry" type="Max35Text_CH_pacs004_2">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Clearing System Identification (proprietary)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Clearingsystems (proprietär)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">Wird aktuell nicht unterstützt (Element wird für allfällige Erweiterungen im Schema beibehalten).</xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">Not currently supported (element is being retained in the schema for any possible extensions).</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemIdentification2Choice_CH_pacs004_3">
+    <xs:complexContent>
+      <xs:restriction base="ClearingSystemIdentification2Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Cd" type="ExternalClearingSystemIdentification1Code">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Clearing System Identification (code)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Clearingsystems (Code)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Prtry" type="Max35Text_CH_pacs004_2">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Clearing System Identification (proprietary)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Clearingsystems (proprietär)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemIdentification3Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Cd" type="ExternalCashClearingSystem1Code"/>
+        <xs:element name="Prtry" type="Max35Text"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemIdentification3Choice_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="ClearingSystemIdentification3Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Cd" type="ExternalCashClearingSystem1Code">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="CH-Definition"/>
+                <xs:documentation xml:lang="EN" source="CH-Definition"/>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Prtry" type="Max35Text_CH_pacs004_2">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Return Type (proprietary)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Rückzahlungsart (proprietär)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">
+Eindeutige Identifikation der Rückzahlungsart, folgende Codewerte für Rückzahlungsarten stehen zur Verfügung:
+CSTRTN = Normale Rückzahlung
+SEPRTN = SEPA-Rückzahlung
+                </xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">
+Unique identification of the payment return type, with the following codes for payment return types available:
+CSTRTN = Normal payment return 
+SEPRTN = SEPA payment return
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemIdentification3Choice_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="ClearingSystemIdentification3Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Cd" type="ExternalCashClearingSystem1Code">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Name of the Clearing System (code)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Bezeichnung des Clearingsystems (Code)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Prtry" type="Max35Text_CH_pacs004_2">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Name of the Clearing System (proprietary)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Bezeichnung des Clearingsystems (proprietär)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemMemberIdentification2">
+    <xs:sequence>
+      <xs:element name="ClrSysId" type="ClearingSystemIdentification2Choice" minOccurs="0"/>
+      <xs:element name="MmbId" type="Max35Text"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemMemberIdentification2_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="ClearingSystemMemberIdentification2">
+        <xs:sequence>
+          <xs:element name="ClrSysId" type="ClearingSystemIdentification2Choice_CH_pacs004" minOccurs="0"/>
+          <xs:element name="MmbId" type="Max35Text_CH_pacs004_2"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemMemberIdentification2_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="ClearingSystemMemberIdentification2">
+        <xs:sequence>
+          <xs:element name="ClrSysId" type="ClearingSystemIdentification2Choice_CH_pacs004_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Clearing System Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Clearingsystems</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Muss verwendet werden zwecks eindeutiger Identifizierung der verwendeten Adressierungsart.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Must be used to unambiguously identify the address type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MmbId" type="Max35Text_CH_pacs004_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Member Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Teilnehmers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">SIC-IID (=6n), muss im Bankenstamm vorhanden und aktiv sein, darf nicht verkettet sein.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">SIC IID (=6n), must be present in the bank master data and active, must not be concatenated.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemMemberIdentification2_CH_pacs004_3">
+    <xs:complexContent>
+      <xs:restriction base="ClearingSystemMemberIdentification2">
+        <xs:sequence>
+          <xs:element name="ClrSysId" type="ClearingSystemIdentification2Choice_CH_pacs004_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Clearing System Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Clearingsystems</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Muss verwendet werden zwecks eindeutiger Identifizierung der verwendeten Adressierungsart.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Must be used to unambiguously identify the address type.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MmbId" type="Max35Text_CH_pacs004_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Member Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Teilnehmers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">SIC-IID (=6n), muss im Bankenstamm vorhanden und aktiv sein.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">SIC IID (=6n), must be present in the bank master data and active.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemMemberIdentification2_CH_pacs004_4">
+    <xs:complexContent>
+      <xs:restriction base="ClearingSystemMemberIdentification2">
+        <xs:sequence>
+          <xs:element name="ClrSysId" type="ClearingSystemIdentification2Choice_CH_pacs004_3" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Clearing System Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Clearingsystems</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MmbId" type="Max35Text_CH_pacs004_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Member Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Teilnehmers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ClearingSystemMemberIdentification2_CH_pacs004_5">
+    <xs:complexContent>
+      <xs:restriction base="ClearingSystemMemberIdentification2">
+        <xs:sequence>
+          <xs:element name="ClrSysId" type="ClearingSystemIdentification2Choice_CH_pacs004_3" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Clearing System Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Clearingsystems</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="MmbId" type="Max35Text_CH_pacs004_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Member Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Teilnehmers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ContactDetails2">
+    <xs:sequence>
+      <xs:element name="NmPrfx" type="NamePrefix1Code" minOccurs="0"/>
+      <xs:element name="Nm" type="Max140Text" minOccurs="0"/>
+      <xs:element name="PhneNb" type="PhoneNumber" minOccurs="0"/>
+      <xs:element name="MobNb" type="PhoneNumber" minOccurs="0"/>
+      <xs:element name="FaxNb" type="PhoneNumber" minOccurs="0"/>
+      <xs:element name="EmailAdr" type="Max2048Text" minOccurs="0"/>
+      <xs:element name="Othr" type="Max35Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="CountryCode">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{2,2}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CreditDebitCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CRDT"/>
+      <xs:enumeration value="DBIT"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="CreditorReferenceInformation2">
+    <xs:sequence>
+      <xs:element name="Tp" type="CreditorReferenceType2" minOccurs="0"/>
+      <xs:element name="Ref" type="Max35Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CreditorReferenceInformation2_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="CreditorReferenceInformation2">
+        <xs:sequence>
+          <xs:element name="Tp" type="CreditorReferenceType2_CH_pacs004">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Reference Type</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Referenztyp</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Ref" type="Max35Text_CH_pacs004_3">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Creditor Reference</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahlungsreferenz des Empfängers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CreditorReferenceType1Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Cd" type="DocumentType3Code"/>
+        <xs:element name="Prtry" type="Max35Text"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CreditorReferenceType1Choice_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="CreditorReferenceType1Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Cd" type="DocumentType3Code">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Reference Type (code)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Referenztyp (Code)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition"/>
+                <xs:documentation xml:lang="EN" source="CH-Definition"/>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Prtry" type="Max35Text_CH_pacs004_2">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Reference Type (proprietary)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Referenztyp (proprietär)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition"/>
+                <xs:documentation xml:lang="EN" source="CH-Definition"/>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CreditorReferenceType2">
+    <xs:sequence>
+      <xs:element name="CdOrPrtry" type="CreditorReferenceType1Choice"/>
+      <xs:element name="Issr" type="Max35Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CreditorReferenceType2_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="CreditorReferenceType2">
+        <xs:sequence>
+          <xs:element name="CdOrPrtry" type="CreditorReferenceType1Choice_CH_pacs004"/>
+          <xs:element name="Issr" type="Max35Text_CH_pacs004_3" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Issuer of the Creditor Reference</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Herausgeber der Referenz</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DateAndPlaceOfBirth">
+    <xs:sequence>
+      <xs:element name="BirthDt" type="ISODate"/>
+      <xs:element name="PrvcOfBirth" type="Max35Text" minOccurs="0"/>
+      <xs:element name="CityOfBirth" type="Max35Text"/>
+      <xs:element name="CtryOfBirth" type="CountryCode"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DateAndPlaceOfBirth_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="DateAndPlaceOfBirth">
+        <xs:sequence>
+          <xs:element name="BirthDt" type="ISODate"/>
+          <xs:element name="PrvcOfBirth" type="Max35Text_CH_pacs004_3" minOccurs="0"/>
+          <xs:element name="CityOfBirth" type="Max35Text_CH_pacs004_3"/>
+          <xs:element name="CtryOfBirth" type="CountryCode"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DateAndPlaceOfBirth_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="DateAndPlaceOfBirth">
+        <xs:sequence>
+          <xs:element name="BirthDt" type="ISODate">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Birth Date</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Geburtsdatum</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PrvcOfBirth" type="Max35Text_CH_pacs004_3" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Province of Birth</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Geburtsprovinz</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CityOfBirth" type="Max35Text_CH_pacs004_3">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">City of Birth</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Geburtsort</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CtryOfBirth" type="CountryCode">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Country of Birth</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Geburtsland</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="DecimalNumber">
+    <xs:restriction base="xs:decimal">
+      <xs:totalDigits value="18"/>
+      <xs:fractionDigits value="17"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Document">
+    <xs:sequence>
+      <xs:element name="PmtRtr" type="PaymentReturnV02"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentAdjustment1">
+    <xs:sequence>
+      <xs:element name="Amt" type="ActiveOrHistoricCurrencyAndAmount"/>
+      <xs:element name="CdtDbtInd" type="CreditDebitCode" minOccurs="0"/>
+      <xs:element name="Rsn" type="Max4Text" minOccurs="0"/>
+      <xs:element name="AddtlInf" type="Max140Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="DocumentType3Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DISP"/>
+      <xs:enumeration value="FXDR"/>
+      <xs:enumeration value="PUOR"/>
+      <xs:enumeration value="RADM"/>
+      <xs:enumeration value="RPIN"/>
+      <xs:enumeration value="SCOR"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DocumentType5Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AROI"/>
+      <xs:enumeration value="BOLD"/>
+      <xs:enumeration value="CINV"/>
+      <xs:enumeration value="CMCN"/>
+      <xs:enumeration value="CNFA"/>
+      <xs:enumeration value="CREN"/>
+      <xs:enumeration value="DEBN"/>
+      <xs:enumeration value="DISP"/>
+      <xs:enumeration value="DNFA"/>
+      <xs:enumeration value="HIRI"/>
+      <xs:enumeration value="MSIN"/>
+      <xs:enumeration value="SBIN"/>
+      <xs:enumeration value="SOAC"/>
+      <xs:enumeration value="TSUT"/>
+      <xs:enumeration value="VCHR"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Document_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="Document">
+        <xs:sequence>
+          <xs:element name="PmtRtr" type="PaymentReturnV02_CH_pacs004"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EquivalentAmount2">
+    <xs:sequence>
+      <xs:element name="Amt" type="ActiveOrHistoricCurrencyAndAmount"/>
+      <xs:element name="CcyOfTrf" type="ActiveOrHistoricCurrencyCode"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ExternalAccountIdentification1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalCashClearingSystem1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalCategoryPurpose1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalClearingSystemIdentification1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalFinancialInstitutionIdentification1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalLocalInstrument1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalOrganisationIdentification1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalPersonIdentification1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalReturnReason1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ExternalServiceLevel1Code">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="FinancialIdentificationSchemeName1Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Cd" type="ExternalFinancialInstitutionIdentification1Code"/>
+        <xs:element name="Prtry" type="Max35Text"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification7">
+    <xs:sequence>
+      <xs:element name="BIC" type="BICIdentifier" minOccurs="0"/>
+      <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2" minOccurs="0"/>
+      <xs:element name="Nm" type="Max140Text" minOccurs="0"/>
+      <xs:element name="PstlAdr" type="PostalAddress6" minOccurs="0"/>
+      <xs:element name="Othr" type="GenericFinancialIdentification1" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification7_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification7">
+        <xs:sequence>
+          <xs:element name="BIC" type="BICIdentifier" minOccurs="0"/>
+          <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2_CH_pacs004" minOccurs="0"/>
+          <xs:element name="Nm" type="Max140Text_CH_pacs004" minOccurs="0"/>
+          <xs:element name="PstlAdr" type="PostalAddress6" minOccurs="0"/>
+          <xs:element name="Othr" type="GenericFinancialIdentification1" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification7_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification7">
+        <xs:sequence>
+          <xs:element name="BIC" type="BICIdentifier" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of Instructing Participant (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des zahlenden Teilnehmers (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+SWIFT-Adresse mit 8 oder 11 alphanumerischen Zeichen.
+Element darf nicht gleichzeitig mit &lt;ClrSysMmbId&gt; verwendet werden.
+Muss einen gültigen Wert gemäss ISO 9362 enthalten.
+Muss gültigen BIC eines aktiven Teilnehmers enthalten. 
+Darf nicht verkettet sein.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+SWIFT address with 8 or 11 alphanumeric characters.
+This element must not be used at the same time as &lt;ClrSysMmbId&gt;.
+Must contain a valid value according to ISO 9362.
+Must contain a valid BIC of an active participant. 
+Must not be concatenated.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2_CH_pacs004_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of Instructing Participant (proprietary)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des zahlenden Teilnehmers (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Element darf nicht gleichzeitig mit &lt;BIC&gt; verwendet werden.
+Muss gültige Identifikation eines aktiven Teilnehmers enthalten. 
+Darf nicht verkettet sein.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+This element must not be used at the same time as &lt;BIC&gt;.
+Must contain valid identification for an active participant. 
+Must not be concatenated.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Nm" type="Max140Text" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="PstlAdr" type="PostalAddress6" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Othr" type="GenericFinancialIdentification1" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification7_CH_pacs004_3">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification7">
+        <xs:sequence>
+          <xs:element name="BIC" type="BICIdentifier" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of Instructed Participant (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des gutzuschreibenden Teilnehmers (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+SWIFT-Adresse mit 8 oder 11 alphanumerischen Zeichen.
+Element darf nicht gleichzeitig mit &lt;ClrSysMmbId&gt; verwendet werden.
+Muss einen gültigen Wert gemäss ISO 9362 enthalten.
+Muss gültigen BIC eines aktiven Teilnehmers enthalten.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+SWIFT address with 8 or 11 alphanumeric characters.
+This element must not be used at the same time as &lt;ClrSysMmbId&gt;.
+Must contain a valid value according to ISO 9362.
+Must contain a valid BIC of an active participant.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2_CH_pacs004_3" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of Instructed Participant (proprietary)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des gutzuschreibenden Teilnehmers (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Element darf nicht gleichzeitig mit &lt;BIC&gt; verwendet werden.
+Muss gültige Identifikation eines aktiven Teilnehmers enthalten.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+This element must not be used at the same time as &lt;BIC&gt;.
+Must contain valid identification for an active participant.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Nm" type="Max140Text" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="PstlAdr" type="PostalAddress6" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Othr" type="GenericFinancialIdentification1_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification7_CH_pacs004_4">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification7">
+        <xs:sequence>
+          <xs:element name="BIC" type="BICIdentifier">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification of Charges Receiver (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Spesenempfängers (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+SWIFT-Adresse mit 8 oder 11 alphanumerischen Zeichen.
+Muss einen gültigen Wert gemäss ISO 9362 enthalten.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+SWIFT address with 8 or 11 alphanumeric characters.
+Must contain a valid value according to ISO 9362.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Nm" type="Max140Text_CH_pacs004" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="PstlAdr" type="PostalAddress6_CH_pacs004" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Othr" type="GenericFinancialIdentification1" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification7_CH_pacs004_5">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification7">
+        <xs:sequence>
+          <xs:element name="BIC" type="BICIdentifier" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Debtor Agent Identification (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Instituts des Zahlers (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2_CH_pacs004_4" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Debtor Agent Identification (proprietary)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Instituts des Zahlers (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Nm" type="Max140Text_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Agent Name</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Name des Instituts</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PstlAdr" type="PostalAddress6_CH_pacs004_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Agent Address</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Adresse des Instituts</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Othr" type="GenericFinancialIdentification1" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FinancialInstitutionIdentification7_CH_pacs004_6">
+    <xs:complexContent>
+      <xs:restriction base="FinancialInstitutionIdentification7">
+        <xs:sequence>
+          <xs:element name="BIC" type="BICIdentifier" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Creditor Agent Identification (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Instituts des Zahlungsempfängers (BIC)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ClrSysMmbId" type="ClearingSystemMemberIdentification2_CH_pacs004_5" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Creditor Agent Identification (proprietary)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Instituts des Zahlungsempfängers (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Nm" type="Max140Text_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Agent Name</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Name des Instituts</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PstlAdr" type="PostalAddress6_CH_pacs004_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Agent Address</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Adresse des Instituts</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Othr" type="GenericFinancialIdentification1" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="Frequency1Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ADHO"/>
+      <xs:enumeration value="DAIL"/>
+      <xs:enumeration value="INDA"/>
+      <xs:enumeration value="MIAN"/>
+      <xs:enumeration value="MNTH"/>
+      <xs:enumeration value="QURT"/>
+      <xs:enumeration value="WEEK"/>
+      <xs:enumeration value="YEAR"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="GenericAccountIdentification1">
+    <xs:sequence>
+      <xs:element name="Id" type="Max34Text"/>
+      <xs:element name="SchmeNm" type="AccountSchemeName1Choice" minOccurs="0"/>
+      <xs:element name="Issr" type="Max35Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericAccountIdentification1_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="GenericAccountIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max34Text_CH_pacs004">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Account (proprietary)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Kontonummer (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SchmeNm" type="AccountSchemeName1Choice" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Issr" type="Max35Text" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericAccountIdentification1_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="GenericAccountIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max34Text_CH_pacs004">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Account (proprietary)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Kontonummer (proprietär)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SchmeNm" type="AccountSchemeName1Choice" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Issr" type="Max35Text" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericAccountIdentification1_CH_pacs004_3">
+    <xs:complexContent>
+      <xs:restriction base="GenericAccountIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max34Text_CH_pacs004">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Account (proprietary)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Kontonummer (proprietär)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SchmeNm" type="AccountSchemeName1Choice_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Account Type</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Art der Kontonummer</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Issr" type="Max35Text" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericFinancialIdentification1">
+    <xs:sequence>
+      <xs:element name="Id" type="Max35Text"/>
+      <xs:element name="SchmeNm" type="FinancialIdentificationSchemeName1Choice" minOccurs="0"/>
+      <xs:element name="Issr" type="Max35Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericFinancialIdentification1_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="GenericFinancialIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text_CH_pacs004_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Assigned Identification of the Instructed Participant</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zugewiesene Identifikation des gutzuschreibenden Teilnehmers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Wird nur im Output verwendet. Bei einer Verkettung oder Direktleitung wird die vom RTGS-System zugewiesene Identifikation des gutzuschreibenden Teilnehmers durch das System ergänzt.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Only used in the output. In case of a concatenated BC number or direct routing, the identification of the instructed participant assigned by the RTGS system is supplemented by the system.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SchmeNm" type="FinancialIdentificationSchemeName1Choice" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Issr" type="Max35Text" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericOrganisationIdentification1">
+    <xs:sequence>
+      <xs:element name="Id" type="Max35Text"/>
+      <xs:element name="SchmeNm" type="OrganisationIdentificationSchemeName1Choice" minOccurs="0"/>
+      <xs:element name="Issr" type="Max35Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericOrganisationIdentification1_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="GenericOrganisationIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text_CH_pacs004_2"/>
+          <xs:element name="SchmeNm" type="OrganisationIdentificationSchemeName1Choice_CH_pacs004" minOccurs="0"/>
+          <xs:element name="Issr" type="Max35Text_CH_pacs004_3" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericOrganisationIdentification1_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="GenericOrganisationIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text_CH_pacs004_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Zahlungsempfängers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SchmeNm" type="OrganisationIdentificationSchemeName1Choice_CH_pacs004" minOccurs="0"/>
+          <xs:element name="Issr" type="Max35Text_CH_pacs004_3" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonIdentification1">
+    <xs:sequence>
+      <xs:element name="Id" type="Max35Text"/>
+      <xs:element name="SchmeNm" type="PersonIdentificationSchemeName1Choice" minOccurs="0"/>
+      <xs:element name="Issr" type="Max35Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonIdentification1_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="GenericPersonIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text_CH_pacs004_2"/>
+          <xs:element name="SchmeNm" type="PersonIdentificationSchemeName1Choice_CH_pacs004" minOccurs="0"/>
+          <xs:element name="Issr" type="Max35Text_CH_pacs004_3" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonIdentification1_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="GenericPersonIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text_CH_pacs004_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SchmeNm" type="PersonIdentificationSchemeName1Choice_CH_pacs004_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification Type</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Typ der Identifikation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Issr" type="Max35Text_CH_pacs004_3" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification Issuer</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Herausgeber der Identifikation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GenericPersonIdentification1_CH_pacs004_3">
+    <xs:complexContent>
+      <xs:restriction base="GenericPersonIdentification1">
+        <xs:sequence>
+          <xs:element name="Id" type="Max35Text_CH_pacs004_2"/>
+          <xs:element name="SchmeNm" type="PersonIdentificationSchemeName1Choice_CH_pacs004" minOccurs="0"/>
+          <xs:element name="Issr" type="Max35Text_CH_pacs004_2" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GroupHeader38">
+    <xs:sequence>
+      <xs:element name="MsgId" type="Max35Text"/>
+      <xs:element name="CreDtTm" type="ISODateTime"/>
+      <xs:element name="Authstn" type="Authorisation1Choice" minOccurs="0" maxOccurs="2"/>
+      <xs:element name="BtchBookg" type="BatchBookingIndicator" minOccurs="0"/>
+      <xs:element name="NbOfTxs" type="Max15NumericText"/>
+      <xs:element name="CtrlSum" type="DecimalNumber" minOccurs="0"/>
+      <xs:element name="GrpRtr" type="TrueFalseIndicator" minOccurs="0"/>
+      <xs:element name="TtlRtrdIntrBkSttlmAmt" type="ActiveCurrencyAndAmount" minOccurs="0"/>
+      <xs:element name="IntrBkSttlmDt" type="ISODate" minOccurs="0"/>
+      <xs:element name="SttlmInf" type="SettlementInformation13"/>
+      <xs:element name="InstgAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0"/>
+      <xs:element name="InstdAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GroupHeader38_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="GroupHeader38">
+        <xs:sequence>
+          <xs:element name="MsgId" type="Max35Text_CH_pacs004">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Message Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Meldungsidentifikation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Für dieses Element ist nur der SWIFT-Zeichensatz ohne Leerzeichen zugelassen.
+Wird in Kombination mit &lt;InstgAgt&gt; für die Duplikatsprüfung auf Ebene Meldung verwendet und darf innerhalb der zugelassenen Valutatage nur einmal vorkommen. Zugelassene Valutatage sind Valuta heute und 2 Tage Vergangenheit.
+Hinweis: Für die erfolgreiche Verarbeitung einer Rückzahlung darf weder auf Ebene Meldung noch auf Ebene Transaktion ein Duplikat erkannt werden.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Only the SWIFT character set excluding spaces is permitted for this element.
+It is used together with &lt;InstgAgt&gt; for duplicate checking at message level and can only occur once within the permitted value dates. Permitted value dates are value date today and 2 days in the past. 
+Note: for a payment return to be processed successfully, no duplicates must be detected at either message level or transaction level.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CreDtTm" type="ISODateTime">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Creation Date Time</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Erstellungszeitpunkt der Meldung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Authstn" type="Authorisation1Choice" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="BtchBookg" type="BatchBookingIndicator" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="NbOfTxs" type="Max15NumericText">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Number of Transactions</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Anzahl Transaktionen</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Die Angabe der Anzahl Transaktionen muss «1» sein.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">The entry for the number of transactions must be "1".</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CtrlSum" type="DecimalNumber" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="GrpRtr" type="TrueFalseIndicator" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="TtlRtrdIntrBkSttlmAmt" type="ActiveCurrencyAndAmount_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Total Returned Settlement Amount</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Total-Rückzahlungsbetrag</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Wenn geliefert, muss der Betrag identisch sein mit dem Rückzahlungsbetrag im Element &lt;RtrdIntrBkSttlmAmt&gt;.
+Darf maximal 13 Stellen enthalten (exkl. Dezimaltrennzeichen), davon maximal 2 Dezimalstellen. 
+Betrag muss &gt; 0 sein, maximal akzeptierter Betrag ist 99'999'999'999.99.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+If present, this amount must be the same as the returned settlement amount in the &lt;RtrdIntrBkSttlmAmt&gt; element.
+Must contain no more than 13 digits (excl. decimal separator), including a maximum of 2 fractional digits. 
+Amount must be &gt;0, the maximum accepted amount is 99,999,999,999.99.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IntrBkSttlmDt" type="ISODate">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Requested Settlement Date</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Valuta-Soll</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Valuta-Soll der Rückzahlung.
+Wird unverändert an den gutzuschreibenden Teilnehmer weitergeleitet.
+Muss ein gültiges Kalenderdatum sein.
+Darf nicht in der Zukunft liegen.
+Darf nicht mehr als 90 Kalendertage zurückliegen.
+Details zum Setzen des Verrechnungsdatums siehe Schweizer RTGS-Handbuch.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Requested settlement date of the payment return.
+Is forwarded unchanged to the instructed participant. 
+Must be a valid calendar date. 
+Must not be in the future.
+Must not be more than 90 calendar days in the past.
+For details on setting the settlement date, see Swiss RTGS Handbook.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SttlmInf" type="SettlementInformation13_CH_pacs004">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Settlement Information</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Verrechnungsinformationen</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InstgAgt" type="BranchAndFinancialInstitutionIdentification4_CH_pacs004_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Instructing Participant</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahlender Teilnehmer</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Muss verwendet werden.
+Eigene Identifikation des zahlenden Teilnehmers.
+Wird in Kombination mit &lt;MsgId&gt; / &lt;RtrId&gt; für die Duplikatsprüfung verwendet.
+Zur Adressierung des Teilnehmers muss entweder das Element &lt;BIC&gt; oder &lt;ClrSysMmbId&gt; verwendet werden.
+Der zahlende Teilnehmer hat ein Verrechnungskonto im RTGS-System, das belastet wird.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Must be used.
+Own identification of the instructing participant.
+Is used together with &lt;MsgId&gt; / &lt;RtrId&gt; for duplicate checking.
+For addressing the participant, either the &lt;BIC&gt; or &lt;ClrSysMmbId&gt; element must be used.
+The instructing participant has a settlement account in the RTGS system which is debited.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InstdAgt" type="BranchAndFinancialInstitutionIdentification4_CH_pacs004_3">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Instructed Participant</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Gutzuschreibender Teilnehmer</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Muss verwendet werden.
+Entspricht der Identifikation des zahlenden Teilnehmers aus Ursprungszahlung.
+Zur Adressierung des Teilnehmers muss entweder das Element &lt;BIC&gt; oder &lt;ClrSysMmbId&gt; verwendet werden.
+Der gutzuschreibende Teilnehmer hat ein Verrechnungskonto im RTGS-System, das gutgeschrieben wird.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Must be used.
+Corresponds to the identification for the debtor participant from the original payment.
+For addressing the participant, either the &lt;BIC&gt; or &lt;ClrSysMmbId&gt; element must be used.
+The instructed participant has a settlement account in the RTGS system which is credited.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="IBAN2007Identifier">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ISODate">
+    <xs:restriction base="xs:date"/>
+  </xs:simpleType>
+  <xs:simpleType name="ISODateTime">
+    <xs:restriction base="xs:dateTime"/>
+  </xs:simpleType>
+  <xs:complexType name="LocalInstrument2Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Cd" type="ExternalLocalInstrument1Code"/>
+        <xs:element name="Prtry" type="Max35Text"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocalInstrument2Choice_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="LocalInstrument2Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Cd" type="ExternalLocalInstrument1Code"/>
+            <xs:element name="Prtry" type="Max35Text_CH_pacs004_2">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Payment Type (proprietary)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Zahlungsart (proprietär)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MandateRelatedInformation6">
+    <xs:sequence>
+      <xs:element name="MndtId" type="Max35Text" minOccurs="0"/>
+      <xs:element name="DtOfSgntr" type="ISODate" minOccurs="0"/>
+      <xs:element name="AmdmntInd" type="TrueFalseIndicator" minOccurs="0"/>
+      <xs:element name="AmdmntInfDtls" type="AmendmentInformationDetails6" minOccurs="0"/>
+      <xs:element name="ElctrncSgntr" type="Max1025Text" minOccurs="0"/>
+      <xs:element name="FrstColltnDt" type="ISODate" minOccurs="0"/>
+      <xs:element name="FnlColltnDt" type="ISODate" minOccurs="0"/>
+      <xs:element name="Frqcy" type="Frequency1Code" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="Max1025Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="1025"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max105Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="105"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max105Text_CH_pacs004">
+    <xs:restriction base="Max105Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="105"/>
+      <xs:pattern value="[ ]*[A-Za-z0-9+?/:()\.,&apos;\-][A-Za-z0-9+?/:()\.,&apos; \-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max128Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="128"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max140Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="140"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max140Text_CH_pacs004">
+    <xs:restriction base="Max140Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="140"/>
+      <xs:pattern value="[ ]*[A-Za-z0-9+?/:()\.,&apos;\-][A-Za-z0-9+?/:()\.,&apos; \-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max15NumericText">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{1,15}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max16Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="16"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max16Text_CH_pacs004">
+    <xs:restriction base="Max16Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="16"/>
+      <xs:pattern value="[ ]*[A-Za-z0-9+?/:()\.,&apos;\-][A-Za-z0-9+?/:()\.,&apos; \-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max2048Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="2048"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max34Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="34"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max34Text_CH_pacs004">
+    <xs:restriction base="Max34Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="34"/>
+      <xs:pattern value="[A-Za-z0-9+?/:()\.,&apos;\-][A-Za-z0-9+?/:()\.,&apos; \-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text_CH_pacs004">
+    <xs:restriction base="Max35Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+      <xs:pattern value="[A-Za-z0-9+?/:()\.,&apos;\-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text_CH_pacs004_2">
+    <xs:restriction base="Max35Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+      <xs:pattern value="[A-Za-z0-9+?/:()\.,&apos;\-][A-Za-z0-9+?/:()\.,&apos; \-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max35Text_CH_pacs004_3">
+    <xs:restriction base="Max35Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+      <xs:pattern value="[ ]*[A-Za-z0-9+?/:()\.,&apos;\-][A-Za-z0-9+?/:()\.,&apos; \-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max4Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max70Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="70"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Max70Text_CH_pacs004">
+    <xs:restriction base="Max70Text">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="70"/>
+      <xs:pattern value="[ ]*[A-Za-z0-9+?/:()\.,&apos;\-][A-Za-z0-9+?/:()\.,&apos; \-]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NamePrefix1Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DOCT"/>
+      <xs:enumeration value="MADM"/>
+      <xs:enumeration value="MISS"/>
+      <xs:enumeration value="MIST"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="OrganisationIdentification4">
+    <xs:sequence>
+      <xs:element name="BICOrBEI" type="AnyBICIdentifier" minOccurs="0"/>
+      <xs:element name="Othr" type="GenericOrganisationIdentification1" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OrganisationIdentification4_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="OrganisationIdentification4">
+        <xs:sequence>
+          <xs:element name="BICOrBEI" type="AnyBICIdentifier" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">BIC or BEI</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">BIC oder BEI</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Muss einen gültigen Wert gemäss ISO 9362 enthalten.
+Darf nicht in Kombination mit &lt;Nm&gt; verwendet werden.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Must contain a valid value according to ISO 9362.
+Must not be used together with &lt;Nm&gt;.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Othr" type="GenericOrganisationIdentification1" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OrganisationIdentification4_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="OrganisationIdentification4">
+        <xs:sequence>
+          <xs:element name="BICOrBEI" type="AnyBICIdentifier" minOccurs="0"/>
+          <xs:element name="Othr" type="GenericOrganisationIdentification1_CH_pacs004" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OrganisationIdentification4_CH_pacs004_3">
+    <xs:complexContent>
+      <xs:restriction base="OrganisationIdentification4">
+        <xs:sequence>
+          <xs:element name="BICOrBEI" type="AnyBICIdentifier" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">BIC or BEI</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">BIC oder BEI</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Othr" type="GenericOrganisationIdentification1_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Other Organisation Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Andere Identifikation der Organisation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OrganisationIdentification4_CH_pacs004_4">
+    <xs:complexContent>
+      <xs:restriction base="OrganisationIdentification4">
+        <xs:sequence>
+          <xs:element name="BICOrBEI" type="AnyBICIdentifier" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">BIC or BEI</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">BIC oder BEI</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Othr" type="GenericOrganisationIdentification1_CH_pacs004_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Other Organisation Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Andere Identifikation der Organisation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OrganisationIdentificationSchemeName1Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Cd" type="ExternalOrganisationIdentification1Code"/>
+        <xs:element name="Prtry" type="Max35Text"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OrganisationIdentificationSchemeName1Choice_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="OrganisationIdentificationSchemeName1Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Cd" type="ExternalOrganisationIdentification1Code"/>
+            <xs:element name="Prtry" type="Max35Text_CH_pacs004_2"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OriginalGroupInformation21">
+    <xs:sequence>
+      <xs:element name="OrgnlMsgId" type="Max35Text"/>
+      <xs:element name="OrgnlMsgNmId" type="Max35Text"/>
+      <xs:element name="OrgnlCreDtTm" type="ISODateTime" minOccurs="0"/>
+      <xs:element name="RtrRsnInf" type="ReturnReasonInformation9" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OriginalGroupInformation3">
+    <xs:sequence>
+      <xs:element name="OrgnlMsgId" type="Max35Text"/>
+      <xs:element name="OrgnlMsgNmId" type="Max35Text"/>
+      <xs:element name="OrgnlCreDtTm" type="ISODateTime" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OriginalGroupInformation3_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="OriginalGroupInformation3">
+        <xs:sequence>
+          <xs:element name="OrgnlMsgId" type="Max35Text_CH_pacs004">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Original Message Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Meldungsidentifikation der Ursprungszahlung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgnlMsgNmId" type="Max35Text_CH_pacs004_2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Original Message Name Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Meldungstyp der Ursprungszahlung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Die ersten 8 Stellen des Meldungstyps müssen zwingend geliefert werden. Folgende Werte sind zulässig (wird durch das RTGS-System validiert):
+• pacs.008
+• PACS.008
+
+Zusätzliche Stellen zwecks Angabe der vollständigen Meldungsversion (z.B. «pacs.008.001.02») sind zulässig, werden jedoch durch das RTGS-System nicht validiert.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+The first 8 digits of the message type must mandatory be sent. The following values are permitted (will be validated by the RTGS system):
+• pacs.008
+• PACS.008
+
+Additional digits to indicate the complete message version (e.g. "pacs.008.001.02") are permitted but will not be validated by the RTGS system.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgnlCreDtTm" type="ISODateTime" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OriginalTransactionReference13">
+    <xs:sequence>
+      <xs:element name="IntrBkSttlmAmt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0"/>
+      <xs:element name="Amt" type="AmountType3Choice" minOccurs="0"/>
+      <xs:element name="IntrBkSttlmDt" type="ISODate" minOccurs="0"/>
+      <xs:element name="ReqdColltnDt" type="ISODate" minOccurs="0"/>
+      <xs:element name="ReqdExctnDt" type="ISODate" minOccurs="0"/>
+      <xs:element name="CdtrSchmeId" type="PartyIdentification32" minOccurs="0"/>
+      <xs:element name="SttlmInf" type="SettlementInformation13" minOccurs="0"/>
+      <xs:element name="PmtTpInf" type="PaymentTypeInformation22" minOccurs="0"/>
+      <xs:element name="PmtMtd" type="PaymentMethod4Code" minOccurs="0"/>
+      <xs:element name="MndtRltdInf" type="MandateRelatedInformation6" minOccurs="0"/>
+      <xs:element name="RmtInf" type="RemittanceInformation5" minOccurs="0"/>
+      <xs:element name="UltmtDbtr" type="PartyIdentification32" minOccurs="0"/>
+      <xs:element name="Dbtr" type="PartyIdentification32" minOccurs="0"/>
+      <xs:element name="DbtrAcct" type="CashAccount16" minOccurs="0"/>
+      <xs:element name="DbtrAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0"/>
+      <xs:element name="DbtrAgtAcct" type="CashAccount16" minOccurs="0"/>
+      <xs:element name="CdtrAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0"/>
+      <xs:element name="CdtrAgtAcct" type="CashAccount16" minOccurs="0"/>
+      <xs:element name="Cdtr" type="PartyIdentification32" minOccurs="0"/>
+      <xs:element name="CdtrAcct" type="CashAccount16" minOccurs="0"/>
+      <xs:element name="UltmtCdtr" type="PartyIdentification32" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OriginalTransactionReference13_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="OriginalTransactionReference13">
+        <xs:sequence>
+          <xs:element name="IntrBkSttlmAmt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Amt" type="AmountType3Choice" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="IntrBkSttlmDt" type="ISODate">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Requested Settlement Date</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Valuta-Soll</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Valuta-Soll der Ursprungszahlung.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Requested value date from the original payment.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ReqdColltnDt" type="ISODate" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="ReqdExctnDt" type="ISODate" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="CdtrSchmeId" type="PartyIdentification32" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="SttlmInf" type="SettlementInformation13_CH_pacs004_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Settlement Information</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Verrechnungsinformationen</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PmtTpInf" type="PaymentTypeInformation22_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Payment Type Information</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Informationen zur Art der Transaktion</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PmtMtd" type="PaymentMethod4Code" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="MndtRltdInf" type="MandateRelatedInformation6" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="RmtInf" type="RemittanceInformation5_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Remittance Information</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Mitteilung an den Zahlungsempfänger</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="UltmtDbtr" type="PartyIdentification32_CH_pacs004_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Ultimate Debtor</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Ursprünglicher Zahler</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Dbtr" type="PartyIdentification32_CH_pacs004_3">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Debtor</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahler</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Es muss entweder das Subelement &lt;Nm&gt; oder &lt;Id&gt;&lt;OrgId&gt;&lt;BICOrBEI&gt; verwendet werden.
+Ausnahme: Bei SEPA-Rückzahlung muss das Subelement &lt;Nm&gt; verwendet werden und kann optional zusammen mit den Subelementen &lt;PstlAdr&gt; und &lt;Id&gt; verwendet werden.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Either the sub-element &lt;Nm&gt; or &lt;Id&gt;&lt;OrgId&gt;&lt;BICOrBEI&gt; must be used.
+Exception: For SEPA payment returns, the sub-element &lt;Nm&gt; must be used and it may optionally be used together with the sub-elements &lt;PstlAdr&gt; and &lt;Id&gt;.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DbtrAcct" type="CashAccount16_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Debtor Account</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Konto des Zahlers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DbtrAgt" type="BranchAndFinancialInstitutionIdentification4_CH_pacs004_5" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Debtor Agent</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Institut des Zahlers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DbtrAgtAcct" type="CashAccount16_CH_pacs004_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Debtor Agent Account</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Konto des Instituts des Zahlers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CdtrAgt" type="BranchAndFinancialInstitutionIdentification4_CH_pacs004_6" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Creditor Agent</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Institut des Zahlungsempfängers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CdtrAgtAcct" type="CashAccount16_CH_pacs004_3" minOccurs="0" maxOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Creditor Agent Account</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Konto des Instituts des Zahlungsempfängers</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Cdtr" type="PartyIdentification32_CH_pacs004_4" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Creditor</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahlungsempfänger</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CdtrAcct" type="CashAccount16_CH_pacs004_4" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Creditor Account</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Konto des Zahlungsempfängers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Angaben werden nur weitergeleitet, wenn der gutzuschreibende Teilnehmer Zahlungen als ISO-20022-Meldung entgegennimmt.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Data will only be forwarded if the instructed participant does accept ISO 20022 message types.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="UltmtCdtr" type="PartyIdentification32_CH_pacs004_5" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Ultimate Creditor</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Endgültiger Zahlungsempfänger</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Party6Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="OrgId" type="OrganisationIdentification4"/>
+        <xs:element name="PrvtId" type="PersonIdentification5"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Party6Choice_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="Party6Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="OrgId" type="OrganisationIdentification4_CH_pacs004">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Organisation Identification</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Identifikation der Organisation</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">Nur &lt;BICOrBEI&gt; zulässig.</xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">Only &lt;BICOrBEI&gt; permitted.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="PrvtId" type="PersonIdentification5_CH_pacs004">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">Darf nicht verwendet werden.</xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">Must not be used.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Party6Choice_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="Party6Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="OrgId" type="OrganisationIdentification4_CH_pacs004_2">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Organisation Identification</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Identifikation der Organisation</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">Nur &lt;BICOrBEI&gt; oder ein Element aus &lt;Othr&gt; zulässig.</xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">Only &lt;BICOrBEI&gt; or one element of &lt;Othr&gt; is permitted.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="PrvtId" type="PersonIdentification5_CH_pacs004_2">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Private Identification</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Identifikation der Person</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">
+Nur &lt;DtAndPlcOfBirth&gt; oder ein Subelement aus &lt;Othr&gt; zulässig.
+Wenn verwendet, darf &lt;OrgId&gt; nicht verwendet werden.
+                </xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">
+Only &lt;DtAndPlcOfBirth&gt; or one sub-element of &lt;Othr&gt; is permitted.
+If used, &lt;OrgId&gt; must not be used.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Party6Choice_CH_pacs004_3">
+    <xs:complexContent>
+      <xs:restriction base="Party6Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="OrgId" type="OrganisationIdentification4_CH_pacs004_3">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Organisation Identification</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Identifikation der Organisation</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">Nur &lt;BICOrBEI&gt; oder ein Element aus &lt;Othr&gt; zulässig.</xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">Only &lt;BICOrBEI&gt; or one element of &lt;Othr&gt; is permitted.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="PrvtId" type="PersonIdentification5_CH_pacs004_3">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Private Identification</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Identifikation der Person</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition"/>
+                <xs:documentation xml:lang="EN" source="CH-Definition"/>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Party6Choice_CH_pacs004_4">
+    <xs:complexContent>
+      <xs:restriction base="Party6Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="OrgId" type="OrganisationIdentification4_CH_pacs004_4">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Organisation Identification</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Identifikation der Organisation</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">Nur &lt;BICOrBEI&gt; oder ein Element aus &lt;Othr&gt; zulässig.</xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">Only &lt;BICOrBEI&gt; or one element of &lt;Othr&gt; is permitted.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="PrvtId" type="PersonIdentification5_CH_pacs004_4">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Private Identification</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Identifikation der Person</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">Nur &lt;DtAndPlcOfBirth&gt; oder ein Element aus &lt;Othr&gt; zulässig.</xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">Only &lt;DtAndPlcOfBirth&gt; or one element of &lt;Othr&gt; is permitted.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Party6Choice_CH_pacs004_5">
+    <xs:complexContent>
+      <xs:restriction base="Party6Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="OrgId" type="OrganisationIdentification4_CH_pacs004_2">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Organisation Identification</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Identifikation der Organisation</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">Nur &lt;BICOrBEI&gt; oder ein Element aus &lt;Othr&gt; zulässig.</xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">Only &lt;BICOrBEI&gt; or one element of &lt;Othr&gt; is permitted.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="PrvtId" type="PersonIdentification5_CH_pacs004_2">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Private Identification</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Identifikation der Person</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">Nur &lt;DtAndPlcOfBirth&gt; oder ein Element aus &lt;Othr&gt; zulässig.</xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">Only &lt;DtAndPlcOfBirth&gt; or one element of &lt;Othr&gt; is permitted.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PartyIdentification32">
+    <xs:sequence>
+      <xs:element name="Nm" type="Max140Text" minOccurs="0"/>
+      <xs:element name="PstlAdr" type="PostalAddress6" minOccurs="0"/>
+      <xs:element name="Id" type="Party6Choice" minOccurs="0"/>
+      <xs:element name="CtryOfRes" type="CountryCode" minOccurs="0"/>
+      <xs:element name="CtctDtls" type="ContactDetails2" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PartyIdentification32_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="PartyIdentification32">
+        <xs:sequence>
+          <xs:element name="Nm" type="Max140Text_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Originator Name</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Name des rückzahlenden Instituts</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Kurzbezeichnung des rückzahlenden Instituts (Name und Ort des Instituts). Darf nicht in Kombination mit &lt;Id&gt;&lt;OrgId&gt;&lt;BICOrBEI&gt; verwendet werden.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Short title of the institution returning the payment (name and location of the institution). Must not be used together with &lt;Id&gt;&lt;OrgId&gt;&lt;BICOrBEI&gt;.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PstlAdr" type="PostalAddress6_CH_pacs004_2" minOccurs="0" maxOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Postal Address</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Adresse</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Id" type="Party6Choice_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CtryOfRes" type="CountryCode" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="CtctDtls" type="ContactDetails2" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PartyIdentification32_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="PartyIdentification32">
+        <xs:sequence>
+          <xs:element name="Nm" type="Max140Text_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Name</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Name</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Maximal 70 Stellen zugelassen.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Maximum of 70 characters permitted.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PstlAdr" type="PostalAddress6_CH_pacs004_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Postal Address</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Adresse</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Id" type="Party6Choice_CH_pacs004_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CtryOfRes" type="CountryCode" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="CtctDtls" type="ContactDetails2" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PartyIdentification32_CH_pacs004_3">
+    <xs:complexContent>
+      <xs:restriction base="PartyIdentification32">
+        <xs:sequence>
+          <xs:element name="Nm" type="Max140Text_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Name</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Name</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PstlAdr" type="PostalAddress6_CH_pacs004_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Postal Address</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Adresse</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Darf nur verwendet werden wenn &lt;Nm&gt; vorhanden ist.
+Die gleichzeitige Verwendung der strukturierten Elemente &lt;StrtNm&gt; / &lt;BldgNb&gt; / &lt;PstCd&gt; / &lt;TwnNm&gt; zusammen mit dem unstrukturierten Elemente &lt;AdrLine&gt; ist nicht zulässig.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+May only be used together with &lt;Nm&gt;.
+Using the structured elements &lt;StrtNm&gt; / &lt;BldgNb&gt; / &lt;PstCd&gt; /&lt;TwnNm&gt; at the same time as the unstructured element &lt;AdrLine&gt; is not permitted.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Id" type="Party6Choice_CH_pacs004_3" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CtryOfRes" type="CountryCode" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="CtctDtls" type="ContactDetails2" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PartyIdentification32_CH_pacs004_4">
+    <xs:complexContent>
+      <xs:restriction base="PartyIdentification32">
+        <xs:sequence>
+          <xs:element name="Nm" type="Max140Text_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Name</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Name</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PstlAdr" type="PostalAddress6_CH_pacs004_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Postal Address</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Adresse</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Id" type="Party6Choice_CH_pacs004_4" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CtryOfRes" type="CountryCode" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="CtctDtls" type="ContactDetails2" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PartyIdentification32_CH_pacs004_5">
+    <xs:complexContent>
+      <xs:restriction base="PartyIdentification32">
+        <xs:sequence>
+          <xs:element name="Nm" type="Max140Text_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Name</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Name</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Maximal 70 Stellen zugelassen.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Maximum of 70 characters permitted.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PstlAdr" type="PostalAddress6_CH_pacs004_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Postal Address</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Adresse</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Id" type="Party6Choice_CH_pacs004_5" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CtryOfRes" type="CountryCode" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="CtctDtls" type="ContactDetails2" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="PaymentMethod4Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CHK"/>
+      <xs:enumeration value="DD"/>
+      <xs:enumeration value="TRA"/>
+      <xs:enumeration value="TRF"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="PaymentReturnV02">
+    <xs:sequence>
+      <xs:element name="GrpHdr" type="GroupHeader38"/>
+      <xs:element name="OrgnlGrpInf" type="OriginalGroupInformation21" minOccurs="0"/>
+      <xs:element name="TxInf" type="PaymentTransactionInformation27" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentReturnV02_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="PaymentReturnV02">
+        <xs:sequence>
+          <xs:element name="GrpHdr" type="GroupHeader38_CH_pacs004"/>
+          <xs:element name="OrgnlGrpInf" type="OriginalGroupInformation21" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="TxInf" type="PaymentTransactionInformation27_CH_pacs004" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaymentTransactionInformation27">
+    <xs:sequence>
+      <xs:element name="RtrId" type="Max35Text" minOccurs="0"/>
+      <xs:element name="OrgnlGrpInf" type="OriginalGroupInformation3" minOccurs="0"/>
+      <xs:element name="OrgnlInstrId" type="Max35Text" minOccurs="0"/>
+      <xs:element name="OrgnlEndToEndId" type="Max35Text" minOccurs="0"/>
+      <xs:element name="OrgnlTxId" type="Max35Text" minOccurs="0"/>
+      <xs:element name="OrgnlClrSysRef" type="Max35Text" minOccurs="0"/>
+      <xs:element name="OrgnlIntrBkSttlmAmt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0"/>
+      <xs:element name="RtrdIntrBkSttlmAmt" type="ActiveCurrencyAndAmount"/>
+      <xs:element name="IntrBkSttlmDt" type="ISODate" minOccurs="0"/>
+      <xs:element name="RtrdInstdAmt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0"/>
+      <xs:element name="XchgRate" type="BaseOneRate" minOccurs="0"/>
+      <xs:element name="CompstnAmt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0"/>
+      <xs:element name="ChrgBr" type="ChargeBearerType1Code" minOccurs="0"/>
+      <xs:element name="ChrgsInf" type="ChargesInformation5" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="InstgAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0"/>
+      <xs:element name="InstdAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0"/>
+      <xs:element name="RtrRsnInf" type="ReturnReasonInformation9" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="OrgnlTxRef" type="OriginalTransactionReference13" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentTransactionInformation27_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="PaymentTransactionInformation27">
+        <xs:sequence>
+          <xs:element name="RtrId" type="Max35Text_CH_pacs004">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Transaction Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Transaktionsreferenz</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Muss verwendet werden.
+Für dieses Element ist nur der SWIFT-Zeichensatz ohne Leerzeichen zugelassen.
+Nur 16 Stellen zugelassen, muss auf der ersten Position eine Ziffer 0 - 9 oder einen Buchstaben a - z oder A - Z enthalten. 
+Wird in Kombination mit &lt;InstgAgt&gt; für die Duplikatsprüfung auf Ebene Transaktion verwendet und darf innerhalb der zugelassenen Valutatage nur einmal vorkommen. Zugelassene Valutatage sind Valuta heute und 2 Tage Vergangenheit.
+Hinweis: Für die erfolgreiche Verarbeitung einer Zahlung darf weder auf Ebene Meldung noch auf Ebene Transaktion ein Duplikat erkannt werden.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Must be used.
+Only the SWIFT character set excluding spaces is permitted for this element.
+Only 16 characters permitted, must include a digit 0 - 9 or a letter a - z or A - Z in the first position. 
+It is used together with &lt;InstgAgt&gt; for duplicate checking at transaction level and may only occur once within the permitted value dates. Permitted value dates are value date today and 2 days in the past. 
+Note: For a payment to be processed successfully, no duplicates must be detected at either message level or transaction level.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgnlGrpInf" type="OriginalGroupInformation3_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Original Group Information</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Informationen zur Ursprungszahlung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgnlInstrId" type="Max35Text_CH_pacs004_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Original Instruction Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Ursprüngliche Rückzahlungsreferenz</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgnlEndToEndId" type="Max35Text_CH_pacs004_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Original Debtor Reference</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahlungsreferenz des Zahlers der Ursprungszahlung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgnlTxId" type="Max35Text_CH_pacs004_3">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Original Transaction Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Transaktionsreferenz der Ursprungszahlung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Muss verwendet werden.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Must be used.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgnlClrSysRef" type="Max35Text" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="OrgnlIntrBkSttlmAmt" type="ActiveOrHistoricCurrencyAndAmount_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Original Settlement Amount</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Verrechnungsbetrag der Ursprungszahlung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Darf maximal 13 Stellen enthalten (exkl. Dezimaltrennzeichen), davon maximal 2 Dezimalstellen. 
+Betrag muss &gt; 0 sein, maximal akzeptierter Betrag ist 99'999'999'999.99.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Must contain no more than 13 digits (excl. decimal separators), including a maximum of 2 fractional digits. 
+Amount must be &gt;0, the maximum accepted amount is 99,999,999,999.99.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RtrdIntrBkSttlmAmt" type="ActiveCurrencyAndAmount_CH_pacs004">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Returned Settlement Amount</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zurückbezahlter Verrechnungsbetrag</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">
+Darf maximal 13 Stellen enthalten (exkl. Dezimaltrennzeichen), davon maximal 2 Dezimalstellen. 
+Betrag muss &gt; 0 sein, maximal akzeptierter Betrag ist 99'999'999'999.99.
+              </xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">
+Must contain no more than 13 digits (excl. decimal separators), including a maximum of 2 fractional digits. 
+Amount must be &gt;0, the maximum accepted amount is 99,999,999,999.99.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="IntrBkSttlmDt" type="ISODate" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="RtrdInstdAmt" type="ActiveOrHistoricCurrencyAndAmount_CH_pacs004_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Returned Instructed Amount</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Beauftragter Rückzahlungsbetrag</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="XchgRate" type="BaseOneRate" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Exchange Rate</xs:documentation>
+              <xs:documentation source="FE_de">Umrechnungskurs</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CompstnAmt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="ChrgBr" type="ChargeBearerType1Code" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Charge Bearer</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Spesenoption</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ChrgsInf" type="ChargesInformation5_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Charges Information</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Speseninformation</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InstgAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="InstdAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="RtrRsnInf" type="ReturnReasonInformation9_CH_pacs004">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Return Reason Information</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Informationen zum Rückzahlungsgrund</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Muss verwendet werden. Das Element darf maximal einmal verwendet werden.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Must be used. This element must not be used more than once.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="OrgnlTxRef" type="OriginalTransactionReference13_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Original Transaction Reference</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Informationsinhalte der Ursprungszahlung</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Muss geliefert werden.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Must be used.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaymentTypeInformation22">
+    <xs:sequence>
+      <xs:element name="InstrPrty" type="Priority2Code" minOccurs="0"/>
+      <xs:element name="ClrChanl" type="ClearingChannel2Code" minOccurs="0"/>
+      <xs:element name="SvcLvl" type="ServiceLevel8Choice" minOccurs="0"/>
+      <xs:element name="LclInstrm" type="LocalInstrument2Choice" minOccurs="0"/>
+      <xs:element name="SeqTp" type="SequenceType1Code" minOccurs="0"/>
+      <xs:element name="CtgyPurp" type="CategoryPurpose1Choice" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PaymentTypeInformation22_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="PaymentTypeInformation22">
+        <xs:sequence>
+          <xs:element name="InstrPrty" type="Priority2Code" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="ClrChanl" type="ClearingChannel2Code" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="SvcLvl" type="ServiceLevel8Choice_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Service Level</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Service-Vereinbarung</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="LclInstrm" type="LocalInstrument2Choice_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Payment Type</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zahlungsart</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SeqTp" type="SequenceType1Code" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="CtgyPurp" type="CategoryPurpose1Choice_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Category Purpose</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Transaktionszweckkategorie</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PersonIdentification5">
+    <xs:sequence>
+      <xs:element name="DtAndPlcOfBirth" type="DateAndPlaceOfBirth" minOccurs="0"/>
+      <xs:element name="Othr" type="GenericPersonIdentification1" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonIdentification5_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="PersonIdentification5">
+        <xs:sequence>
+          <xs:element name="DtAndPlcOfBirth" type="DateAndPlaceOfBirth" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Othr" type="GenericPersonIdentification1" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PersonIdentification5_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="PersonIdentification5">
+        <xs:sequence>
+          <xs:element name="DtAndPlcOfBirth" type="DateAndPlaceOfBirth_CH_pacs004" minOccurs="0"/>
+          <xs:element name="Othr" type="GenericPersonIdentification1_CH_pacs004" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PersonIdentification5_CH_pacs004_3">
+    <xs:complexContent>
+      <xs:restriction base="PersonIdentification5">
+        <xs:sequence>
+          <xs:element name="DtAndPlcOfBirth" type="DateAndPlaceOfBirth_CH_pacs004_2" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Date and Place of Birth</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Geburtsdatum und -ort</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Othr" type="GenericPersonIdentification1_CH_pacs004_2" minOccurs="0" maxOccurs="4">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Other Private Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Andere Identifikation der Person</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PersonIdentification5_CH_pacs004_4">
+    <xs:complexContent>
+      <xs:restriction base="PersonIdentification5">
+        <xs:sequence>
+          <xs:element name="DtAndPlcOfBirth" type="DateAndPlaceOfBirth_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Date ond Place of Birth</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Geburtsdatum und -ort</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Othr" type="GenericPersonIdentification1_CH_pacs004_3" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Other Private Identification</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Andere Identifikation der Person</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PersonIdentificationSchemeName1Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Cd" type="ExternalPersonIdentification1Code"/>
+        <xs:element name="Prtry" type="Max35Text"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonIdentificationSchemeName1Choice_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="PersonIdentificationSchemeName1Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Cd" type="ExternalPersonIdentification1Code"/>
+            <xs:element name="Prtry" type="Max35Text_CH_pacs004_2"/>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PersonIdentificationSchemeName1Choice_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="PersonIdentificationSchemeName1Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Cd" type="ExternalPersonIdentification1Code">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Identification Type (code)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Typ der Identifikation (Code)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Prtry" type="Max35Text_CH_pacs004_2">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Identification Type (proprietary)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Typ der Identifikation (proprietär)</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="PhoneNumber">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\+[0-9]{1,3}-[0-9()+\-]{1,30}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="PostalAddress6">
+    <xs:sequence>
+      <xs:element name="AdrTp" type="AddressType2Code" minOccurs="0"/>
+      <xs:element name="Dept" type="Max70Text" minOccurs="0"/>
+      <xs:element name="SubDept" type="Max70Text" minOccurs="0"/>
+      <xs:element name="StrtNm" type="Max70Text" minOccurs="0"/>
+      <xs:element name="BldgNb" type="Max16Text" minOccurs="0"/>
+      <xs:element name="PstCd" type="Max16Text" minOccurs="0"/>
+      <xs:element name="TwnNm" type="Max35Text" minOccurs="0"/>
+      <xs:element name="CtrySubDvsn" type="Max35Text" minOccurs="0"/>
+      <xs:element name="Ctry" type="CountryCode" minOccurs="0"/>
+      <xs:element name="AdrLine" type="Max70Text" minOccurs="0" maxOccurs="7"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PostalAddress6_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="PostalAddress6">
+        <xs:sequence>
+          <xs:element name="AdrTp" type="AddressType2Code" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Dept" type="Max70Text" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="SubDept" type="Max70Text" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="StrtNm" type="Max70Text_CH_pacs004" minOccurs="0"/>
+          <xs:element name="BldgNb" type="Max16Text_CH_pacs004" minOccurs="0"/>
+          <xs:element name="PstCd" type="Max16Text_CH_pacs004" minOccurs="0"/>
+          <xs:element name="TwnNm" type="Max35Text_CH_pacs004_3" minOccurs="0"/>
+          <xs:element name="CtrySubDvsn" type="Max35Text" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Ctry" type="CountryCode" minOccurs="0"/>
+          <xs:element name="AdrLine" type="Max70Text_CH_pacs004" minOccurs="0" maxOccurs="2"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PostalAddress6_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="PostalAddress6">
+        <xs:sequence>
+          <xs:element name="AdrTp" type="AddressType2Code" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Dept" type="Max70Text" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="SubDept" type="Max70Text" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="StrtNm" type="Max70Text_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Street Name</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Strasse</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="BldgNb" type="Max16Text_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Building Number</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Hausnummer</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PstCd" type="Max16Text_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Postcode</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Postleitzahl</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="TwnNm" type="Max35Text_CH_pacs004_3" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Town Name</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Ort</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CtrySubDvsn" type="Max35Text" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Ctry" type="CountryCode" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Country</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Land</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AdrLine" type="Max70Text_CH_pacs004" minOccurs="0" maxOccurs="2">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Address Line (unstructured)</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Adresszeile (unstrukturiert)</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="Priority2Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="HIGH"/>
+      <xs:enumeration value="NORM"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ReferredDocumentInformation3">
+    <xs:sequence>
+      <xs:element name="Tp" type="ReferredDocumentType2" minOccurs="0"/>
+      <xs:element name="Nb" type="Max35Text" minOccurs="0"/>
+      <xs:element name="RltdDt" type="ISODate" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferredDocumentInformation3_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="ReferredDocumentInformation3">
+        <xs:sequence>
+          <xs:element name="Tp" type="ReferredDocumentType2_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Type</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Typ</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Nb" type="Max35Text_CH_pacs004_3" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">LSV ID</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">LSV-ID</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RltdDt" type="ISODate" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Requested Processing Date</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Gewünschtes Verarbeitungsdatum</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ReferredDocumentType1Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Cd" type="DocumentType5Code"/>
+        <xs:element name="Prtry" type="Max35Text"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferredDocumentType1Choice_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="ReferredDocumentType1Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Cd" type="DocumentType5Code"/>
+            <xs:element name="Prtry" type="Max35Text_CH_pacs004_2">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Type of Additional Remittance Information</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Art der zusätzlichen Mitteilung an den Zahlungsempfänger</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ReferredDocumentType2">
+    <xs:sequence>
+      <xs:element name="CdOrPrtry" type="ReferredDocumentType1Choice"/>
+      <xs:element name="Issr" type="Max35Text" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReferredDocumentType2_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="ReferredDocumentType2">
+        <xs:sequence>
+          <xs:element name="CdOrPrtry" type="ReferredDocumentType1Choice_CH_pacs004"/>
+          <xs:element name="Issr" type="Max35Text" minOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RemittanceAmount1">
+    <xs:sequence>
+      <xs:element name="DuePyblAmt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0"/>
+      <xs:element name="DscntApldAmt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0"/>
+      <xs:element name="CdtNoteAmt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0"/>
+      <xs:element name="TaxAmt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0"/>
+      <xs:element name="AdjstmntAmtAndRsn" type="DocumentAdjustment1" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="RmtdAmt" type="ActiveOrHistoricCurrencyAndAmount" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RemittanceInformation5">
+    <xs:sequence>
+      <xs:element name="Ustrd" type="Max140Text" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="Strd" type="StructuredRemittanceInformation7" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RemittanceInformation5_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="RemittanceInformation5">
+        <xs:sequence>
+          <xs:element name="Ustrd" type="Max140Text_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Remittance Information Unstructured</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Unstrukturierte Mitteilung an den Zahlungsempfänger</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Darf nur verwendet werden, wenn keine strukturierte Mitteilung vorhanden ist.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">May only be used if no structured notification is present.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Strd" type="StructuredRemittanceInformation7_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Remittance Information Structured</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Strukturierte Mitteilung an den Zahlungsempfänger</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Darf nur verwendet werden, wenn keine unstrukturierte Mitteilung vorhanden ist.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">May only be used if no unstructured notification is present.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ReturnReason5Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Cd" type="ExternalReturnReason1Code"/>
+        <xs:element name="Prtry" type="Max35Text"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReturnReason5Choice_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="ReturnReason5Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Cd" type="ExternalReturnReason1Code">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Return Reason (code)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Rückzahlungsgrund (Code)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">
+Zugelassen sind ISO-Codes gemäss «External Code Lists» von ISO.
+
+Im Fall «Bezahlung aus Rückzahlungsbegehren» (Code = FOCR) muss im Element &lt;AddtlInf&gt; zwingend die Referenz des Rückzahlungsbegehrens geliefert werden.
+
+Wenn Code NARR angegeben wird, muss im Element &lt;AddtlInf&gt; der genaue Grund angegeben werden.
+                </xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">
+ISO code values according to the ISO External Code Lists are permitted. 
+
+In case of a «Request for Return» (Code = FOCR) the identification of the return request must be provided in the element &lt;AddtlInf&gt;.
+
+If code NARR is provided a specific description of the reason must be provided in the element &lt;AddtlInf&gt;.
+                </xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Prtry" type="Max35Text_CH_pacs004_2">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Return Reason (proprietary)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Rückzahlungsgrund (proprietär)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">Angabe eines variablen, aussagekräftigen Rückzahlungsgrundes.</xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">A meaningful reason for the payment return.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ReturnReasonInformation9">
+    <xs:sequence>
+      <xs:element name="Orgtr" type="PartyIdentification32" minOccurs="0"/>
+      <xs:element name="Rsn" type="ReturnReason5Choice" minOccurs="0"/>
+      <xs:element name="AddtlInf" type="Max105Text" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReturnReasonInformation9_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="ReturnReasonInformation9">
+        <xs:sequence>
+          <xs:element name="Orgtr" type="PartyIdentification32_CH_pacs004">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Return Originator</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Identifikation des Rückzahlers</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Es muss entweder das Subelement &lt;Nm&gt; oder &lt;Id&gt;&lt;OrgId&gt;&lt;BICOrBEI&gt; verwendet werden.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Either the sub-element &lt;Nm&gt; or &lt;Id&gt;&lt;OrgId&gt;&lt;BICOrBEI&gt; must be used.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Rsn" type="ReturnReason5Choice_CH_pacs004">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Return Reason</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Rückzahlungsgrund</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Angabe des Rückzahlungsgrundes als ISO-Code unter &lt;Cd&gt; oder proprietär unter &lt;Prtry&gt;.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Statement of the reason for the payment return as ISO code under &lt;Cd&gt; or proprietary code under &lt;Prtry&gt;.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="AddtlInf" type="Max105Text_CH_pacs004" minOccurs="0" maxOccurs="7">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Additional Details/Reference of the Return Request</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zusätzliche Angaben/Referenz des Rückzahlungsbegehrens</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="SequenceType1Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FNAL"/>
+      <xs:enumeration value="FRST"/>
+      <xs:enumeration value="OOFF"/>
+      <xs:enumeration value="RCUR"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ServiceLevel8Choice">
+    <xs:sequence>
+      <xs:choice>
+        <xs:element name="Cd" type="ExternalServiceLevel1Code"/>
+        <xs:element name="Prtry" type="Max35Text"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ServiceLevel8Choice_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="ServiceLevel8Choice">
+        <xs:sequence>
+          <xs:choice>
+            <xs:element name="Cd" type="ExternalServiceLevel1Code">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="FE_en">Service Level (code)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="FE_de">Service-Vereinbarung (Code)</xs:documentation>
+                <xs:documentation xml:lang="DE" source="CH-Definition"/>
+                <xs:documentation xml:lang="EN" source="CH-Definition"/>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Prtry" type="Max35Text_CH_pacs004_2">
+              <xs:annotation>
+                <xs:documentation xml:lang="DE" source="CH-Definition">Wird nicht verwendet.</xs:documentation>
+                <xs:documentation xml:lang="EN" source="CH-Definition">Not used.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:choice>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SettlementInformation13">
+    <xs:sequence>
+      <xs:element name="SttlmMtd" type="SettlementMethod1Code"/>
+      <xs:element name="SttlmAcct" type="CashAccount16" minOccurs="0"/>
+      <xs:element name="ClrSys" type="ClearingSystemIdentification3Choice" minOccurs="0"/>
+      <xs:element name="InstgRmbrsmntAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0"/>
+      <xs:element name="InstgRmbrsmntAgtAcct" type="CashAccount16" minOccurs="0"/>
+      <xs:element name="InstdRmbrsmntAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0"/>
+      <xs:element name="InstdRmbrsmntAgtAcct" type="CashAccount16" minOccurs="0"/>
+      <xs:element name="ThrdRmbrsmntAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0"/>
+      <xs:element name="ThrdRmbrsmntAgtAcct" type="CashAccount16" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SettlementInformation13_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="SettlementInformation13">
+        <xs:sequence>
+          <xs:element name="SttlmMtd" type="SettlementMethod1Code">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_de">Verrechnungsmethode</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_en">Settlement Method</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition">Inhalt muss CLRG (Clearing) sein.</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition">Content must be CLRG (Clearing).</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SttlmAcct" type="CashAccount16" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Settlement Account</xs:documentation>
+              <xs:documentation source="FE_de">Verrechnungskonto</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="ClrSys" type="ClearingSystemIdentification3Choice_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Return Type</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Rückzahlungsart</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InstgRmbrsmntAgt" type="BranchAndFinancialInstitutionIdentification4_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation source="FE_en">Instructing Reimbursement Participant</xs:documentation>
+              <xs:documentation source="FE_de">Teilnehmer für Weiterverrechnung</xs:documentation>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InstgRmbrsmntAgtAcct" type="CashAccount16" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="InstdRmbrsmntAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="InstdRmbrsmntAgtAcct" type="CashAccount16" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="ThrdRmbrsmntAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="ThrdRmbrsmntAgtAcct" type="CashAccount16" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SettlementInformation13_CH_pacs004_2">
+    <xs:complexContent>
+      <xs:restriction base="SettlementInformation13">
+        <xs:sequence>
+          <xs:element name="SttlmMtd" type="SettlementMethod1Code">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Settlement Method</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Verrechnungsmethode</xs:documentation>
+              <xs:documentation xml:lang="DE" source="CH-Definition"/>
+              <xs:documentation xml:lang="EN" source="CH-Definition"/>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="SttlmAcct" type="CashAccount16" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="ClrSys" type="ClearingSystemIdentification3Choice_CH_pacs004_2" minOccurs="0" maxOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Clearing System</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Clearingsystem</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="InstgRmbrsmntAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="InstgRmbrsmntAgtAcct" type="CashAccount16" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="InstdRmbrsmntAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="InstdRmbrsmntAgtAcct" type="CashAccount16" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="ThrdRmbrsmntAgt" type="BranchAndFinancialInstitutionIdentification4" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="ThrdRmbrsmntAgtAcct" type="CashAccount16" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="SettlementMethod1Code">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CLRG"/>
+      <xs:enumeration value="COVE"/>
+      <xs:enumeration value="INDA"/>
+      <xs:enumeration value="INGA"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="StructuredRemittanceInformation7">
+    <xs:sequence>
+      <xs:element name="RfrdDocInf" type="ReferredDocumentInformation3" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="RfrdDocAmt" type="RemittanceAmount1" minOccurs="0"/>
+      <xs:element name="CdtrRefInf" type="CreditorReferenceInformation2" minOccurs="0"/>
+      <xs:element name="Invcr" type="PartyIdentification32" minOccurs="0"/>
+      <xs:element name="Invcee" type="PartyIdentification32" minOccurs="0"/>
+      <xs:element name="AddtlRmtInf" type="Max140Text" minOccurs="0" maxOccurs="3"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StructuredRemittanceInformation7_CH_pacs004">
+    <xs:complexContent>
+      <xs:restriction base="StructuredRemittanceInformation7">
+        <xs:sequence>
+          <xs:element name="RfrdDocInf" type="ReferredDocumentInformation3_CH_pacs004" minOccurs="0" maxOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Additional Remittance Information</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Zusätzliche Mitteilung an den Zahlungsempfänger</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RfrdDocAmt" type="RemittanceAmount1" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="CdtrRefInf" type="CreditorReferenceInformation2_CH_pacs004" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation xml:lang="DE" source="FE_en">Creditor Reference Information</xs:documentation>
+              <xs:documentation xml:lang="DE" source="FE_de">Informationen zur Zahlungsreferenz des Empfängers</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Invcr" type="PartyIdentification32" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="Invcee" type="PartyIdentification32" minOccurs="0" maxOccurs="0"/>
+          <xs:element name="AddtlRmtInf" type="Max140Text" minOccurs="0" maxOccurs="0"/>
+        </xs:sequence>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="TrueFalseIndicator">
+    <xs:restriction base="xs:boolean"/>
+  </xs:simpleType>
+</xs:schema>
