@@ -14,25 +14,26 @@ schemes:  # FIXME: have the country in these?
   - chaps
 
 currencies:
-  EUR:
-    - sct
-    - sctinst
-    - sddcore
-    - sddbdb
-    - eurosic
-    - target2
-  CHF:
-    - sic
-    - lsv
-  GBP:
-    - bacs
-    - fps
-    - chaps
+  - EUR:
+      - sct
+      - sctinst
+      - sddcore
+      - sddbdb
+      - eurosic
+      - target2
+  - CHF:
+      - sic
+      - lsv
+  - GBP:
+      - bacs
+      - fps
+      - chaps
 
 messages:
   - camt.029:
       - name: ResolutionOfInvestigation
       - schemes:
+          - sct:V03
           - sctinst:V03
   - camt.056:
       - name: FIToFIPaymentCancellationRequest
@@ -45,12 +46,23 @@ messages:
   - pacs.004:
       - name: PaymentReturn
       - schemes:
+          - sct:V02
           - sctinst:V02
   - pacs.008:
       - name: FIToFICustomerCreditTransfer
       - schemes:
+          - sct:V02
           - sctinst:V02
+  - pacs.027:
+      - name: ClaimNonReceipt
+      - schemes:
+          - sct:V06
   - pacs.028:
-       - name: FIToFIPaymentStatusRequest
-       - schemes:
-           - sctinst:V01
+      - name: FIToFIPaymentStatusRequest
+      - schemes:
+        - sct:V01
+        - sctinst:V01
+  - pacs.087:
+      - name: RequestToModifyPayment
+      - schemes:
+          - sct:V05
