@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'clearer',  # Clear all the payments!
     'settler',  # Settle all the payments!
     'impsepa',  # An IMP for SEPA
+    'fex',  # File (Message) Exchanger
 ]
 
 MIDDLEWARE = [
