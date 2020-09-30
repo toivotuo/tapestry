@@ -8,6 +8,10 @@ class Message(models.Model):
     # FIXME: Should store 'payload' in AWS S3 or similar.
     payload = models.BinaryField(blank=False)
 
+# FIXME: The ports of the counterparties with whom messages are
+# exchanged are missing.
+
+# FIXME: No timestamping here on receipt and processing of messages.
 
 # FIXME: We need enums to validate the msgtype.
 

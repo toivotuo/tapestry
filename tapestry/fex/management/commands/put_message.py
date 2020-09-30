@@ -1,16 +1,22 @@
-import time
+"""Put a single message the exchanger."""
+
 import sys
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
+
 
 class Command(BaseCommand):
     help = "Put a single message to the exchanger"
 
     def add_arguments(self, parser):
         parser.add_argument(
-            "msgtype", nargs=1, type=str,
+            "msgtype",
+            nargs=1,
+            type=str,
             help="Type of the message")
         parser.add_argument(
-            "filename", nargs=1, type=str,
+            "filename",
+            nargs=1,
+            type=str,
             help="Name of a file with the message or '-' for stdin")
 
         # FIXME: We could just default to stdin if the filename is not given.
@@ -39,7 +45,6 @@ class Command(BaseCommand):
             payload=data,
         )
 
-        fh.close(
-)
+        fh.close()
         self.success("Message put success: {} {} {}".format(
             msg.pk, msg.uuid, msg.msgtype))

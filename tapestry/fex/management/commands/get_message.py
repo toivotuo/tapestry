@@ -1,14 +1,16 @@
-import time
-import sys
-from django.core.management.base import BaseCommand, CommandError
+"""Get a single message from the exchanger."""
+
+from django.core.management.base import BaseCommand
+
 
 class Command(BaseCommand):
     help = "Get a single message from the exchanger"
 
     def add_arguments(self, parser):
-        parser.add_argument(
-            "msgid", nargs=1, type=str,
-            help="Identifier of the message")
+        parser.add_argument("msgid",
+                            nargs=1,
+                            type=str,
+                            help="Identifier of the message")
 
     def success(self, message):
         self.stderr.write(self.style.SUCCESS(message))
