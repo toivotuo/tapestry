@@ -28,13 +28,15 @@ class Command(BaseCommand):
         filename = options['filename'][0]
 
         if filename == '-':
-            fh = sys.stdin
+            fh = sys.stdin  # FIXME: Likely doesn't work as doesn't do binary
         else:
-            fh = open(filename)
+            fh = open(filename, 'rb')
+
+        data = fh.read()
 
         msg = Message.objects.create(
             msgtype=msgtype,
-            payload=fh.read(),
+            payload=data,
         )
 
         fh.close(

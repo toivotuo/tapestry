@@ -6,7 +6,7 @@ class Message(models.Model):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     msgtype = models.CharField(max_length=140, blank=False)
     # FIXME: Should store 'payload' in AWS S3 or similar.
-    payload = models.TextField(blank=False)
+    payload = models.BinaryField(blank=False)
 
 
 # FIXME: We need enums to validate the msgtype.
