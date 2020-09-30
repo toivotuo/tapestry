@@ -6,7 +6,9 @@ from django.core import validators
 # FIXME: This double-entry accounting module should be moved into a
 # separate app called 'pacioli' that can be used by Settler or
 # something else. Name coming from Luca Pacioli of Summa Arithmetica
-# fame.
+# fame. [We actually have 'ledger' reserved for this already', and it
+# makes more sense in being very understandable. Keep only 'tapestry'
+# as something _weird_.]
 
 class TransactionManager(models.Manager):
 

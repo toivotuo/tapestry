@@ -1,4 +1,4 @@
-"""Put a single message the exchanger."""
+"""Put a single message to the exchanger."""
 
 import sys
 from django.core.management.base import BaseCommand
@@ -8,6 +8,11 @@ class Command(BaseCommand):
     help = "Put a single message to the exchanger"
 
     def add_arguments(self, parser):
+        parser.add_argument(
+            "scheme",
+            nargs=1,
+            type=str,
+            help="Scheme of the message")
         parser.add_argument(
             "msgtype",
             nargs=1,
@@ -30,6 +35,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         from fex.models import Message
 
+        scheme = options['scheme'][0]
         msgtype = options['msgtype'][0]
         filename = options['filename'][0]
 
@@ -41,10 +47,11 @@ class Command(BaseCommand):
         data = fh.read()
 
         msg = Message.objects.create(
+            scheme=scheme,
             msgtype=msgtype,
             payload=data,
         )
 
         fh.close()
-        self.success("Message put success: {} {} {}".format(
-            msg.pk, msg.uuid, msg.msgtype))
+        self.success("Message put success: {} {} {} {}".format(
+            msg.pk, msg.uuid, msg.scheme, msg.msgtype))

@@ -124,3 +124,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Configuration for payment systems
+
+# FIXME: The schemes should be registered directly by each IMP.
+#from impsepa.processors import SCTSEPAProcessor
+
+#SUPPORTED_SCHEMES = {
+#    'eu.sepa.sct': SCTSEPAProcessor,
+#}
+
+SUPPORTED_PAYMENT_SCHEMES = [
+    'eu.sepa.sct',
+]

@@ -25,7 +25,7 @@ class Command(BaseCommand):
 
         msg = Message.objects.get(pk=msgid)
 
-        self.success("Message get success: {} {} {}".format(
-            msg.pk, msg.uuid, msg.msgtype))
+        self.success("Message get success: {} {} {} {}".format(
+            msg.pk, msg.uuid, msg.scheme, msg.msgtype))
 
-        print(msg.payload)
+        # print(msg.payload)  # FIXME: require this to go to a files

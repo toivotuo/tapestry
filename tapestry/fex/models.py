@@ -1,9 +1,15 @@
 import uuid
 from django.db import models
+from django.conf import settings
+
 
 class Message(models.Model):
-    """ Represents a single model exchanged via the FEX. """
+    """Represent a single message exchanged via the FEX."""
+
+    SCHEME_CHOICES = [(s, s) for s in settings.SUPPORTED_PAYMENT_SCHEMES]
+
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
+    scheme = models.CharField(max_length=70, blank=False, choices=SCHEME_CHOICES)
     msgtype = models.CharField(max_length=140, blank=False)
     # FIXME: Should store 'payload' in AWS S3 or similar.
     payload = models.BinaryField(blank=False)
