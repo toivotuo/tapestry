@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
 from django.conf import settings
-
+import django.dispatch
 
 class Message(models.Model):
     """Represent a single message exchanged via the FEX."""
@@ -33,3 +33,5 @@ class Message(models.Model):
 # obviously invalid messages (not matching e.g. schema). Maybe for
 # now, I'll just have a 'validated' boolean here. Using FSM instead of
 # a bunch of booleans would be better though.
+
+message_received = django.dispatch.Signal()
