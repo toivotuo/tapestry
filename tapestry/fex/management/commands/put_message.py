@@ -34,6 +34,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         from fex.models import Message
+        from fex.models import message_received
 
         scheme = options['scheme'][0]
         msgtype = options['msgtype'][0]
@@ -43,8 +44,8 @@ class Command(BaseCommand):
             fh = sys.stdin  # FIXME: Likely doesn't work as doesn't do binary
         else:
             fh = open(filename, 'rb')
-
         data = fh.read()
+        fh.close()
 
         msg = Message.objects.create(
             scheme=scheme,
@@ -52,6 +53,12 @@ class Command(BaseCommand):
             payload=data,
         )
 
-        fh.close()
+        # FIXME: This signal should really not be sent here! Also,
+        # Message.__class__ doesn't seem to send really the class.
+        responses = message_received.send(Message.__class__, message=msg.pk)
+
+        # FIXME: Do actual validation of the responses and then save
+        # that the message has been processed.
+
         self.success("Message put success: {} {} {} {}".format(
             msg.pk, msg.uuid, msg.scheme, msg.msgtype))

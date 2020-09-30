@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # proprietary apps for tapestry
+    # Proprietary Django apps for tapestry
     'clearer',  # Clear all the payments!
     'settler',  # Settle all the payments!
     'impsepa',  # An IMP for SEPA
