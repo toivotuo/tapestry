@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- definition of restrictions -->
+<!-- generic -->
+<xs:simpleType name="filetypeType">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="full|delta"/>
+	</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="modification_flagType">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="A|M|D"/>
+	</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="bicType">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="[0-9A-Z]{11}"/>
+	</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="dateType">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="[0-9]{8}"/>
+	</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="iso_country_codeType">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="[A-Z]{2}"/>
+	</xs:restriction>
+</xs:simpleType>
+<!-- directory specific -->
+<xs:simpleType name="sp_record_keyType">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="SP[0-9A-Z]{10}"/>
+	</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="schemeType">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="SCT|SDD B2B|SDD CORE"/>
+	</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="preferredType">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="P"/>
+	</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="reachabilityType">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="D|I"/>
+	</xs:restriction>
+</xs:simpleType>
+
+<!-- definition of simple elements -->
+<xs:element name="modification_flag" type="modification_flagType" />
+<xs:element name="record_key" type="sp_record_keyType" />
+<xs:element name="bic" type="bicType" />
+<xs:element name="institution_name" type="xs:string" />
+<xs:element name="city" type="xs:string" />
+<xs:element name="iso_country_code" type="iso_country_codeType" />
+<xs:element name="scheme" type="schemeType" />
+<xs:element name="adherence_bic" type="bicType" />
+<xs:element name="adherence_start_date" type="dateType" />
+<xs:element name="adherence_stop_date" type="dateType" />
+<xs:element name="payment_channel_id" type="xs:string" />
+<xs:element name="preferred_channel_flag" type="preferredType" />
+<xs:element name="reachability" type="reachabilityType" />
+<xs:element name="intermediary_institution_bic" type="bicType" />
+<xs:element name="start_date" type="dateType" />
+<xs:element name="stop_date" type="dateType" />
+<xs:element name="aos" type="xs:string" />
+<xs:element name="field_a" type="xs:string" />
+<xs:element name="field_b" type="xs:string" />
+
+<!-- definition of attributes -->
+<xs:attribute name="product" type="xs:string" />
+<xs:attribute name="filetype" type="filetypeType" />
+<xs:attribute name="filedate" type="dateType" />
+
+<!-- definition of complex elements -->
+<xs:element name="dataexport">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" name="separouting_v3">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="modification_flag" />
+						<xs:element ref="record_key" />
+						<xs:element ref="bic" />
+						<xs:element ref="institution_name" />
+						<xs:element ref="city" minOccurs="0" />
+						<xs:element ref="iso_country_code" />
+						<xs:element ref="scheme" />
+						<xs:element ref="adherence_bic" minOccurs="0" />
+						<xs:element ref="adherence_start_date" minOccurs="0" />
+						<xs:element ref="adherence_stop_date" minOccurs="0" />
+						<xs:element ref="payment_channel_id" />
+						<xs:element ref="preferred_channel_flag" minOccurs="0" />
+						<xs:element ref="reachability" minOccurs="0" />
+						<xs:element ref="intermediary_institution_bic" minOccurs="0" />
+						<xs:element ref="start_date" minOccurs="0" />
+						<xs:element ref="stop_date" minOccurs="0" />
+						<xs:element ref="aos" minOccurs="0" />
+						<xs:element ref="field_a" minOccurs="0" />
+						<xs:element ref="field_b" minOccurs="0" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="product" use="required" />
+		<xs:attribute ref="filetype" use="required" />
+		<xs:attribute ref="filedate" use="required" />
+	</xs:complexType>
+</xs:element>
+
+</xs:schema>
