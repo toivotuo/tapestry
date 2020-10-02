@@ -57,7 +57,6 @@ class Command(BaseCommand):
             'amount': root.amount,
             'currency': str(root.currency),  # FIXME: django-xml is buggy here
             'payload': xml,
-
         }
 
         # Setup the queue where the router is waiting

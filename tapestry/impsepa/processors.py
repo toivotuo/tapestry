@@ -32,8 +32,18 @@ class Processor(abc.ABC):  # FIXME: name better and move elsewhere
         pass
 
     @abc.abstractmethod
-    def validate_message(self, message: Message)-> bool:
+    def validate_message(self, message: Message) -> bool:
         """Run schema validation on a message received or sent."""
+        pass
+
+    @abc.abstractmethod
+    def debulk_message(self, message: Message) -> list:
+        """Split a message into single payments."""
+        pass
+
+    @abc.abstractmethod
+    def create_payments(self, payments: list) -> list:
+        """Create payments from a debulked message."""
         pass
 
 
@@ -52,16 +62,24 @@ class SCTSEPAProcessor(SEPAProcessor):  # FIXME: unreadable class name
         return False
 
     def validate_message(self, message):
-        """Validate that message matches an XSD schema."""
+        """Validate that message matches a SEPA XSD schema."""
         from io import BytesIO
         from lxml import etree
+
+        assert message.scheme == 'eu.sepa.sct'
+
+        # FIXME: We should be doing much more validation here beyond
+        # just validating the schema.
 
         SCHEMAS = {
             'pacs.008.001.02': "impsepa/xsd/sepa-sct-2019/EPC115-06_2019_V1.0_pacs.008.001.02.xsd",
         }
 
         # Load the schema
-        xsdfile = SCHEMAS[message.msgtype]  # FIXME: no error handling
+        xsdfile = SCHEMAS.get(message.msgtype, None)
+        if xsdfile is None:
+            raise ProcessorError("Message type not supported: {} {}".format(
+                message.scheme, message.msgtype))
         with open(xsdfile) as xsdfd:
             xmlschema_doc = etree.parse(xsdfd)
         xmlschema = etree.XMLSchema(xmlschema_doc)
@@ -74,3 +92,76 @@ class SCTSEPAProcessor(SEPAProcessor):  # FIXME: unreadable class name
             raise ProcessorError(str(e))
 
         return True  # valid message
+
+    def debulk_message(self, message):
+        """Split a SEPA payment message into individual payments."""
+        from io import BytesIO
+        from lxml import etree
+
+        assert message.scheme == 'eu.sepa.sct'
+        assert message.msgtype ==  'pacs.008.001.02'  # only type supported
+
+        # FIXME: Architecture here is not efficient as we process the
+        # message with lxml multiple times. Better to put the message
+        # to the class instance and process it only once. Will need a
+        # bit of refactoring to get there.
+
+        doc = etree.parse(BytesIO(message.payload))
+
+        namespaces = {
+            'pacs': 'urn:iso:std:iso:20022:tech:xsd:pacs.008.001.02'
+        }
+
+        payments = doc.xpath('//pacs:Document/pacs:FIToFICstmrCdtTrf/pacs:CdtTrfTxInf',
+                             namespaces=namespaces)
+
+        return payments
+
+    def create_payments(self, payments):
+        """Create payment packets ready for the Clearer."""
+        from lxml import etree
+
+        namespaces = {
+            'pacs': 'urn:iso:std:iso:20022:tech:xsd:pacs.008.001.02'
+        }
+
+        packets = []
+
+        for payment in payments:
+            debtor_iban = payment.xpath(
+                "//pacs:CdtTrfTxInf/pacs:DbtrAcct/pacs:Id/pacs:IBAN",
+                namespaces=namespaces)
+
+            creditor_iban = payment.xpath(
+                "//pacs:CdtTrfTxInf/pacs:CdtrAcct/pacs:Id/pacs:IBAN",
+                namespaces=namespaces)
+
+            debtor_bic = payment.xpath(
+                "//pacs:CdtTrfTxInf/pacs:DbtrAgt/pacs:FinInstnId/pacs:BIC",
+                namespaces=namespaces)
+
+            creditor_bic = payment.xpath(
+                "//pacs:CdtTrfTxInf/pacs:CdtrAgt/pacs:FinInstnId/pacs:BIC",
+                namespaces=namespaces)
+
+            amount = payment.xpath(
+                "//pacs:CdtTrfTxInf/pacs:IntrBkSttlmAmt",
+                namespaces=namespaces)
+
+            currency = payment.xpath(
+                "//pacs:CdtTrfTxInf/pacs:IntrBkSttlmAmt/@Ccy",
+                namespaces=namespaces)
+
+            packet = {
+                'source_iban': debtor_iban[0].text,
+                'destination_iban': creditor_iban[0].text,
+                'source_bic': debtor_bic[0].text,
+                'destination_bic': creditor_bic[0].text,
+                'amount': amount[0].text,
+                'currency': str(currency[0]),
+                'payload': etree.tostring(payment),
+            }
+
+            packets.append(packet)
+
+        return packets
