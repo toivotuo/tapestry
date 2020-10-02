@@ -10,7 +10,7 @@ from rsmq.cmd.exceptions import QueueAlreadyExists, NoMessageInQueue
 pp = pprint.PrettyPrinter()
 
 class Command(BaseCommand):
-    help = "Send a single payment for clearing"
+    help = "Receive a single payment from clearing"
 
     def add_arguments(self, parser):
         parser.add_argument('destination', nargs=1, type=str)

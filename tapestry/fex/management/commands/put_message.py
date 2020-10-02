@@ -53,9 +53,8 @@ class Command(BaseCommand):
             payload=data,
         )
 
-        # FIXME: This signal should really not be sent here! Also,
-        # Message.__class__ doesn't seem to send really the class.
-        responses = message_received.send(Message.__class__, message=msg.pk)
+        # FIXME: This signal should really not be sent here!
+        responses = message_received.send(type(msg), message=msg.pk)
 
         # FIXME: Do actual validation of the responses and then save
         # that the message has been processed.

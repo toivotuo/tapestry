@@ -9,6 +9,7 @@ logger = logging.getLogger(__name__)
 def fex_message_received(sender, **kwargs):
     from impsepa.processors import SCTSEPAProcessor
     from fex.models import Message
+    from clearer.signals import clearer_packet_ingress
 
     msg = Message.objects.get(pk=kwargs['message'])
     logger.info("Processing fex.Message: %s %s %s",
@@ -34,6 +35,9 @@ def fex_message_received(sender, **kwargs):
 
     for packet in packets:
         packet = yaml.dump(packet)
-        print(packet)
+        responses = clearer_packet_ingress.send(sct.scheme, packet=packet)
+
+        # FIXME: Do actual validation of the responses - and switch to
+        # using send_robust().
 
     return res

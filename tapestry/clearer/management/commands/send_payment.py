@@ -10,7 +10,7 @@ from django.core.management.base import BaseCommand, CommandError
 pp = pprint.PrettyPrinter()
 
 class Command(BaseCommand):
-    help = "Send a single payment for clearing"
+    help = "Send a single payment to clearing"
 
     def add_arguments(self, parser):
         parser.add_argument('source', nargs=1, type=str)
