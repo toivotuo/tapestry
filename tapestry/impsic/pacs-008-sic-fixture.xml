@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Beispiel 1: Anwendungsfall Kundenzahlung auf ein Bankkonto (STP-Kundenzahlung)-->
+<!-- Sourced form https://www.six-group.com/dam/download/banking-services/interbank-clearing/en/standardization/iso/interbank/xml-examples_4_7.zip "Beispiel 1: Anwendungsfall Kundenzahlung auf ein Bankkonto (STP-Kundenzahlung)" -->
 <Document xmlns="http://www.six-interbank-clearing.com/de/pacs.008.001.02.ch.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.six-interbank-clearing.com/de/pacs.008.001.02.ch.02 pacs.008.001.02.ch.02.xsd">
   <FIToFICstmrCdtTrf>
     <GrpHdr>
       <MsgId>MSGID-pacs008-20190522-0001</MsgId>
-      <CreDtTm>2019-05-22T09:30:47</CreDtTm>
+      <CreDtTm>2020-09-28T09:46:56Z</CreDtTm>
       <NbOfTxs>1</NbOfTxs>
-      <IntrBkSttlmDt>2019-05-22</IntrBkSttlmDt>
+      <IntrBkSttlmDt>2020-09-28</IntrBkSttlmDt>
       <SttlmInf>
         <SttlmMtd>CLRG</SttlmMtd>
       </SttlmInf>
@@ -42,10 +42,10 @@
           <Prtry>CSTPMT</Prtry>
         </LclInstrm>
       </PmtTpInf>
-      <IntrBkSttlmAmt Ccy="CHF">1111</IntrBkSttlmAmt>
+      <IntrBkSttlmAmt Ccy="CHF">42.00</IntrBkSttlmAmt>
       <ChrgBr>SHAR</ChrgBr>
       <Dbtr>
-        <Nm>Uhrengrosshandel Buxtehude</Nm>
+        <Nm>Bob</Nm>
         <PstlAdr>
           <AdrLine>Buxtehude</AdrLine>
         </PstlAdr>
@@ -76,10 +76,12 @@
         </FinInstnId>
       </CdtrAgt>
       <Cdtr>
-        <Nm>Horlogerie du Joux</Nm>
-        <PstlAdr>
-          <AdrLine>Les Brenets</AdrLine>
-        </PstlAdr>
+        <Nm>Alice</Nm>
+	<PstlAdr>
+	  <Ctry>CH</Ctry>
+	  <AdrLine>Quai Gustave-Ador</AdrLine>
+	  <AdrLine>1207 Geneve</AdrLine>
+	</PstlAdr>
       </Cdtr>
       <CdtrAcct>
         <Id>
