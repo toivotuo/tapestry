@@ -38,9 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Contributed Django apps
+    'localflavor',
+    'django_countries',
     # Proprietary Django apps for tapestry
     'clearer',  # Clear all the payments!
     'settler',  # Settle all the payments!
+    'router',  # Route all the payments!
     'impsepa',  # An IMP for SEPA
     'fex',  # File (Message) Exchanger
 ]
@@ -154,4 +158,7 @@ LOGGING = {
 
 SUPPORTED_PAYMENT_SCHEMES = [
     'eu.sepa.sct',
+    'eu.sepa.sctinst',
+    'eu.sepa.sddcore',
+    'eu.sepa.sddb2b',
 ]
