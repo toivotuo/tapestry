@@ -1,4 +1,10 @@
-# A management command for the 'router' to do payments clearing.
+"""
+A management command to run a routing daemon to do payments clearing.
+"""
+
+# FIXME: This on its way to being deprecated in favour of the simpler
+# Django signals based implementation that is used in development. A
+# more decoupled architecture can then be developed later.
 
 import time
 import yaml
@@ -10,9 +16,13 @@ from rsmq.cmd.exceptions import QueueAlreadyExists, NoMessageInQueue
 pp = pprint.PrettyPrinter()
 
 # FIXME: Make the "payment packet" into a class that resembles an
-# MT103 or a pacs.008.
+# MT103 or a pacs.008. [Or make it at least a class, no matter what it
+# resembles, probably not a pacs.008 as we want it to have a scheme
+# agnostic header and otherwise simply transport the payload.]
 
 class Command(BaseCommand):
+    from clearer.services import RoutingService
+
     help = "Runs the router for clearing payments"
 
     QUEUES = {}
@@ -82,17 +92,23 @@ class Command(BaseCommand):
                         bic, time.asctime()))
                     continue
 
-                # Authorise a payment packet; if not authorised just drop the packet.
+                # Authorise a payment packet; if not authorised just
+                # drop the packet.
 
                 # FIXME: The payment packet should be an object and we
-                # should have methods for routing et around that.
+                # should have methods for routing etc around that. [Or
+                # maybe not as we have a routing service for the
+                # routing. But the payment packet should certainly be
+                # an object.]
 
-                if not self.authorise(packet):
-                    # FIXME: Non-authorised packets we should be
-                    # returned to sender. The router would need to
-                    # have more in the payment packet to describe what
-                    # a returned packet is. Therefore we will need to
-                    # have unified packet types.
+                routserv = RoutingService()
+
+                if not routserv.authorise(packet):
+                    # FIXME: Non-authorised packets should be returned
+                    # to sender. The router would need to have more in
+                    # the payment packet to describe what a returned
+                    # packet is. Therefore we will need to have
+                    # unified packet types.
 
                     self.success("Payment packet authorisation failed: {}".format(
                         self.format_payment(packet)))
@@ -105,7 +121,7 @@ class Command(BaseCommand):
                 # Route the packet by finding out what the destination
                 # interface is.
 
-                destination_bic = self.route(packet)
+                destination_bic = routserv.route(packet)
 
                 if not destination_bic:
                     self.error("No destination for payment packet {}".format(
@@ -136,15 +152,3 @@ class Command(BaseCommand):
             payment['source_bic'], payment['destination_bic'],
             payment['amount'], payment['currency'],
         )
-
-    def authorise(self, payment):
-        """ Authorise a single payment packet via the settlement module. """
-        from settler.services import AuthorisationService
-        authserv = AuthorisationService()
-        return authserv.authorise(payment)
-
-    def route(self, payment):
-        """ Route a single packet by finding its destination interface (BIC). """
-        # FIXME: No routing logic happening here except we simply use
-        # the destination BIC.
-        return payment['destination_bic']

@@ -12,9 +12,7 @@ class AuthorisationService(object):
 
     def authorise(self, payment):
         """Takes in a 'payment packet' akin to an MT103 ("Single Customer
-        Credit Transfer").
-
-        """
+        Credit Transfer")."""
         from decimal import Decimal
         from settler.models import Transaction
 
