@@ -22,7 +22,7 @@ django.setup()
 # -- Project information -----------------------------------------------------
 
 project = 'Tapestry'
-copyright = '2020, Tuomas Toivonen'
+copyright = '2020 Tuomas Toivonen'
 author = 'Tuomas Toivonen'
 
 
@@ -34,6 +34,8 @@ author = 'Tuomas Toivonen'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
+    'sphinx.ext.todo',
+    'sphinx.ext.viewcode',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
