@@ -53,7 +53,7 @@
     <institution_name>BANKHAUS CARL SPAENGLER UND CO. AKTIENGESELLSCHAFT</institution_name>
     <city>SALZBURG</city>
     <iso_country_code>AT</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>SPAEAT2SXXX</adherence_bic>
     <adherence_start_date>20091102</adherence_start_date>
     <payment_channel_id>STPA</payment_channel_id>
@@ -110,7 +110,7 @@
     <institution_name>THE ROYAL BANK OF SCOTLAND PLC BELGIUM (FORMERLY KNOWN AS RBS NV)</institution_name>
     <city>BRUSSELS</city>
     <iso_country_code>BE</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>RBOSNL2AXXX</adherence_bic>
     <adherence_start_date>20091102</adherence_start_date>
     <payment_channel_id>EBAS</payment_channel_id>
@@ -221,7 +221,7 @@
     <institution_name>THE ROYAL BANK OF SCOTLAND PLC ZURICH (FORMERLY KNOWN AS RBS NV)</institution_name>
     <city>ZURICH</city>
     <iso_country_code>CH</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>RBOSNL2AXXX</adherence_bic>
     <adherence_start_date>20091102</adherence_start_date>
     <payment_channel_id>EBAS</payment_channel_id>
@@ -326,7 +326,7 @@
     <institution_name>THE ROYAL BANK OF SCOTLAND PLC CZECH REPUBLIC (FORMERLY KNOWN AS RBS NV)</institution_name>
     <city>PRAGUE</city>
     <iso_country_code>CZ</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>RBOSNL2AXXX</adherence_bic>
     <adherence_start_date>20091102</adherence_start_date>
     <payment_channel_id>EBAS</payment_channel_id>
@@ -386,7 +386,7 @@
     <institution_name>SPARKASSE AACHEN</institution_name>
     <city>AACHEN</city>
     <iso_country_code>DE</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>AACSDE33XXX</adherence_bic>
     <adherence_start_date>20101101</adherence_start_date>
     <payment_channel_id>EBAS</payment_channel_id>
@@ -449,7 +449,7 @@
     <institution_name>THE ROYAL BANK OF SCOTLAND PLC DENMARK (FORMERLY KNOWN AS RBS NV)</institution_name>
     <city>COPENHAGEN</city>
     <iso_country_code>DK</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>RBOSNL2AXXX</adherence_bic>
     <adherence_start_date>20091102</adherence_start_date>
     <payment_channel_id>EBAS</payment_channel_id>
@@ -540,7 +540,7 @@
     <institution_name>CAIXABANK, S.A.</institution_name>
     <city>BARCELONA</city>
     <iso_country_code>ES</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>CAIXESBBXXX</adherence_bic>
     <adherence_start_date>20120227</adherence_start_date>
     <payment_channel_id>IBPA</payment_channel_id>
@@ -602,7 +602,7 @@
     <institution_name>SKANDINAVISKA ENSKILDA BANKEN</institution_name>
     <city>HELSINKI</city>
     <iso_country_code>FI</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>ESSESESSXXX</adherence_bic>
     <adherence_start_date>20091102</adherence_start_date>
     <payment_channel_id>EBAS</payment_channel_id>
@@ -663,7 +663,7 @@
     <institution_name>THE ROYAL BANK OF SCOTLAND PLC FRANCE (FORMERLY KNOWN AS RBS NV)</institution_name>
     <city>PARIS</city>
     <iso_country_code>FR</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>RBOSNL2AXXX</adherence_bic>
     <adherence_start_date>20091102</adherence_start_date>
     <payment_channel_id>EBAS</payment_channel_id>
@@ -724,7 +724,7 @@
     <institution_name>THE ROYAL BANK OF SCOTLAND PLC LONDON (FORMERLY KNOWN AS RBS NV)</institution_name>
     <city>LONDON</city>
     <iso_country_code>GB</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>RBOSNL2AXXX</adherence_bic>
     <adherence_start_date>20091102</adherence_start_date>
     <payment_channel_id>EBAS</payment_channel_id>
@@ -907,7 +907,7 @@
     <institution_name>BANK OF AMERICA, N.A. ATHENS</institution_name>
     <city>ATHENS</city>
     <iso_country_code>GR</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>BOFAGB22XXX</adherence_bic>
     <adherence_start_date>20091102</adherence_start_date>
     <payment_channel_id>EBAS</payment_channel_id>
@@ -1034,7 +1034,7 @@
     <institution_name>THE ROYAL BANK OF SCOTLAND PLC IRELAND (FORMERLY KNOWN AS RBS NV)</institution_name>
     <city>DUBLIN</city>
     <iso_country_code>IE</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>RBOSNL2AXXX</adherence_bic>
     <adherence_start_date>20091102</adherence_start_date>
     <payment_channel_id>EBAS</payment_channel_id>
@@ -1110,7 +1110,7 @@
     <institution_name>THE ROYAL BANK OF SCOTLAND PLC ITALY (FORMERLY KNOWN AS RBS NV)</institution_name>
     <city>MILANO</city>
     <iso_country_code>IT</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>RBOSNL2AXXX</adherence_bic>
     <adherence_start_date>20091102</adherence_start_date>
     <payment_channel_id>EBAS</payment_channel_id>
@@ -1241,7 +1241,7 @@
     <institution_name>THE ROYAL BANK OF SCOTLAND PLC LUXEMBOURG</institution_name>
     <city>LUXEMBOURG</city>
     <iso_country_code>LU</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <payment_channel_id>EBAS</payment_channel_id>
     <reachability>I</reachability>
     <intermediary_institution_bic>RBOSNL2AXXX</intermediary_institution_bic>
@@ -1509,7 +1509,7 @@
     <institution_name>BANK OF AMERICA MERRILL LYNCH INTERNATIONAL LIMITED, NETHERLANDS BRANCH</institution_name>
     <city>AMSTERDAM</city>
     <iso_country_code>NL</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>BOFAGB22XXX</adherence_bic>
     <adherence_start_date>20091102</adherence_start_date>
     <payment_channel_id>EBAS</payment_channel_id>
@@ -1573,7 +1573,7 @@
     <institution_name>SKANDINAVISKA ENSKILDA BANKEN</institution_name>
     <city>OSLO</city>
     <iso_country_code>NO</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>ESSESESSXXX</adherence_bic>
     <adherence_start_date>20091102</adherence_start_date>
     <payment_channel_id>EBAS</payment_channel_id>
@@ -1661,7 +1661,7 @@
     <institution_name>RBS BANK (POLSKA) S.A.</institution_name>
     <city>WARSZAWA</city>
     <iso_country_code>PL</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>ABNAPLPWXXX</adherence_bic>
     <adherence_start_date>20091102</adherence_start_date>
     <payment_channel_id>EBAS</payment_channel_id>
@@ -1769,7 +1769,7 @@
     <institution_name>DEUTSCHE BANK AG PORTUGAL BRANCH</institution_name>
     <city>LISBON</city>
     <iso_country_code>PT</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <payment_channel_id>EBAS</payment_channel_id>
     <preferred_channel_flag>P</preferred_channel_flag>
     <reachability>I</reachability>
@@ -1926,7 +1926,7 @@
     <institution_name>THE ROYAL BANK OF SCOTLAND PLC NORDIC (FORMERLY KNOWN AS RBS NV)</institution_name>
     <city>STOCKHOLM</city>
     <iso_country_code>SE</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>RBOSNL2AXXX</adherence_bic>
     <adherence_start_date>20091102</adherence_start_date>
     <payment_channel_id>EBAS</payment_channel_id>
@@ -2036,7 +2036,7 @@
     <institution_name>COMMERZBANK AG</institution_name>
     <city>BRATISLAVA</city>
     <iso_country_code>SK</iso_country_code>
-    <scheme>SDD COR1</scheme>
+    <scheme>SDD CORE</scheme>
     <adherence_bic>COBADEFFXXX</adherence_bic>
     <adherence_start_date>20091102</adherence_start_date>
     <payment_channel_id>EBAS</payment_channel_id>
