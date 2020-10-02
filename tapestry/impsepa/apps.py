@@ -6,8 +6,8 @@ class ImpsepaConfig(AppConfig):
     verbose_name = 'SEPA IMP'
 
     def ready(self):
-        from fex.models import message_received
-        from impsepa.signals import fex_message_received
+        from fex.signals import message_received
+        from impsepa.handlers import fex_message_received
 
         message_received.connect(
             fex_message_received,

@@ -34,7 +34,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         from fex.models import Message
-        from fex.models import message_received
+        from fex.signals import message_received
 
         scheme = options['scheme'][0]
         msgtype = options['msgtype'][0]
