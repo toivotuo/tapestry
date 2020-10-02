@@ -126,6 +126,23 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
+# Configuration for logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+}
+
+
 # Configuration for payment systems
 
 # FIXME: The schemes should be registered directly by each IMP.
