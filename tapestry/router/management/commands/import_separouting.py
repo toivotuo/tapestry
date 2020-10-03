@@ -1,6 +1,5 @@
 """Import a SWIFTRef 'SEPAROUTING' V3 file to the Router."""
 
-import sys
 import logging
 import datetime
 from django.core.management.base import BaseCommand
@@ -22,7 +21,6 @@ class Command(BaseCommand):
         records a bit, and create a SepaRoute in the database for each
         routing entry from the XML.
         """
-        from router.models import SepaRoute
         from router.xsd import separouting_v3
         from router.forms import SepaRouteForm
 
@@ -34,6 +32,10 @@ class Command(BaseCommand):
         # importing of the whole file atomic.
 
         for entry in root.separouting_v3:
+            # FIXME: As we only support new entries and not the delta
+            # files with changes, there should be a check on whether
+            # entry with the same record key exists and then data just
+            # should be updated.
             if entry.modification_flag != 'A':
                 logger.warning("Failed to import record %s with unknown modification flag: %s",
                                entry.record_key, entry.modification_flag)

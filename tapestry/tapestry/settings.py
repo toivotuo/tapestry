@@ -156,9 +156,12 @@ LOGGING = {
 #    'eu.sepa.sct': SCTSEPAProcessor,
 #}
 
+# FIXME: tapestry.constants defines a model choices field for this,
+# and has the same data, duplicated.
 SUPPORTED_PAYMENT_SCHEMES = [
     'eu.sepa.sct',
     'eu.sepa.sctinst',
     'eu.sepa.sddcore',
     'eu.sepa.sddb2b',
+    'eu.sepa.scc',
 ]
