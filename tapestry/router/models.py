@@ -10,6 +10,12 @@ class SepaRoute(models.Model):
 
     # FIXME: Could terminology here be aligned with BGP4?
 
+    class ReachabilityChoice(models.TextChoices):
+        DIRECT = 'direct', 'Direct Participant'
+        INDIRECT = 'indirect', 'Indirect Participant'
+        UNKNOWN = 'unknown', 'Unknown'
+
+
     SCHEME_CHOICES = [(s, s) for s in settings.SUPPORTED_PAYMENT_SCHEMES]
 
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
@@ -20,12 +26,9 @@ class SepaRoute(models.Model):
     psp_city = models.CharField(max_length=35, blank=False)
     psp_country = CountryField()
     reachable_via = models.CharField(max_length=4, blank=True)
-    reachablility_type = models.CharField(max_length=16, blank=False, choices=(
-        ('direct', 'Direct Participant'),
-        ('indirect', 'Indirect Participant'),
-        ('unknown', 'Unknown'),
-    ))
-    intermediary_bic = BICField(blank=True, null=True)
+    reachability_type = models.CharField(max_length=16, blank=False,
+                                          choices=ReachabilityChoice.choices)
+    intermediary_bic = BICField(blank=True)
     preferred_route = models.BooleanField(default=False)
-    valid_from = models.DateField(null=True)
-    valid_to = models.DateField(null=True)
+    valid_from = models.DateField(null=True, blank=True)
+    valid_to = models.DateField(null=True, blank=True)
