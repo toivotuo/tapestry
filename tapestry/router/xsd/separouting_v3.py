@@ -1,7 +1,7 @@
 # ./separouting_v3.py
 # -*- coding: utf-8 -*-
 # PyXB bindings for NM:e92452c8d3e28a9e27abfc9994d2007779e7f4c9
-# Generated 2020-10-02 23:04:43.608390 by PyXB version 1.2.6 using Python 3.7.3.final.0
+# Generated 2020-10-03 21:24:26.630364 by PyXB version 1.2.6 using Python 3.7.3.final.0
 # Namespace AbsentNamespace0
 
 from __future__ import unicode_literals
@@ -14,7 +14,7 @@ import pyxb.utils.domutils
 import sys
 import pyxb.utils.six as _six
 # Unique identifier for bindings created at the same time
-_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:833f3298-04ea-11eb-afa2-04d3b0c539f1')
+_GenerationUID = pyxb.utils.utility.UniqueIdentifier('urn:uuid:ab43c220-05a5-11eb-afa2-04d3b0c539f1')
 
 # Version of PyXB used to generate the bindings
 _PyXBVersion = '1.2.6'
