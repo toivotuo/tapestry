@@ -17,23 +17,21 @@ class Command(BaseCommand):
             type=str,
             help="Name of the 'SEPAROUTING' XML file to import")
 
-    def success(self, message):
-        self.stderr.write(self.style.SUCCESS(message))
-
-    def error(self, message):
-        self.stderr.write(self.style.ERROR(message))
-
     def handle(self, *args, **options):
+        """Read the 'SEPAROUTING' XML file with PyXB bindings, mangle the data
+        records a bit, and create a SepaRoute in the database for each
+        routing entry from the XML.
+        """
         from router.models import SepaRoute
         from router.xsd import separouting_v3
+        from router.forms import SepaRouteForm
 
         filename = options['filename'][0]
         with open(filename) as fd:
             root = separouting_v3.CreateFromDocument(fd.read())
 
-        # FIXME: Use model form here to get extra validation,
-
-        # FIXME: Do this in transaction to make the importing atomic.
+        # FIXME: Do this in a database transaction to make the
+        # importing of the whole file atomic.
 
         for entry in root.separouting_v3:
             if entry.modification_flag != 'A':
@@ -48,22 +46,38 @@ class Command(BaseCommand):
             reachability_type = entry.reachability
             if reachability_type is None:
                 reachability_type = 'unknown'
-            route = SepaRoute.objects.create(
-                scheme=entry.scheme,
-                external_key=entry.record_key,
-                bic=entry.bic,
-                psp_name=entry.institution_name,
-                psp_city=entry.city,
-                psp_country=entry.iso_country_code,
-                reachable_via=entry.payment_channel_id,
-                reachablility_type=reachability_type,
-                intermediary_bic=entry.intermediary_institution_bic or '',
-                preferred_route=entry.preferred_channel_flag == 'P' and True or False,
-                valid_from=start_date,
-                valid_to=None,
-            )
+            elif reachability_type == 'D':
+                reachability_type = 'direct'
+            elif reachability_type == 'I':
+                reachability_type = 'indirect'
+            scheme_types = {
+                'SCT': 'eu.sepa.sct',
+                'SDD CORE': 'eu.sepa.sddcore',
+                'SDD B2B': 'eu.sepa.sddb2b',
+            }
+            data = {
+                'scheme': scheme_types[entry.scheme],
+                'external_key': entry.record_key,
+                'bic': entry.bic,
+                'psp_name': entry.institution_name,
+                'psp_city': entry.city,
+                'psp_country': entry.iso_country_code,
+                'reachable_via': entry.payment_channel_id,
+                'reachability_type': reachability_type,
+                'intermediary_bic': entry.intermediary_institution_bic or '',
+                'preferred_route': entry.preferred_channel_flag == 'P' and True or False,
+                'valid_from': start_date,
+                'valid_to': None,
+            }
+            form = SepaRouteForm(data=data)
+            if not form.is_valid():
+                logger.warning("Failed to add SEPA route '%s': %s",
+                               entry.record_key, ', '.join(form.errors.keys()))
+                continue
+            route = form.save()
 
-            logger.info("SEPA route added: %s %s %s", route.bic, route.reachable_via, route.scheme)
+            logger.info("Added SEPA route '%s': %s %s %s",
+                        route.external_key, route.bic, route.reachable_via, route.scheme)
 
         message = "Successfully imported file {}".format(filename)
         self.stderr.write(self.style.SUCCESS(message))
