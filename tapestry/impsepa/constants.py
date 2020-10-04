@@ -6,15 +6,25 @@ class SepaCsmChoice(models.TextChoices):
     CSMs. Naming follows the model in the SWIFTRef 'SEPAROUTING' file
     format.
     """
-    EBAS = 'EBAS', 'STEP2 (Belgium)'
+    # These are extracted from the SEPAROUTING sample files. The
+    # schmeas do not have an enumeration for thse. The human readable
+    # names are not from SWIFTRef data; they may or may not be
+    # correct.
+    EBAS = 'EBAS', 'STEP2 PE-ACH (Belgium)'
     STPA = 'STPA', 'FIXME STPA'
     CECB = 'CECB', 'CEC (Belgium)'
     DBSC = 'DBSC', 'SEPA-Clearer (Germany)'
-    PBSD = 'PBSD', 'FIXME PBSD'
+    PBSD = 'PBSD', 'Sumclearing (Denmark)'
     IBPA = 'IBPA', 'Iberpay (Spain)'
     STET = 'STET', 'STET (France)'
-    SCTI = 'SCTI', 'FIXME SCTI'
-    EQNS = 'EQNS', 'Equens (The Netherlands)'
+    SCTI = 'SCTI', 'ICBPI/BI-COMP (Italy)'
+    EQNS = 'EQNS', 'Equens (Netherlands)'
     KIRP = 'KIRP', 'Euro Elixir (Poland)'
-    # FIXME: CTRL is improvised; unknown what the real code is.
+    # The following are improvised. It is unknown what the real
+    # ones are. The SWIFTRef schema specifications that are publicly
+    # available do not have an enumeration for the different CSMs.
     CTRL = 'CTRL', 'CENTROlink (Lithuania)'
+    TIPS = 'TIPS', 'TIPS (Germany)'
+    CSIA = 'CSIA', 'CS.I (Austria)'
+    DIAS = 'DIAS', 'DIAS (Greece)'
+    BSRA = 'BSRA', 'BISERA7-EUR (Bulgaria)'
