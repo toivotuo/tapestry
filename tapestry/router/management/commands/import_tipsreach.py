@@ -35,8 +35,8 @@ class Command(BaseCommand):
             * Avoid creating duplicate entries on multiple runs
         """
         from router.forms import SepaRouteForm
-        from tapestry.constants import PaymentSchemeChoice
-        from impsepa.constants import SepaCsmChoice
+        from tapestry.constants import PaymentScheme
+        from impsepa.constants import SepaCsm
 
         # Read the file to a pandas dataframe for processing.
 
@@ -58,13 +58,13 @@ class Command(BaseCommand):
             ]
 
             data = {
-                'scheme': PaymentSchemeChoice.EU_SEPA_SCTINST,
+                'scheme': PaymentScheme.EU_SEPA_SCTINST,
                 'external_key': '',
                 'bic': bic,
                 'psp_name': psp_name,
                 'psp_city': '',
                 'psp_country': '',
-                'reachable_via': SepaCsmChoice.TIPS,
+                'reachable_via': SepaCsm.TIPS,
                 'reachability_type': reachability_type,
                 'intermediary_bic': '',
                 'preferred_route': None,

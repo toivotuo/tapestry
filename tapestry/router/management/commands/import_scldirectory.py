@@ -32,6 +32,8 @@ class Command(BaseCommand):
         """
         from router.xsd import rocs_001_001_06
         from router.forms import SepaRouteForm
+        from tapestry.constants import PaymentScheme
+        from impsepa.constants import SepaCsm
 
         filename = options['filename'][0]
         with open(filename) as fd:
@@ -52,10 +54,10 @@ class Command(BaseCommand):
 
             # FIXME: R-transaction scheme types not supported
             scheme_types = {
-                'SCT': 'eu.sepa.sct',
-                'SDD core': 'eu.sepa.sddcore',
-                'SDD b2b': 'eu.sepa.sddb2b',
-                'SCC': 'eu.sepa.scc',
+                'SCT': PaymentScheme.EU_SEPA_SCT,
+                'SDD core': PaymentScheme.EU_SEPA_SDDCORE,
+                'SDD b2b': PaymentScheme.EU_SEPA_SDDB2B,
+                'SCC': PaymentScheme.EU_SEPA_SCC,
             }
             scheme_type = scheme_types[entry.Product.ProductName]
 
@@ -65,10 +67,10 @@ class Command(BaseCommand):
                 psp_country = ''
 
             if entry.CSM.PtyId.BICOrBEI == 'MARKDEFF':
-                reachable_via = 'DBSC'
+                reachable_via = SepaCsm.DBSC
                 reachability_type = 'direct'
             elif entry.CSM.PtyId.PrtryId.Id == 'Other CSM':
-                reachable_via = 'DBSC'
+                reachable_via = SepaCsm.DBSC
                 reachability_type = 'indirect'
             else:
                 raise ValueError("Unknown CSM specification")

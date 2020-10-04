@@ -1,6 +1,6 @@
 from django.db import models
 
-class SepaCsmChoice(models.TextChoices):
+class SepaCsm(models.TextChoices):
     """
     Providers identifiers for the different SEPA scheme compatible
     CSMs. Naming follows the model in the SWIFTRef 'SEPAROUTING' file

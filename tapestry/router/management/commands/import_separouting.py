@@ -23,6 +23,7 @@ class Command(BaseCommand):
         """
         from router.xsd import separouting_v3
         from router.forms import SepaRouteForm
+        from tapestry.constants import PaymentScheme
 
         filename = options['filename'][0]
         with open(filename) as fd:
@@ -53,9 +54,9 @@ class Command(BaseCommand):
             elif reachability_type == 'I':
                 reachability_type = 'indirect'
             scheme_types = {
-                'SCT': 'eu.sepa.sct',
-                'SDD CORE': 'eu.sepa.sddcore',
-                'SDD B2B': 'eu.sepa.sddb2b',
+                'SCT': PaymentScheme.EU_SEPA_SCT,
+                'SDD CORE': PaymentScheme.EU_SEPA_SDDCORE,
+                'SDD B2B': PaymentScheme.EU_SEPA_SDDB2B,
             }
             data = {
                 'scheme': scheme_types[entry.scheme],
