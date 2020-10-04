@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Contributed Django apps
     'localflavor',
     'django_countries',
+    'django_extensions',
     # Proprietary Django apps for tapestry
     'clearer',  # Clear all the payments!
     'settler',  # Settle all the payments!
