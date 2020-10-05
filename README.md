@@ -23,7 +23,9 @@ Development conventions
 
 	pytest [FIXME]
 
-	sphinx-apidoc -o docs tapestry
+	# Generating Sphinx docs as HTML
+	cd docs
+	./run-apidoc.sh
 	make html
 
 Development documentation improvements in the pipeline:
