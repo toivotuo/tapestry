@@ -1,4 +1,4 @@
 Clearer
 =======
 
-Here's a bit of intro to the Clearer app.
+Documenting the 'clearer' app is left as future work.

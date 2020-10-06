@@ -1,4 +1,4 @@
 SIC IMP
 =======
 
-FIXME: Nothing to see here, as of yet.
+Documenting the 'impsic' app is left as future work.

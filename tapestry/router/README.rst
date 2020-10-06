@@ -1,4 +1,4 @@
 Router
 ======
 
-FIXME: Nothing to see here, as of yet.
+Documenting the 'router' app is left as future work.

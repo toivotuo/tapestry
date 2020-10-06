@@ -1,4 +1,4 @@
 SEPA IMP
 ========
 
-FIXME: Nothing to see here, as of yet.
+Documenting the 'impsepa' app is left as future work.

@@ -6,6 +6,7 @@ tapestry
 
    clearer
    impsepa
+   ledger
    manage
    router
    settler

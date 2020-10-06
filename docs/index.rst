@@ -34,8 +34,11 @@ What's in the name? See "Star Trek: TNG (S6E15_)".
    clearer.rst
    settler.rst
    router.rst
+   ledger.rst
+   fex.rst
    impsepa.rst
    impsic.rst
+   imp8583.rst
 
 .. automodule:: tapestry
    :members:

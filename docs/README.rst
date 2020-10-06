@@ -9,3 +9,7 @@ following::
 
   ./run-apidoc.sh
   make html
+
+An online version of this documentation is available at here_.
+
+:: _here: https://toivotuo.github.io/tapestry-docs/

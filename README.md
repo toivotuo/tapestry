@@ -28,6 +28,9 @@ the Tapestry code is explored with the thesis document as a
 companion. Payment systems and related concepts are covered at some
 length in the thesis.
 
+Online version of the Tapestry documentation is available at
+https://toivotuo.github.io/tapestry-docs/
+
 **FIXME**: Add a link to the online version of the thesis here once it
 is submitted for review.
 

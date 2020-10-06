@@ -1,4 +1,4 @@
 Settler
 =======
 
-FIXME: Nothing to see here, as of yet.
+Documenting the 'settler' app is left as future work.
