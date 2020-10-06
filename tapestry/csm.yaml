@@ -1,0 +1,18 @@
+# We use the 'bic' as the identifier for the interface to which the
+# PSP is connected to on the router.
+
+# FIXME: We should describe separately the interfaces for routing,
+# both ingress and egress, and what protocols are being used like
+# HTTPS, MQ or EBICS.
+
+# FIXME: We're missing a description of how we would have routing tables fed in.
+
+participants:
+  - bic: SNNABEBB
+    name: Banque Senna
+  - bic: KERULT2X
+    name: Keru Money
+  - bic: WSDMEE21
+    name: Wisdom Transfers
+  - bic: OOINESMM
+    name: OOIN Banco
