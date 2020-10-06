@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.six-interbank-clearing.com/de/camt.008.001.06.ch.01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.six-interbank-clearing.com/de/camt.008.001.06.ch.01 camt.008.001.06.ch.01.xsd">
+	<CclTx>
+		<MsgHdr>
+			<MsgId>SIC4-123456</MsgId>
+			<CreDtTm>2012-02-01T05:10:10</CreDtTm>
+			<ReqTp>
+				<Prtry>
+					<Id>CSC</Id>
+				</Prtry>
+			</ReqTp>
+		</MsgHdr>
+		<PmtId>
+			<LngBizId>
+				<TxId>124/5/7-1234</TxId>
+				<IntrBkSttlmAmt>1200.00</IntrBkSttlmAmt>
+				<IntrBkSttlmDt>2012-02-01</IntrBkSttlmDt>
+				<InstgAgt>
+					<FinInstnId>
+						<ClrSysMmbId>
+							<ClrSysId>
+								<Cd>CHSIC</Cd>
+							</ClrSysId>
+							<MmbId>090002</MmbId>
+						</ClrSysMmbId>
+					</FinInstnId>
+				</InstgAgt>
+				<InstdAgt>
+					<FinInstnId>
+						<ClrSysMmbId>
+							<ClrSysId>
+								<Cd>CHSIC</Cd>
+							</ClrSysId>
+							<MmbId>098064</MmbId>
+						</ClrSysMmbId>
+					</FinInstnId>
+				</InstdAgt>
+			</LngBizId>
+		</PmtId>
+		<CxlRsn>
+			<Rsn>
+				<Prtry>Storno wg. Doppelzahlung</Prtry>
+			</Rsn>
+		</CxlRsn>
+	</CclTx>
+</Document>

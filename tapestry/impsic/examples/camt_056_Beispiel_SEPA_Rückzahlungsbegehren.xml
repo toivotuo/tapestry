@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.six-interbank-clearing.com/de/camt.056.001.01.ch.01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.six-interbank-clearing.com/de/camt.056.001.01.ch.01 camt.056.001.01.ch.01.xsd">
+	<FIToFIPmtCxlReq>
+		<Assgnmt>
+			<Id>MSGID-camt056-20190522-2-SEPA</Id>
+			<Assgnr>
+				<Agt>
+					<FinInstnId>
+						<BIC>BCFRCHBBXXX</BIC>
+					</FinInstnId>
+				</Agt>
+			</Assgnr>
+			<Assgne>
+				<Agt>
+					<FinInstnId>
+						<BIC>SECGDEFFXXX</BIC>
+					</FinInstnId>
+				</Agt>
+			</Assgne>
+			<CreDtTm>2019-05-22T15:10:10</CreDtTm>
+		</Assgnmt>
+		<Undrlyg>
+			<TxInf>
+				<CxlId>CXLID-camt056CancelIdRef4712</CxlId>
+				<OrgnlGrpInf>
+					<OrgnlMsgId>MSGID-201920522-pacs008-0001</OrgnlMsgId>
+					<OrgnlMsgNmId>pacs.008.001.02</OrgnlMsgNmId>
+				</OrgnlGrpInf>
+				<OrgnlEndToEndId>1234567890</OrgnlEndToEndId>
+				<OrgnlTxId>20190522-2-0001</OrgnlTxId>
+				<OrgnlIntrBkSttlmAmt Ccy="EUR">5000.00</OrgnlIntrBkSttlmAmt>
+				<OrgnlIntrBkSttlmDt>2019-05-22</OrgnlIntrBkSttlmDt>
+				<CxlRsnInf>
+					<Orgtr>
+						<Nm>Horlogerie du Joux, Mueller et Cie.</Nm>
+					</Orgtr>
+					<Rsn>
+						<Cd>DUPL</Cd>
+					</Rsn>
+				</CxlRsnInf>
+				<OrgnlTxRef>
+					<SttlmInf>
+						<SttlmMtd>CLRG</SttlmMtd>
+						<ClrSys>
+							<Prtry>ABE</Prtry>
+						</ClrSys>
+					</SttlmInf>
+					<PmtTpInf>
+						<SvcLvl>
+							<Cd>SEPA</Cd>
+						</SvcLvl>
+					</PmtTpInf>
+					<Dbtr>
+						<Nm>Horlogerie du Joux, Mueller et Cie.</Nm>
+					</Dbtr>
+					<DbtrAcct>
+						<Id>
+							<IBAN>CH5598064001234567890</IBAN>
+						</Id>
+					</DbtrAcct>
+					<DbtrAgt>
+						<FinInstnId>
+							<BIC>BCFRCHBBXXX</BIC>
+						</FinInstnId>
+					</DbtrAgt>
+					<CdtrAgt>
+						<FinInstnId>
+							<BIC>RMTBDEFFXXX</BIC>
+						</FinInstnId>
+					</CdtrAgt>
+					<Cdtr>
+						<Nm>Uhrengrosshandel Buxtehude, Peter Maier und Co.</Nm>
+					</Cdtr>
+					<CdtrAcct>
+						<Id>
+							<IBAN>DE47100100001234567890</IBAN>
+						</Id>
+					</CdtrAcct>
+				</OrgnlTxRef>
+			</TxInf>
+		</Undrlyg>
+	</FIToFIPmtCxlReq>
+</Document>

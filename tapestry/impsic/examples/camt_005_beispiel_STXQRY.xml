@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.six-interbank-clearing.com/de/camt.005.001.06.ch.03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.six-interbank-clearing.com/de/camt.005.001.06.ch.03 camt.005.001.06.ch.03.xsd">
+	<GetTx>
+		<MsgHdr>
+			<MsgId>123456</MsgId>
+			<CreDtTm>2015-06-26T15:10:10</CreDtTm>
+			<ReqTp>
+				<Prtry>
+					<Id>CEC</Id>
+				</Prtry>
+			</ReqTp>
+		</MsgHdr>
+		<TxQryDef>
+			<TxCrit>
+				<NewCrit>
+					<NewQryNm>STXQRY</NewQryNm>
+					<SchCrit>
+						<PmtFr>
+							<MmbId>
+								<FinInstnId>
+									<ClrSysMmbId>
+										<MmbId>098064</MmbId>
+									</ClrSysMmbId>
+								</FinInstnId>
+							</MmbId>
+						</PmtFr>
+						<PmtSch>
+							<TxId>2015062500001</TxId>
+						</PmtSch>
+						<AcctNtrySch>
+							<AcctOwnr>
+								<Id>
+									<OrgId>
+										<Othr>
+											<Id>098064</Id>
+										</Othr>
+									</OrgId>
+								</Id>
+							</AcctOwnr>
+						</AcctNtrySch>
+					</SchCrit>
+				</NewCrit>
+			</TxCrit>
+		</TxQryDef>
+	</GetTx>
+</Document>

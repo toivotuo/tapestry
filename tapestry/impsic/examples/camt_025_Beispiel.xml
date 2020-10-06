@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.six-interbank-clearing.com/de/camt.025.001.03.ch.01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.six-interbank-clearing.com/de/camt.025.001.03.ch.01 camt.025.001.03.ch.01.xsd">
+	<Rct>
+		<MsgHdr>
+			<MsgId>MSG-0001</MsgId>
+			<CreDtTm>2012-01-25T14:10:01</CreDtTm>
+			<ReqTp>
+				<Prtry>
+					<Id>CSC</Id>
+				</Prtry>
+			</ReqTp>
+		</MsgHdr>
+		<RctDtls>
+			<OrgnlMsgId>
+				<MsgId>SIC4-000213</MsgId>
+				<MsgNmId>camt.008</MsgNmId>
+				<OrgtrNm>002301</OrgtrNm>
+			</OrgnlMsgId>
+			<ReqHdlg>
+				<StsCd>ACCP</StsCd>
+			</ReqHdlg>
+		</RctDtls>
+	</Rct>
+</Document>

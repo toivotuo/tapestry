@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.six-interbank-clearing.com/de/camt.019.001.05.ch.01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.six-interbank-clearing.com/de/camt.019.001.05.ch.01 camt.019.001.05.ch.01.xsd">
+	<RtrBizDayInf>
+		<MsgHdr>
+			<MsgId>SIC4-123456</MsgId>
+			<CreDtTm>2012-02-01T05:10:10</CreDtTm>
+			<ReqTp>
+				<Prtry>
+					<Id>CSC</Id>
+				</Prtry>
+			</ReqTp>
+			<QryNm>TEVINF</QryNm>
+		</MsgHdr>
+		<RptOrErr>
+			<BizRpt>
+				<SysId>
+					<Ctry>CH</Ctry>
+				</SysId>
+				<BizDayOrErr>
+					<BizDayInf>
+						<SysSts>
+							<Sts>
+								<Prtry>
+									<Id>BDMSG</Id>
+								</Prtry>
+							</Sts>
+						</SysSts>
+						<SysInfPerCcy>
+							<SysCcy>CHF</SysCcy>
+							<Evt>
+								<Tp>
+									<Prtry>
+										<Id>CS1</Id>
+									</Prtry>
+								</Tp>
+								<SchdldTm>2012-02-01T15:10:10</SchdldTm>
+								<FctvTm>2012-02-01T15:12:20</FctvTm>
+							</Evt>
+						</SysInfPerCcy>
+					</BizDayInf>
+				</BizDayOrErr>
+			</BizRpt>
+		</RptOrErr>
+	</RtrBizDayInf>
+</Document>
