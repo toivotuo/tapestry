@@ -121,6 +121,13 @@ class SCTSEPAProcessor(SEPAProcessor):  # FIXME: unreadable class name
         """Create payment packets ready for the Clearer."""
         from lxml import etree
 
+        # FIXME: It might make sense to convert this data dict (JSON)
+        # with 'xmltodict' and use those path lookups instead of doing
+        # this with XPath. It is easier to recreate the messages again
+        # from dicts than construct XML with 'lxml' (but 'pyxb' could
+        # help here). Using the WAPI+ standards [at least in the PSU
+        # interface] would be even nicer.
+
         namespaces = {
             'pacs': 'urn:iso:std:iso:20022:tech:xsd:pacs.008.001.02'
         }
