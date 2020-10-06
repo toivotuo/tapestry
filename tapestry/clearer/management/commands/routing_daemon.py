@@ -111,12 +111,12 @@ class Command(BaseCommand):
                     # unified packet types.
 
                     self.success("Payment packet authorisation failed: {}".format(
-                        self.format_payment(packet)))
+                        routserv.format_payment(packet)))
 
                     continue  # we just drop the non-authorised packet
 
                 self.success("Payment packet authorisation succeeded: {}".format(
-                    self.format_payment(packet)))
+                    routserv.format_payment(packet)))
 
                 # Route the packet by finding out what the destination
                 # interface is.
@@ -125,11 +125,11 @@ class Command(BaseCommand):
 
                 if not destination_bic:
                     self.error("No destination for payment packet {}".format(
-                               self.format_payment(packet)))
+                               routserv.format_payment(packet)))
                     continue
 
                 self.success("Routing payment packet to destination: {}".format(
-                        self.format_payment(packet)))
+                        routserv.format_payment(packet)))
 
                 # Pass the message along to the destination BIC.
 
@@ -140,15 +140,6 @@ class Command(BaseCommand):
                     yaml.safe_dump(packet)).execute()
 
                 self.success("Payment packet sent: {}".format(
-                    self.format_payment(packet)))
+                    routserv.format_payment(packet)))
 
             time.sleep(1)  # just so we don't use _all_ CPU
-
-    def format_payment(self, payment):
-        """ Helper to show payment packet as something more readable. """
-        # FIXME: Having the packet as an object and with a __repr__
-        # would be helpful.
-        return "{} -> {} {} {}".format(
-            payment['source_bic'], payment['destination_bic'],
-            payment['amount'], payment['currency'],
-        )
