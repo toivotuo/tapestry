@@ -1,21 +1,38 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # STEP2 SCT
-#
-# Calculating the pricing for the STEP2 SCT service for the STEP2-T platform.
-#
-# Pricing is calculated for direct participants using bulk processing and not participating in optional services like night time processing cycles. Assumes 50/50 split of SCT sent and received. EBICS connectivity assumed.
-#
-# Data source: https://www.ebaclearing.eu/services/step2-t-platform/step2-t-pricing/
+# Compares the pricing at different monthly payment transaction
+# volumes of three SEPA CSMs for the processing of SEPA Credit
+# Transfer (SCT) payments. The three CSMs compared are STEP2-T (EBA
+# CLEARING, CENTROlink (Bank of Lithuania) and SEPA-Clearer (Deutsche
+# Bundesbank). Produces a data file that can be plotted to explore the
+# costs between the CSMs at different volumes.
 
-# In[42]:
+# The comparison is based on public data and may not reflect all the
+# fees charged by each of the CSMs. A number of assumptions have been
+# made for the characteristics of the payment volume. Also, the
+# assumption is that none optional services are used and no cost
+# optimisations available at some of the CSMs is used. Furthermore, it
+# is assumed that a given monthly volume can be extrapolated as is to
+# an annual volume. Any initial fixed fees for joining a CSM are
+# amortised over a five year period in monthly increments.
 
 
 def step2_pricing(monthly_volume):
-    """Calculate price per payment given monthly volume"""
-    quarterly_daily_minimum = 5000
-    quarterly_fee_minimum = 3750
+    """
+    Calculate a STEP2-T SCT per payment price given a monthly volume
+    of payments.
+
+    Pricing is calculated for direct participants using bulk
+    processing and not participating in optional services like night
+    time processing cycles. Assumes 50/50 split of SCT sent and
+    received. EBICS connectivity assumed.
+
+    Data source:
+    https://www.ebaclearing.eu/services/step2-t-platform/step2-t-pricing/
+    """
+    quarterly_daily_minimum = 5000.00
+    quarterly_fee_minimum = 3750.00
     price_per_payment = 0.002
 
     daily_volume = monthly_volume / 30
@@ -28,32 +45,24 @@ def step2_pricing(monthly_volume):
         monthly_payment_fees = payment_fees + (quarterly_fee_minimum/3)
 
     # Joining fees amortised over five years; assuming that EBICS fee is a one-off
-    monthly_joining_fee = (30000+5000) / 5 / 12
+    monthly_joining_fee = (30000.00 + 5000.00) / 5 / 12
 
-    # Annual recurring fees per month
-    monthly_recurring_fee = (27500+12000) / 12
+    # Annual recurring fees per month (annual fee, settlement fee and
+    # relationship fee)
+    monthly_recurring_fee = (27500.00 + 12000.00 + 1000.00) / 12
 
     return (monthly_payment_fees + monthly_joining_fee + monthly_recurring_fee) / monthly_volume
 
-volumes = [10**3, 10**4, 10**5, 10**6, 10**7]
-for monthly_volume in volumes:
-    print("{} {}".format(monthly_volume, step2_pricing(monthly_volume)))
-
-
-
-# # CENTROlink
-#
-# Calculating the pricing for SCT service on the CENTROlink CSM.
-#
-# Assume 50/50 split between sent and received SCT.
-#
-# Data source: https://www.lb.lt/en/centrolink
-
-# In[41]:
-
 
 def centrolink_pricing(monthly_volume):
-    """Calculate the price per payment given monthly volume"""
+    """
+    Calculate a CENTROlink SCT per payment price given a monthly
+    volume of payments.
+
+    Assume 50/50 split between sent and received SCT.
+
+    Data source: https://www.lb.lt/en/centrolink
+    """
     price_per_sent_low_volume = 0.03
     price_per_sent_high_volume = 0.01
     price_per_received = 0.01
@@ -70,40 +79,57 @@ def centrolink_pricing(monthly_volume):
         sent_cost = monthly_volume_sent * price_per_sent_low_volume
     else:
         sent_cost_low_volume = high_volume_threshold/12 * price_per_sent_low_volume
-        sent_cost_high_volume = (monthly_volume/2 - high_volume_threshold/12) * price_per_sent_high_volume
+        sent_cost_high_volume = (monthly_volume_sent - high_volume_threshold/12) * price_per_sent_high_volume
         sent_cost = sent_cost_low_volume + sent_cost_high_volume
 
     # Received payments cost
     received_cost = monthly_volume_received * price_per_received
 
-    return max(sent_cost + received_cost, 100) / monthly_volume
-
-volumes = [10**3, 10**4, 10**5, 10**6, 10**7]
-for monthly_volume in volumes:
-    print("{} {}".format(monthly_volume, centrolink_pricing(monthly_volume)))
-
-
-# # SEPA-Clearer
-#
-# Calculating pricing for the Deutsche Bank SEPA-Clearer.
-#
-# Assumption is made here that 100% of the payments are sent to other CSMs. This is a conservative assumption and in practice the price would be less.
-#
-# Data source: https://www.bundesbank.de/en/tasks/payment-systems/rps/sepa-clearer/fees-and-operating-hours
-
-# In[45]:
+    return max(sent_cost + received_cost, 100.00) / monthly_volume
 
 
 def sepaclearer_pricing(monthly_volume):
-    """Calculate the price per payment given monthly volume"""
+    """
+    Calculate a SEPA-Clearer SCT per payment price given a monthly
+    volume of payments.
+
+    Assumption is made here that 100% of the payments are sent to
+    other CSMs. This is a conservative assumption and in practice the
+    price would be less.
+
+    Data source:
+    https://www.bundesbank.de/en/tasks/payment-systems/rps/sepa-clearer/fees-and-operating-hours
+    """
     price_per_sent = 0.0025 + 0.0025
     price_per_received = 0
 
     sent_cost = monthly_volume / 2 * price_per_sent
     received_cost = monthly_volume / 2 * price_per_received
 
-    return (sent_cost + received_cost) / monthly_volume
+    # Fixed fees payable to STEP2 (300.00 EUR initial fee and 250.00
+    # EUR per annum)
 
-volumes = [10**3, 10**4, 10**5, 10**6, 10**7]
-for monthly_volume in volumes:
-    print("{} {}".format(monthly_volume, sepaclearer_pricing(monthly_volume)))
+    fixed_fees = 300 / 12 / 5 + 250 / 12
+
+    return (sent_cost + received_cost + fixed_fees) / monthly_volume
+
+
+if __name__ == "__main__":
+
+    monthly_volumes = [10**5, 10**6, 10**7]
+    pricing_functions = [
+        step2_pricing,
+        centrolink_pricing,
+        sepaclearer_pricing,
+    ]
+
+    start = 10 ** 3
+    end = 10 ** 8
+    increment = 1000
+
+
+    volume = start
+    while volume <= end:
+        prices = [func(volume)*100 for func in pricing_functions]
+        print("{} {} {} {}".format(volume, *prices))
+        volume += increment
