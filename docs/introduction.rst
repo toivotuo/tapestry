@@ -1,3 +1,5 @@
+.. _tapestry:introduction:
+
 Introduction
 ============
 
@@ -19,7 +21,7 @@ technology in general and payment systems in particular. The Tapestry
 source code is designed to illustrate concepts in payment systems
 through running code. By exploring and modifying the Tapestry source
 code, a software engineer can develop a more intuitive understanding
-and mental models of how payments work. developing this type of
+and mental models of how payments work. Developing this type of
 understanding with production systems is more difficult due to system
 complexity and often high degree of legacy code. Furthermore, access
 to production payment systems is naturally rather limited unless one
@@ -40,7 +42,7 @@ utilities for bank to bank interactions - and within individual banks
 have been developed as proprietary systems with little public
 documentation available. Access to participate in payment systems as a
 payment service provider has also been limited to only authorised
-credit institutions (banks) and thus the barries for access have been
+credit institutions (banks) and thus the barriers for access have been
 high. Starting in the 2000s and accelerating in the 2010s there has -
 especially in Europe - been a concentrated effort to open access to
 payment systems to new players such as e-money institutions, payment

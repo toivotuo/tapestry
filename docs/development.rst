@@ -31,7 +31,7 @@ the Google style guide. Custom .pylintrc would be required.
 Automatic formatting of code to conform with the Google style guide
 can be achieved with \'yapf_\' (add -i to rewrite the file in-place)::
 
-     yapf --style=google FILENAME
+    yapf --style=google FILENAME
 
 .. _yapf: https://pypi.org/project/yapf/
 
@@ -73,11 +73,11 @@ Documentation improvements
 
 A number of documentation process improvements are planned:
 
-  * Generate and publish documents as GitHub Pages with the Sphinx
-    'sphinx.ext.githubpages' extension.
+* Generate and publish documents as GitHub Pages with the Sphinx
+  \'sphinx.ext.githubpages\' extension.
 
-  * Use the Sphinx 'sphinx.ext.todo' extension to publish a clear list
-    of the FIXME and TODO notes from the code as a list of
-    improvements to be done.
+* Use the Sphinx \'sphinx.ext.todo\' extension to publish a clear list
+  of the FIXME and TODO notes from the code as a list of
+  improvements to be done.
 
-  * Documentation coverage checks with Sphinx.
+* Documentation coverage checks with Sphinx.

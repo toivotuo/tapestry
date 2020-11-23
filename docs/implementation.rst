@@ -1,4 +1,6 @@
 System implementation
 =====================
 
-FIXME: Nothing to see here yet.
+.. FIXME
+
+Documenting the implementation is left as future work.
