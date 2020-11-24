@@ -17,6 +17,14 @@ class Message(models.Model):
 # FIXME: The ports of the counterparties with whom messages are
 # exchanged are missing.
 
+# FIXME: Add the direction for the delivery of the message.
+
+# FIXME: Add the channel for the delivery of the message.
+
+# FIXME: Should we separate the messages received (downloaded) and the
+# messages sent (uploaded)? The processing logic differs somewhat so
+# this might be warranted.
+
 # FIXME: No timestamping here on receipt and processing of messages.
 
 # FIXME: We need enums to validate the msgtype.
