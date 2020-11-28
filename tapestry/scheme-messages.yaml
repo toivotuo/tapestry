@@ -1,17 +1,25 @@
+# Standardised descriptions of the characteristics of payment
+# schemes. Both which currencies the schemes support and the messages
+# (plus message versions) are described.
+
 # FIXME: Does this work as a taxonomy in code?
 
-schemes:  # FIXME: have the country in these?
-  - sct
-  - sctinst
-  - sddcore
-  - sddb2b
-  - sic
-  - eurosic  # Kind of this is just SEPA, no?
-  - lsv
-  - fps
-  - bacs  # Direct credit and direct debit need separation!
-  - target2
-  - chaps
+# FIXME: have the country in these?
+schemes:
+  - sct      # SEPA Credit Transfer (SCT)
+  - sctinst  # SEPA Instant Credit Transfer (SCT Inst)
+  - sddcore  # SEPA Direct Debit Core (SDD Core)
+  - sddb2b   # SEPA Direct Debit B2B (SDD B2B)
+  - sic      # Swiss Interbank Clearing (SIC)
+  # FIXME: Kind of this is just SEPA, no?
+  - eurosic  # Swiss Euro Interbank Clearing (EuroSIC)
+  - lsv      # Swiss direct debit
+  - fps      # Faster Payments (FPS)
+  # FIXME: Direct credit and direct debit need separation!
+  - bacsdc   # Bacs Direct Credit
+  - bacsdd   # Bacs Direct Devit
+  - target2  # Trans-European Automated Real-Time Gross Settlement Express Transfer
+  - chaps    # Clearing Hous Automated Payment System
 
 currencies:
   - EUR:
@@ -25,7 +33,8 @@ currencies:
       - sic
       - lsv
   - GBP:
-      - bacs
+      - bacsdc
+      - bacsdd
       - fps
       - chaps
 
