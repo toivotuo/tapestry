@@ -1,57 +1,15 @@
 # Processors for the SEPA.
 
-import abc
 from fex.models import Message
+from tapestry.imp import MessageProcessor
+from tapestry.imp import MessageProcessorError
 
 
-class ProcessorError(Exception):
+class SEPAProcessor(MessageProcessor):
     pass
 
 
-# FIXME: Maybe these should be just called MessageProcessor?
-
-class Processor(abc.ABC):  # FIXME: name better and move elsewhere
-    """Abstract base class for Interface Message Processors (IMPs).
-
-    Sub-classes should be implemented for each payment scheme to do
-    the processing according to what a scheme needs.
-    """
-    # FIXME: Should the processor be initiated with the incoming
-    # message instead of passing the messages to each method? That
-    # would be a more logical paradigm.
-
-
-    @abc.abstractproperty
-    def scheme(self):
-        """Return the processor's supported scheme."""
-        pass
-
-    @abc.abstractmethod
-    def can_process(self, message: Message) -> bool:
-        """Can this message processor handle the message scheme?"""
-        pass
-
-    @abc.abstractmethod
-    def validate_message(self, message: Message) -> bool:
-        """Run schema validation on a message received or sent."""
-        pass
-
-    @abc.abstractmethod
-    def debulk_message(self, message: Message) -> list:
-        """Split a message into single payments."""
-        pass
-
-    @abc.abstractmethod
-    def create_payments(self, payments: list) -> list:
-        """Create payments from a debulked message."""
-        pass
-
-
-class SEPAProcessor(Processor):
-    pass
-
-
-class SCTSEPAProcessor(SEPAProcessor):  # FIXME: unreadable class name
+class SCTSEPAProcessor(SEPAProcessor):
     @property
     def scheme(self):
         return "eu.sepa.sct"
@@ -78,7 +36,7 @@ class SCTSEPAProcessor(SEPAProcessor):  # FIXME: unreadable class name
         # Load the schema
         xsdfile = SCHEMAS.get(message.msgtype, None)
         if xsdfile is None:
-            raise ProcessorError("Message type not supported: {} {}".format(
+            raise MessageProcessorError("Message type not supported: {} {}".format(
                 message.scheme, message.msgtype))
         with open(xsdfile) as xsdfd:
             xmlschema_doc = etree.parse(xsdfd)
@@ -89,7 +47,7 @@ class SCTSEPAProcessor(SEPAProcessor):  # FIXME: unreadable class name
         try:
             xmlschema.assertValid(doc)
         except etree.DocumentInvalid as e:
-            raise ProcessorError(str(e))
+            raise MessageProcessorError(str(e))
 
         return True  # valid message
 
