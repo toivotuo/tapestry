@@ -5,7 +5,6 @@
 
 cat <<EOF | while read f
 introduction
-design
 implementation
 development
 ledger
@@ -20,5 +19,5 @@ imp8583
 EOF
 do
     echo ${f}
-    pandoc -o ~/tlbop/repo/tapestry/${f}.tex ${f}.rst
+    pandoc -o ~/tlbop/repo/tapestry/docs/${f}.tex ${f}.rst
 done
