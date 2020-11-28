@@ -1,14 +1,12 @@
 System implementation
 =====================
 
-.. FIXME: text is not ready
-
 As the implementation language for Tapestry, Python_ (version 3.7.X)
 was selected. Python was selected in part due to the author's
-familiary with the language and due to Python being a widely adopted
-and approachable lanuage with extensive standard library and
+familiarity with the language and due to Python being a widely adopted
+and approachable language with extensive standard library and
 third-party open source libraries. A 'requirements.txt' is provided in
-the GitHub repository that documents thte third-party libraries used.
+the GitHub repository that documents the third-party libraries used.
 
 .. _Python: https://www.python.org/
 
@@ -38,7 +36,7 @@ used in Tapestry are as follows:
 Django models and ORM
     Django comes with a powerful object relational
     mapper (ORM). With the ORM, Django translates Python classes
-    derived from a Djano model base class and constructed with special
+    derived from a Django model base class and constructed with special
     formatting to SQL queries. The ORM can be connected to a number of
     database backends through which Django supports various relational
     database management systems (RDBMS). For example, for Tapestry
@@ -48,7 +46,7 @@ Django models and ORM
     Tapestry, for example, a "payment account", are expressed as
     Django models and accessed through the Django ORM.
 
-Djagno admin views
+Django admin views
     Django provides a builtin feature for the easy construction of
     web-based administrative interfaces to applications. With the
     Django admin views an operations console can be rapidly
