@@ -37,8 +37,8 @@ Payments engineering
 --------------------
 
 Payments engineering has traditionally been, and to a degree still is,
-an opaque area of software engineering. Payment systems - both as
-utilities for bank to bank interactions - and within individual banks
+an opaque area of software engineering. Payment systems, both as
+utilities for bank to bank interactions, and within individual banks
 have been developed as proprietary systems with little public
 documentation available. Access to participate in payment systems as a
 payment service provider has also been limited to only authorised
