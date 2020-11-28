@@ -14,7 +14,7 @@ class AuthorisationService(object):
         """Takes in a 'payment packet' akin to an MT103 ("Single Customer
         Credit Transfer")."""
         from decimal import Decimal
-        from settler.models import Transaction
+        from ledger.models import Transaction
 
         # FIXME: We're just accounting, but we're not checking
         # balances at all.

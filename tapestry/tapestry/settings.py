@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'clearer',  # Clear all the payments!
     'settler',  # Settle all the payments!
     'router',  # Route all the payments!
+    'ledger',  # Acccount all the payments!
     'impsepa',  # An IMP for SEPA
     'fex',  # File (Message) Exchanger
 ]
