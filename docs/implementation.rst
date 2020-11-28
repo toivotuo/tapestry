@@ -1,5 +1,5 @@
-System implementation
-=====================
+Implementation
+==============
 
 As the implementation language for Tapestry, Python_ (version 3.7.X)
 was selected. Python was selected in part due to the author's

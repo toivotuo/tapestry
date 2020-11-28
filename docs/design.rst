@@ -5,7 +5,7 @@ Documenting the design is left as future work.
 
 .. I am the design, woot!
 
-.. FIXME: To be written!
+.. FIXME: To be written to have something in LyX!
 
 .. A Tapestry operates as a CSM, but may also be a PSP and/or a PSU.
 
