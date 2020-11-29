@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Sourced form https://www.six-group.com/dam/download/banking-services/interbank-clearing/en/standardization/iso/interbank/xml-examples_4_7.zip "Beispiel 1: Anwendungsfall Kundenzahlung auf ein Bankkonto (STP-Kundenzahlung)" -->
+<!-- Example sourced from https://www.six-group.com/dam/download/banking-services/interbank-clearing/en/standardization/iso/interbank/xml-examples_4_7.zip "Beispiel 1: Anwendungsfall Kundenzahlung auf ein Bankkonto (STP-Kundenzahlung)". Adapted for the use of Tapestry. -->
 <Document xmlns="http://www.six-interbank-clearing.com/de/pacs.008.001.02.ch.02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.six-interbank-clearing.com/de/pacs.008.001.02.ch.02 pacs.008.001.02.ch.02.xsd">
   <FIToFICstmrCdtTrf>
     <GrpHdr>

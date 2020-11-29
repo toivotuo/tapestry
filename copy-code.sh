@@ -12,6 +12,10 @@ cat<<EOF | while read src dst
 ./tapestry/router/management/commands/import_separouting.py import-separouting.py
 ./tapestry/router/management/commands/import_scldirectory.py import-scldirectory.py
 ./tapestry/router/management/commands/import_tipsreach.py import-tipsreach.py
+./tapestry/settler/services.py settler-services.py
+./tapestry/impsepa/sct-datasets.yaml sct-datasets.yaml
+./tapestry/impsepa/pacs-008-sct-fixture.xml pacs-008-sct-fixture.xml
+./tapestry/impsic/pacs-008-sic-fixture.xml pacs-008-sic-fixture.xml
 EOF
 do
     echo $dst

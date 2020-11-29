@@ -31,9 +31,9 @@
     <CdtTrfTxInf> <!-- CreditTransferTransactionInformation11 -->
       <PmtId>
 	<!--<InstrId>cq4CZJ7BztcfaRPSJpRuuz</InstrId>-->
-	<!-- AT-41 The Originator’s Reference of the SEPA Credit Transfer Transaction -->
+	<!-- AT-41 The Originator*s Reference of the SEPA Credit Transfer Transaction -->
 	<EndToEndId>NOTPROVIDED</EndToEndId> <!-- Max35Text -->
-	<!-- AT-43 The Originator Bank’s reference -->
+	<!-- AT-43 The Originator Bank*s reference -->
 	<TxId>cq4CZJ7BztcfaRPSJpRuuz</TxId> <!-- Max35Text -->
       </PmtId>
       <PmtTpInf> <!-- PaymentTypeInformation21 -->
@@ -60,7 +60,7 @@
 	<Nm>Bob</Nm> <!-- Max140Text [Limited to 70] -->
 	<!-- AT-03 Address of the Originator -->
 	<!-- PstlAdr PostalAddress6 -->
-	<!-- AT-10 Originator’s Identification Code -->
+	<!-- AT-10 Originator''s Identification Code -->
 	<Id> <!-- Party6Choice -->
 	  <PrvtId> <!-- PersonIdentification5 -->
 	    <DtAndPlcOfBirth> <!-- DateAndPlaceOfBirth -->

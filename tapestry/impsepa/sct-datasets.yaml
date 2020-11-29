@@ -9,9 +9,9 @@ datasets:
       - AT-21  # The name of the Beneficiary
       - AT-23  # The BIC code of the Beneficiary Bank
       - AT-40  # The identification code of the SEPA electronic credit transfer Scheme
-      - AT-41  # The Originator’s reference of the Credit Transfer Transaction
+      - AT-41  # The Originator*s reference of the Credit Transfer Transaction
       - AT-42  # The Settlement Date of the SEPA Credit Transfer
-      - AT-43  # The Originator Bank’s reference number of the SEPA Credit Transfer message
+      - AT-43  # The Originator Bank*s reference number of the SEPA Credit Transfer message
     optional:
       - AT-03  # The address of the Originator
       - AT-05  # The Remittance Information
@@ -44,9 +44,9 @@ attributes:
   AT-28: The name of the Beneficiary Reference Party
   AT-29: The identification code of the Beneficiary Reference Party
   AT-40: The identification code of the Scheme
-  AT-41: The Originator’s reference of the Credit Transfer Transaction
+  AT-41: The Originator*s reference of the Credit Transfer Transaction
   AT-42: The Settlement Date of the SEPA Credit Transfer
-  AT-43: The Originator Bank’s reference of the SEPA Credit Transfer Transaction
+  AT-43: The Originator Bank*s reference of the SEPA Credit Transfer Transaction
   AT-44: The purpose of the SEPA Credit Transfer
   AT-45: The category purpose of the SEPA Credit Transfer
   AT-46: The returned amount of the positive answer to the Recall in euro
@@ -68,8 +68,8 @@ attributes:
   AT-84: New value date of the SEPA Credit Transfer based on the new settlement date
   AT-85: The interest compensation recovered by the Beneficiary Bank from the Originator Bank
   AT-86: Fee for handling the SCT inquiry
-  AT-R1: The type of “R” message
-  AT-R2: The identification of the type of party initiating the “R” message
+  AT-R1: The type of "R" message
+  AT-R2: The identification of the type of party initiating the "R" message
   AT-R3: The reason code for non-acceptance of the SEPA Credit Transfer
   AT-R4: The Settlement Date for the Return
   AT-R5: The specific reference of the Bank initiating the Reject/Return
