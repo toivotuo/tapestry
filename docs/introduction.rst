@@ -3,6 +3,10 @@
 Introduction
 ============
 
+In this section we provide a background of the Tapestry payments
+router prototype, and its objectives. We also briefly discuss payments
+engineering and how it relates to software engineering.
+
 Background and objectives
 -------------------------
 
