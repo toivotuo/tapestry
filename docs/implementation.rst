@@ -56,8 +56,23 @@ Django admin views
     of the payments router database to inspect the processing of
     payments messages.
 
+Django signals
+    Django provides an efficient signals framework implementing the
+    publish-subscribe (pubsub) paradigm. Signals can be defined and
+    then listeners subscribed to the signals. When signals are invoked
+    (published) the signal payload is passed to all the
+    listeners. Even in a monolithic Django application the signals
+    framework allows the development of clean boundaries between
+    modules. An event driven architecture can be implemented with some
+    ease. In a more production ready implementation a Kafka event log
+    or other pubsub facility could be used to provide more
+    distribution and scalability than can be achieved with a
+    monolithic Django application.
+
+.. _`Django REST Framework`: https://www.django-rest-framework.org/
+
 Django REST Framework
-    A third-party library, the Django REST Framework (DRF) provides
+    A third-party library, the `Django REST Framework`_ (DRF) provides
     powerful facilities to construct APIs using the "representational
     state transfer" or REST paradigm. Using DRF, external interfaces
     to expose functionalities of Tapestry to PSU customers and to
