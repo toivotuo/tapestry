@@ -1,6 +1,7 @@
 # Message processor base class.
 
 import abc
+from fex.models import Message
 
 
 class MessageProcessorError(Exception):
